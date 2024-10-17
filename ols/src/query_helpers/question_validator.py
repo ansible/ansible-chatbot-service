@@ -9,9 +9,9 @@ from langchain.prompts import PromptTemplate
 from ols import config
 from ols.app.metrics import TokenMetricUpdater
 from ols.constants import SUBJECT_REJECTED, GenericLLMParameters
+from ols.customize import prompts
 from ols.src.query_helpers.query_helper import QueryHelper
 from ols.utils.token_handler import TokenHandler
-from ols.customize import prompts
 
 logger = logging.getLogger(__name__)
 

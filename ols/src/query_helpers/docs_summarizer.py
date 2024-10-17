@@ -11,10 +11,10 @@ from ols.app.metrics import TokenMetricUpdater
 from ols.app.models.config import ProviderConfig
 from ols.app.models.models import SummarizerResponse
 from ols.constants import RAG_CONTENT_LIMIT, GenericLLMParameters
+from ols.customize import prompts
 from ols.src.prompts.prompt_generator import GeneratePrompt
 from ols.src.query_helpers.query_helper import QueryHelper
 from ols.utils.token_handler import TokenHandler
-from ols.customize import prompts
 
 logger = logging.getLogger(__name__)
 

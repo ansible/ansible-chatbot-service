@@ -27,7 +27,7 @@ from ols.app.models.models import (
     SummarizerResponse,
     UnauthorizedResponse,
 )
-from ols.customize import prompts, keywords
+from ols.customize import keywords, prompts
 from ols.src.llms.llm_loader import LLMConfigurationError, resolve_provider_config
 from ols.src.query_helpers.attachment_appender import append_attachments_to_query
 from ols.src.query_helpers.docs_summarizer import DocsSummarizer

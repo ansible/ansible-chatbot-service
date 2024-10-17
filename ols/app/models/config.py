@@ -902,9 +902,11 @@ class OLSConfig(BaseModel):
         if data is None:
             return
 
-        self.conversation_cache = ConversationCacheConfig(
-            data.get("conversation_cache")
-        ) if data.get("conversation_cache") else None
+        self.conversation_cache = (
+            ConversationCacheConfig(data.get("conversation_cache"))
+            if data.get("conversation_cache")
+            else None
+        )
         self.logging_config = LoggingConfig(**data.get("logging_config", {}))
         if data.get("reference_content") is not None:
             self.reference_content = ReferenceContent(data.get("reference_content"))
@@ -933,7 +935,7 @@ class OLSConfig(BaseModel):
         self.certificate_directory = data.get(
             "certificate_directory", constants.DEFAULT_CERTIFICATE_DIRECTORY
         )
-        self.customize = data.get('customize')
+        self.customize = data.get("customize")
 
     def __eq__(self, other: object) -> bool:
         """Compare two objects for equality."""
