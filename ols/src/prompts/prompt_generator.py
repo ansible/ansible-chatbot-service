@@ -53,7 +53,6 @@ class GeneratePrompt:
         self._rag_context = rag_context
         self._history = history
         self._sys_instruction = system_instruction
-        print("system_instruction: {system_instruction}")
 
     def _generate_prompt_gpt(self) -> tuple[ChatPromptTemplate, dict]:
         """Generate prompt for GPT."""
