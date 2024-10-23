@@ -31,7 +31,7 @@ COPY --from=lightspeed-rag-content /rag/embeddings_model ./embeddings_model
 # (avoid accidental inclusion of local directories or env files or credentials)
 COPY runner.py ./
 
-RUN pip install .
+RUN pip3.11 install .
 
 COPY ols ./ols
 
