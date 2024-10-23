@@ -29,7 +29,7 @@ COPY --from=lightspeed-rag-content /rag/embeddings_model ./embeddings_model
 
 # Add explicit files and directories
 # (avoid accidental inclusion of local directories or env files or credentials)
-COPY runner.py ./
+COPY runner.py pyproject.toml ./
 
 RUN pip3.11 install .
 
