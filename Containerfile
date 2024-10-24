@@ -3,7 +3,7 @@ ARG LIGHTSPEED_RAG_CONTENT_IMAGE=quay.io/openshift-lightspeed/lightspeed-rag-con
 
 FROM ${LIGHTSPEED_RAG_CONTENT_IMAGE} as lightspeed-rag-content
 
-FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
+FROM registry.access.redhat.com/ubi9/ubi-minimal:latest AS production
 
 ARG VERSION
 # todo: this is overriden by the image ubi9/python-311, we hard coded WORKDIR below to /app-root
@@ -31,9 +31,9 @@ COPY --from=lightspeed-rag-content /rag/embeddings_model ./embeddings_model
 
 # Add explicit files and directories
 # (avoid accidental inclusion of local directories or env files or credentials)
-COPY runner.py requirements.txt ./
+COPY runner.py pyproject.toml LICENSE README.md ./
 
-RUN pip3.11 install --no-cache-dir -r requirements.txt
+RUN pip3.11 install .
 
 COPY ols ./ols
 
