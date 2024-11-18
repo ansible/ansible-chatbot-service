@@ -75,6 +75,7 @@ class LLMRequest(BaseModel):
     conversation_id: Optional[str] = None
     provider: Optional[str] = None
     model: Optional[str] = None
+    system_prompt: Optional[str] = None
     attachments: Optional[list[Attachment]] = None
 
     # provides examples for /docs endpoint

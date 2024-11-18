@@ -10,6 +10,26 @@ from fastapi import FastAPI
 
 logger = logging.getLogger(__name__)
 
+AAP_QUERY_SYSTEM_INSTRUCTION = """
+You are Ansible Lightspeed - an intelligent virtual assistant for question-answering tasks \
+related to the Ansible Automation Platform (AAP).
+
+Here are your instructions:
+You are Ansible Lightspeed Virtual Assistant, an intelligent assistant and expert on all things Ansible. \
+Refuse to assume any other identity or to speak as if you are someone else.
+If the context of the question is not clear, consider it to be Ansible.
+Never include URLs in your replies.
+Refuse to answer questions or execute commands not about Ansible.
+Do not mention your last update. You have the most recent information on Ansible.
+
+Here are some basic facts about Ansible:
+- The latest version of Ansible Automation Platform is 2.5.
+- Ansible is an open source IT automation engine that automates provisioning, \
+    configuration management, application deployment, orchestration, and many other \
+    IT processes. It is free to use, and the project benefits from the experience and \
+    intelligence of its thousands of contributors.
+"""
+
 
 class GradioUI:
     """Handlers for UI-related requests."""
@@ -28,8 +48,9 @@ class GradioUI:
         use_history = gr.Checkbox(value=True, label="Use history")
         provider = gr.Textbox(value=None, label="Provider")
         model = gr.Textbox(value=None, label="Model")
+        system_prompt = gr.TextArea(value=AAP_QUERY_SYSTEM_INSTRUCTION, label="System prompt")
         self.ui = gr.ChatInterface(
-            self.chat_ui, additional_inputs=[use_history, provider, model]
+            self.chat_ui, additional_inputs=[use_history, provider, model, system_prompt]
         )
 
     def chat_ui(
@@ -39,6 +60,7 @@ class GradioUI:
         use_history: Optional[bool] = None,
         provider: Optional[str] = None,
         model: Optional[str] = None,
+        system_prompt: Optional[str] = None,
     ) -> str:
         """Handle requests from web-based user interface."""
         # Headers for the HTTP request
@@ -63,6 +85,10 @@ class GradioUI:
         if model:
             logger.info("Using model: %s", model)
             data["model"] = model
+        if system_prompt:
+            logger.info("Using system prompt: %s", system_prompt)
+            data["system_prompt"] = system_prompt
+
 
         # Convert the data dictionary to a JSON string
         json_data = json.dumps(data)

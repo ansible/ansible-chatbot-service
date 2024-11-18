@@ -302,7 +302,7 @@ def generate_response(
     # Summarize documentation
     try:
         docs_summarizer = DocsSummarizer(
-            provider=llm_request.provider, model=llm_request.model
+            provider=llm_request.provider, model=llm_request.model, system_prompt=llm_request.system_prompt
         )
         history = CacheEntry.cache_entries_to_history(previous_input)
         return docs_summarizer.summarize(
