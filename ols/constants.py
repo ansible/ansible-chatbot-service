@@ -216,3 +216,11 @@ DEFAULT_AUTHENTICATION_MODULE = "k8s"
 
 # All supported authentication modules
 SUPPORTED_AUTHENTICATION_MODULES = {"k8s", "noop"}
+
+
+# Vector store types
+class VectorStoreType(StrEnum):
+    """Supported vector store types."""
+
+    FAISS = "faiss"
+    POSTGRES = "postgres"

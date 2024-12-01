@@ -85,9 +85,9 @@ dependencies = [
     "fastapi==0.115.4",
     "langchain==0.3.6",
     "langchain-ibm==0.3.2",
-    "llama-index==0.10.62",
-    "llama-index-vector-stores-faiss==0.1.2",
-    "llama-index-embeddings-huggingface==0.2.2",
+    "llama-index==0.12.2",
+    "llama-index-vector-stores-faiss==0.3.0",
+    "llama-index-embeddings-huggingface==0.4.0",
     "uvicorn==0.32.0",
     "redis==5.0.8",
     "faiss-cpu==1.8.0.post1",
@@ -120,6 +120,7 @@ dependencies = [
     "findpython==0.6.2",
     "filelock==3.16.1",
     "ffmpy==0.4.0",
+    "llama-index-vector-stores-supabase==0.3.0",
 ]
 requires-python = "==3.11.*"
 readme = "README.md"

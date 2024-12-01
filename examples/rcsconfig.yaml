@@ -57,9 +57,18 @@ llm_providers:
 ols_config:
   # max_workers: 1
   reference_content:
+    vector_store_type: postgres
 #    product_docs_index_path: "./vector_db/ocp_product_docs/4.15"
 #    product_docs_index_id: ocp-product-docs-4_15
 #    embeddings_model_path: "./embeddings_model"
+    postgres:
+      host: localhost
+      port: 5432
+      dbname: postgres
+      user: postgres
+      password_path: /home/ttakamiy/secrets/postgres.txt
+      # ssl_mode:
+      # ca_cert_path:
   conversation_cache:
     type: memory
     memory:

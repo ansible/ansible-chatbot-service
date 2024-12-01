@@ -870,9 +870,11 @@ class LoggingConfig(BaseModel):
 class ReferenceContent(BaseModel):
     """Reference content configuration."""
 
+    vector_store_type: Optional[str] = None
     product_docs_index_path: Optional[FilePath] = None
     product_docs_index_id: Optional[str] = None
     embeddings_model_path: Optional[FilePath] = None
+    postgres: Optional[PostgresConfig] = None
 
     def __init__(self, data: Optional[dict] = None) -> None:
         """Initialize configuration and perform basic validation."""
@@ -880,9 +882,23 @@ class ReferenceContent(BaseModel):
         if data is None:
             return
 
+        self.vector_store_type = data.get(
+            "vector_store_type", constants.VectorStoreType.FAISS
+        )
+        valid_vector_store_types = list(constants.VectorStoreType)
+        if self.vector_store_type not in valid_vector_store_types:
+            raise InvalidConfigurationError(
+                f"invalid vector store type: {self.vector_store_type}, supported types are"
+                f" {valid_vector_store_types}"
+            )
         self.product_docs_index_path = data.get("product_docs_index_path", None)
         self.product_docs_index_id = data.get("product_docs_index_id", None)
         self.embeddings_model_path = data.get("embeddings_model_path", None)
+        if (
+            self.vector_store_type == constants.VectorStoreType.POSTGRES
+            and "postgres" in data
+        ):
+            self.postgres = PostgresConfig(**data.get("postgres"))
 
     def __eq__(self, other: object) -> bool:
         """Compare two objects for equality."""

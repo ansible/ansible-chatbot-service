@@ -5,6 +5,7 @@ import logging
 from typing import Optional
 
 from ols.app.models.config import ReferenceContent
+from ols.constants import VectorStoreType
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +15,7 @@ logger = logging.getLogger(__name__)
 # we load it only when it is required.
 # As these dependencies are lazily loaded, we can't use them in type hints.
 # So this module is excluded from mypy checks as a whole.
-def load_llama_index_deps():
+def load_llama_index_deps(vector_store_type: str):
     """Load llama_index dependencies."""
     global Settings
     global StorageContext
@@ -22,12 +23,19 @@ def load_llama_index_deps():
     global EmbedType
     global BaseIndex
     global resolve_llm
-    global FaissVectorStore
     from llama_index.core import Settings, StorageContext, load_index_from_storage
     from llama_index.core.embeddings.utils import EmbedType
     from llama_index.core.indices.base import BaseIndex
     from llama_index.core.llms.utils import resolve_llm
-    from llama_index.vector_stores.faiss import FaissVectorStore
+
+    if vector_store_type == VectorStoreType.FAISS:
+        global FaissVectorStore
+        from llama_index.vector_stores.faiss import FaissVectorStore
+    elif vector_store_type == VectorStoreType.POSTGRES:
+        global VectorStoreIndex
+        global SupabaseVectorStore
+        from llama_index.core import VectorStoreIndex
+        from llama_index.vector_stores.supabase import SupabaseVectorStore
 
 
 class IndexLoader:
@@ -35,7 +43,13 @@ class IndexLoader:
 
     def __init__(self, index_config: Optional[ReferenceContent]) -> None:
         """Initialize loader."""
-        load_llama_index_deps()
+        self._vector_store_type = (
+            VectorStoreType.FAISS
+            if index_config is None or index_config.vector_store_type is None
+            else index_config.vector_store_type
+        )
+
+        load_llama_index_deps(self._vector_store_type)
         self._index = None
 
         self._index_config = index_config
@@ -73,26 +87,52 @@ class IndexLoader:
         Settings.llm = resolve_llm(None)
         logger.info("Setting up storage context for index load...")
         # pylint: disable=W0201
-        self._storage_context = StorageContext.from_defaults(
-            vector_store=FaissVectorStore.from_persist_dir(self._index_path),
-            persist_dir=self._index_path,
-        )
+        if self._vector_store_type == VectorStoreType.FAISS:
+            self._vector_store = FaissVectorStore.from_persist_dir(self._index_path)
+            self._storage_context = StorageContext.from_defaults(
+                vector_store=self._vector_store,
+                persist_dir=self._index_path,
+            )
+        elif self._vector_store_type == VectorStoreType.POSTGRES:
+            postgres = self._index_config.postgres
+            user = postgres.user
+            password = postgres.password
+            host = postgres.host
+            port = postgres.port
+            dbname = postgres.dbname
+
+            connection = f"postgresql://{user}:{password}@{host}:{port}/{dbname}"
+            collection_name = self._index_id.replace("-", "_")
+
+            self._vector_store = SupabaseVectorStore(
+                postgres_connection_string=connection,
+                collection_name=collection_name,
+            )
+            self._storage_context = StorageContext.from_defaults(
+                vector_store=self._vector_store,
+            )
 
     def _load_index(self) -> None:
         """Load vector index."""
-        if self._index_path is None:
-            logger.warning("Index path is not set.")
-        else:
-            try:
-                self._set_context()
-                logger.info("Loading vector index...")
-                self._index = load_index_from_storage(
-                    storage_context=self._storage_context,
-                    index_id=self._index_id,
-                )
-                logger.info("Vector index is loaded.")
-            except Exception as err:
-                logger.exception(f"Error loading vector index:\n{err}")
+        if self._vector_store_type == VectorStoreType.FAISS:
+            if self._index_path is None:
+                logger.warning("Index path is not set.")
+            else:
+                try:
+                    self._set_context()
+                    logger.info("Loading vector index...")
+                    self._index = load_index_from_storage(
+                        storage_context=self._storage_context,
+                        index_id=self._index_id,
+                    )
+                    logger.info("Vector index is loaded.")
+                except Exception as err:
+                    logger.exception(f"Error loading vector index:\n{err}")
+        elif self._vector_store_type == VectorStoreType.POSTGRES:
+            self._set_context()
+            self._index = VectorStoreIndex.from_vector_store(
+                vector_store=self._vector_store,
+            )
 
     @property
     def vector_index(self):
