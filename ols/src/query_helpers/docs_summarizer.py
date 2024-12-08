@@ -96,6 +96,14 @@ class DocsSummarizer(QueryHelper):
             logger.warning("Proceeding without RAG content. Check start up messages.")
             rag_chunks = []
 
+        # If the leading RagChunk is appended from the documents added manually to the
+        # aap-rag-content repo, then shorten the rag_chunks list to contain only three
+        # items, letting the LLM concentrate its response mainly on that specific document.
+        if (len(rag_chunks) > 3 and
+            rag_chunks[0].doc_url
+                .startswith("https://github.com/ansible/aap-rag-content/blob/main/")):
+            rag_chunks = rag_chunks[:3]
+
         rag_context = [rag_chunk.text for rag_chunk in rag_chunks]
 
         # Truncate history, if applicable
