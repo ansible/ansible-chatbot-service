@@ -117,7 +117,7 @@ RAG_CONTENT_LIMIT = 5
 # And if we set a very high value, then there is risk of discarding all the chunks,
 # as there won't be perfect matching chunk.
 # Range: 0 to 1
-RAG_SIMILARITY_CUTOFF = 0.3
+RAG_SIMILARITY_CUTOFF = 0.635
 
 
 # cache constants
