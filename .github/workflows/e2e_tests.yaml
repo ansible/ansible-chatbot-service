@@ -7,6 +7,12 @@ on:
         description: 'branch to run tests from, default: main'
         required: false
         type: string
+      environment:
+        type: choice
+        description: Environment
+        options:
+          - stage
+          - prod
 
 env:
   branch: ${{ inputs.branch || 'main' }}
