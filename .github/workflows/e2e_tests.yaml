@@ -1,0 +1,57 @@
+name: E2E tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'branch to run tests from, default: main'
+        required: false
+        type: string
+      environment:
+        type: choice
+        description: Environment
+        options:
+          - stage
+          - prod
+
+env:
+  branch: ${{ inputs.branch || 'main' }}
+  ols_url: ${{ inputs.environment == 'stage' && 'https://stage.ai.ansible.redhat.com/chat' || 'https://c.ai.ansible.redhat.com/chat' }}
+
+jobs:
+  test_schedule:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout ${{ env.branch }}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ env.branch }}
+
+      - name: Set up python3
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Python version
+        run: python --version
+
+      - name: PDM installation
+        run: pip install --user pdm
+
+      - name: Install dependencies
+        run: pdm install
+
+      - name: Install devel dependencies
+        run: pdm install --dev
+
+      - name: Run e2e tests
+        run: OLS_URL=${{ env.ols_url }} pdm run python -m pytest -m tests/e2e --doctest-modules --junitxml=junit/e2e-test-results.xml
+
+      - name: Upload pytest test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-results
+          path: junit/e2e-test-results.xml
+        # Use always() to always run this step to publish test results when there are test failures
+        if: ${{ always() }}
