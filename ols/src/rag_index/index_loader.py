@@ -2,7 +2,7 @@
 """Module for loading index."""
 
 import logging
-from typing import Optional
+from typing import Any, Optional
 
 from ols.app.models.config import ReferenceContent
 
@@ -14,8 +14,9 @@ logger = logging.getLogger(__name__)
 # we load it only when it is required.
 # As these dependencies are lazily loaded, we can't use them in type hints.
 # So this module is excluded from mypy checks as a whole.
-def load_llama_index_deps():
+def load_llama_index_deps() -> None:
     """Load llama_index dependencies."""
+    # pylint: disable=global-statement
     global Settings
     global StorageContext
     global load_index_from_storage
@@ -39,7 +40,7 @@ class IndexLoader:
         self._index = None
 
         self._index_config = index_config
-        logger.debug(f"Config used for index load: {self._index_config}")
+        logger.debug("Config used for index load: %s", str(self._index_config))
 
         if self._index_config is None:
             logger.warning("Config for reference content is not set.")
@@ -51,13 +52,13 @@ class IndexLoader:
             self._embed_model = self._get_embed_model()
             self._load_index()
 
-    def _get_embed_model(self):
+    def _get_embed_model(self) -> Any:
         """Get embed model according to configuration."""
         if self._embed_model_path is not None:
             from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
             logger.debug(
-                f"Loading embedding model info from path {self._embed_model_path}"
+                "Loading embedding model info from path %s", self._embed_model_path
             )
             return HuggingFaceEmbedding(model_name=self._embed_model_path)
 
@@ -67,7 +68,7 @@ class IndexLoader:
 
     def _set_context(self) -> None:
         """Set storage/service context required for index load."""
-        logger.debug(f"Using {self._embed_model!s} as embedding model for index.")
+        logger.debug("Using %s as embedding model for index", str(self._embed_model))
         logger.info("Setting up settings for index load...")
         Settings.embed_model = self._embed_model
         Settings.llm = resolve_llm(None)
@@ -92,10 +93,10 @@ class IndexLoader:
                 )
                 logger.info("Vector index is loaded.")
             except Exception as err:
-                logger.exception(f"Error loading vector index:\n{err}")
+                logger.exception("Error loading vector index:\n%s", err)
 
     @property
-    def vector_index(self):
+    def vector_index(self) -> Optional[ReferenceContent]:
         """Get index."""
         if self._index is None:
             logger.warning(

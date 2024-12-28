@@ -36,7 +36,7 @@ configure model, and connect to it.
         * [Locally running InstructLab](#locally-running-instructlab)
     * [4. Store local copies of API keys securely](#4-store-local-copies-of-api-keys-securely)
 * [Configuration](#configuration)
-    * [1. Configure Road Core Service (RCS)](#5-configure-road-core-rcs)
+    * [1. Configure Road Core Service (RCS)](#1-configure-road-core-service-rcs)
     * [2. Configure LLM providers](#2-configure-llm-providers)
         * [OpenAI provider](#openai-provider)
         * [Azure OpenAI](#azure-openai-1)
@@ -49,8 +49,10 @@ configure model, and connect to it.
     * [5. (Optional) Configure the local document store](#5-optional-configure-the-local-document-store)
     * [6. (Optional) Configure conversation cache](#6-optional-configure-conversation-cache)
     * [7. (Optional) Incorporating additional CA(s). You have the option to include an extra TLS certificate into the RCS trust store as follows.](#7-optional-incorporating-additional-cas-you-have-the-option-to-include-an-extra-tls-certificate-into-the-rcs-trust-store-as-follows)
-    * [8. Registering new LLM provider](#8-registering-new-llm-provider)
-    * [9. Fine tuning](#9-fine-tuning)
+    * [8. (Optional) Configure the number of workers](#8-optional-configure-the-number-of-workers)
+    * [9. Registering a new LLM provider](#9-registering-a-new-llm-provider)
+    * [10. TLS security profiles](#10-tls-security-profiles)
+    * [11. Fine tuning](#11-fine-tuning)
 * [Usage](#usage)
     * [Deployments](#deployments)
         * [Local Deployment](#local-deployment)
@@ -83,6 +85,10 @@ configure model, and connect to it.
     * [Sequence diagram](#sequence-diagram)
     * [Token truncation algorithm](#token-truncation-algorithm)
 * [New `pdm` commands available in project repository](#new-pdm-commands-available-in-project-repository)
+* [Making a package with Road Core Service](#making-a-package-with-road-core-service)
+    * [Create distribution archives](#create-distribution-archives)
+    * [Retrieve API token for PyPI](#retrieve-api-token-for-pypi)
+    * [Upload distribution archives with package into Python registry](#upload-distribution-archives-with-package-into-python-registry)
 * [Additional tools](#additional-tools)
     * [Utility to generate OpenAPI schema](#utility-to-generate-openapi-schema)
         * [Path](#path)
@@ -101,8 +107,9 @@ configure model, and connect to it.
 
 # Prerequisites
 
-* Python 3.11
-    - please note that currently Python 3.12 is not officially supported, because RDS service depends on some packages that can not be used in this Python version
+* Python 3.11 or Python 3.12
+    - please note that currently Python 3.13 is not officially supported, because Road Core Service depends on some packages that can not be used in this Python version
+    - all sources are made (backward) compatible with Python 3.11; it is checked on CI
 * Git, pip and [PDM](https://github.com/pdm-project/pdm?tab=readme-ov-file#installation)
 * An LLM API key or API secret (in case of Azure OpenAI)
 * (Optional) extra certificates to access LLM API
@@ -456,7 +463,7 @@ Depends on configuration, but usually it is not needed to generate or use API ke
    Please look [here](https://github.com/openshift/lightspeed-service/blob/main/CONTRIBUTING.md#adding-a-new-providermodel) for more info.
 
 ## 10. TLS security profiles
-   TLS security profile can be set for the service itself and also for any configured provider. To specify TLS security profile for the service, the following section can be added into `rds` section in the `rdsconfig.yaml` configuration file:
+   TLS security profile can be set for the service itself and also for any configured provider. To specify TLS security profile for the service, the following section can be added into `rcs` section in the `rcsconfig.yaml` configuration file:
 
 ```
   tlsSecurityProfile:
@@ -633,6 +640,23 @@ By default this interface will ask the RCS server to retain and use your convers
 
 RCS API documentation is available at http://localhost:8080/docs
 
+###  CPU profiling
+To enable CPU profiling, please deploy your own pyroscope server and specify its URL in the `devconfig` as shown below. This will help RCS to send profiles to a specified endpoint.
+
+```yaml
+dev_config:
+  pyroscope_url: https://your-pyroscope-url.com
+```
+
+### Memory profiling
+To enable memory profiling, simply start the server with the below command.
+```
+make memray-run
+```
+Once you are done executing a few queries and want to look at the memory flamegraphs, please run the below command and it should spit out a html file for us.
+```
+make memray-flamegraph
+```
 
 ## Deploying RCS on OpenShift
 
@@ -804,8 +828,45 @@ The context window size is limited for all supported LLMs which means that token
 │ test-integration                  │ cmd  │ pdm run make test-integration                  │
 │ test-unit                         │ cmd  │ pdm run make test-unit                         │
 │ unit-tests-coverage-report        │ cmd  │ pdm run make unit-tests-coverage-report        │
+│ version                           │ cmd  │ pdm run make print-version                     │
 ╰───────────────────────────────────┴──────┴────────────────────────────────────────────────╯
 ```
+
+# Making a package with Road Core Service
+
+The Road Core Service repository contains all the necessary files needed to create a Python package and push this package into Python packages registry.
+
+
+## Create distribution archives
+
+Distribution archives can be generated by following command:
+
+```shell
+make distribution-archives
+```
+
+This command should create a subdirectory named `dist` with two archives containing the source package and the Python wheel package:
+
+```
+road_core-0.2.1-py3-none-any.whl
+road_core-0.2.1.tar.gz
+```
+
+## Retrieve API token for PyPI
+
+To upload the package into the Python package registry you’ll need a PyPI API token. Create one at [https://test.pypi.org/manage/account/#api-tokens](https://test.pypi.org/manage/account/#api-tokens), setting the “Scope” to “Entire account”. Don’t close the page until you have copied and saved the token — you won’t see that token again.
+
+## Upload distribution archives with package into Python registry
+
+Then run the following command:
+
+```shell
+make upload-distribution-archives
+```
+
+The new package release should be visible on page:
+https://test.pypi.org/project/road-core/
+
 
 # Additional tools
 
@@ -894,4 +955,3 @@ A dictionary containing the credentials of the S3 bucket must be specified, cont
 
 # License
 Published under the Apache 2.0 License
-

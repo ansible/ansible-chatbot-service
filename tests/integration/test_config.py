@@ -8,7 +8,8 @@ import pytest
 import yaml
 
 from ols import config
-from ols.app.models.config import InvalidConfigurationError
+from ols.constants import DEFAULT_CONFIGURATION_FILE
+from ols.utils.checks import InvalidConfigurationError
 from tests.integration.random_payload_generator import RandomPayloadGenerator
 
 CORRECT_CONFIG_FILE = "tests/config/config_for_integration_tests.yaml"
@@ -104,7 +105,7 @@ def test_load_config_with_removed_items(tmpdir, subtests):
 
     for i, broken_config in enumerate(broken_configs):
         with subtests.test(msg=f"removed_item_{i}", i=i):
-            cfg_filename = tmpdir + "/olsconfig.yaml"
+            cfg_filename = tmpdir + "/" + DEFAULT_CONFIGURATION_FILE
             write_config_file(cfg_filename, broken_config)
 
             with pytest.raises(InvalidConfigurationError):
@@ -118,7 +119,7 @@ def test_load_config_with_removed_items_from_ols_config_section(tmpdir, subtests
 
     for i, broken_config in enumerate(broken_configs):
         with subtests.test(msg=f"removed_item_{i}", i=i):
-            cfg_filename = tmpdir + "/olsconfig.yaml"
+            cfg_filename = tmpdir + "/" + DEFAULT_CONFIGURATION_FILE
             write_config_file(cfg_filename, broken_config)
 
             with pytest.raises(InvalidConfigurationError):
@@ -131,7 +132,7 @@ def mutate_items_one_iteration(original_payload, how_many):
     new_payload = copy.deepcopy(original_payload)
     rpg = RandomPayloadGenerator()
 
-    for i in range(how_many):
+    for _ in range(how_many):
         selected_key = random.choice(list(original_payload.keys()))  # noqa: S311
         new_value = rpg.generate_random_payload()
         new_payload[selected_key] = new_value
@@ -154,7 +155,7 @@ def test_load_config_with_mutated_items(tmpdir, subtests):
 
     for i, broken_config in enumerate(broken_configs):
         with subtests.test(msg=f"mutated_item_{i}", i=i):
-            cfg_filename = tmpdir + "/olsconfig.yaml"
+            cfg_filename = tmpdir + "/" + DEFAULT_CONFIGURATION_FILE
             write_config_file(cfg_filename, broken_config)
 
             with pytest.raises(Exception):

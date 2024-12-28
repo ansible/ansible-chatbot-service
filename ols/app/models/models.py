@@ -1,6 +1,7 @@
 """Data models representing payloads for REST API calls."""
 
-from typing import Any, Optional, Self
+from collections import OrderedDict
+from typing import Optional, Self
 
 from pydantic import BaseModel, field_validator, model_validator
 from pydantic.dataclasses import dataclass
@@ -86,7 +87,7 @@ class LLMRequest(BaseModel):
                     "query": "write a deployment yaml for the mongodb image",
                     "conversation_id": "123e4567-e89b-12d3-a456-426614174000",
                     "provider": "openai",
-                    "model": "gpt-3.5-turbo",
+                    "model": "gpt-4o-mini",
                     "attachments": [
                         {
                             "attachment_type": "log",
@@ -123,7 +124,7 @@ class LLMRequest(BaseModel):
         return self
 
 
-@dataclass
+@dataclass(frozen=True, unsafe_hash=False)
 class ReferencedDocument:
     """RAG referenced document.
 
@@ -136,11 +137,20 @@ class ReferencedDocument:
     title: str
 
     @staticmethod
-    def json_decode_object_hook(dct: dict[str, Any]) -> Any:
-        """Deserialize dict into ReferencedDocument if we can."""
-        if "docs_url" in dct and "title" in dct:
-            return ReferencedDocument(**dct)
-        return dct
+    def from_rag_chunks(rag_chunks: list["RagChunk"]) -> list["ReferencedDocument"]:
+        """Create a list of ReferencedDocument from a list of rag_chunks.
+
+        Order of items is preserved.
+        """
+        return list(
+            OrderedDict(
+                (
+                    rag_chunk.doc_url,
+                    ReferencedDocument(rag_chunk.doc_url, rag_chunk.doc_title),
+                )
+                for rag_chunk in rag_chunks
+            ).values()
+        )
 
 
 class LLMResponse(BaseModel):

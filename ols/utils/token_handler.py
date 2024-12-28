@@ -49,7 +49,9 @@ class TokenHandler:
         Returns:
             List of tokens, ex: [1, 2, 3, 4]
         """
-        return self._encoder.encode(text)
+        # return self._encoder.encode(text)
+        # TODO: Better handling of stop token.
+        return self._encoder.encode(text, allowed_special={"<|endoftext|>"})
 
     def tokens_to_text(self, tokens: list) -> str:
         """Convert tokens to text.
@@ -130,8 +132,9 @@ class TokenHandler:
             score = float(node.get_score(raise_error=False))
             if score < RAG_SIMILARITY_CUTOFF:
                 logger.debug(
-                    f"RAG content similarity score: {score} is "
-                    f"less than threshold {RAG_SIMILARITY_CUTOFF}."
+                    "RAG content similarity score: %f is less than threshold %f.",
+                    score,
+                    RAG_SIMILARITY_CUTOFF,
                 )
                 break
 
@@ -179,10 +182,11 @@ class TokenHandler:
     ) -> tuple[list[str], bool]:
         """Limit conversation history to specified number of tokens."""
         total_length = 0
+        formatted_history: list[str] = []
 
-        for index, message in enumerate(reversed(history)):
+        for original_message in reversed(history):
             # Restructure messages as per model
-            message = restructure_history(message, model)
+            message = restructure_history(original_message, model)
 
             message_length = TokenHandler._get_token_count(self.text_to_tokens(message))
             total_length += message_length
@@ -192,6 +196,7 @@ class TokenHandler:
                 logger.debug(
                     "History truncated, it exceeds available %d tokens.", limit
                 )
-                return history[len(history) - index :], True
+                return formatted_history[::-1], True
+            formatted_history.append(message)
 
-        return history, False
+        return formatted_history[::-1], False

@@ -12,13 +12,22 @@ sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 )
 
+# pylint: disable-next=C0413
 from ols import config
 
+# pylint: disable-next=C0413
+from ols.constants import (
+    CONFIGURATION_FILE_NAME_ENV_VARIABLE,
+    DEFAULT_CONFIGURATION_FILE,
+)
+
 # it is needed to read proper configuration in order to start the app to generate schema
-cfg_file = os.environ.get("RCS_CONFIG_FILE", "rcsconfig.yaml")
+cfg_file = os.environ.get(
+    CONFIGURATION_FILE_NAME_ENV_VARIABLE, "scripts/" + DEFAULT_CONFIGURATION_FILE
+)
 config.reload_from_yaml_file(cfg_file)
 
-from ols.app.main import app  # noqa: E402
+from ols.app.main import app  # noqa: E402  pylint: disable=C0413
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -26,6 +35,10 @@ if __name__ == "__main__":
         sys.exit(1)
 
     filename = sys.argv[1]
+
+    print("Service metadata:")
+    print(app.title)
+    print(app.description)
 
     # retrieve OpenAPI schema via initialized app
     open_api = get_openapi(
@@ -37,5 +50,5 @@ if __name__ == "__main__":
     )
 
     # dump the schema into file
-    with open(filename, "w") as fout:
+    with open(filename, "w", encoding="utf-8") as fout:
         json.dump(open_api, fout, indent=4)

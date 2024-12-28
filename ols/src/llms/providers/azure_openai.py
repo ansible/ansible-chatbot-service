@@ -64,10 +64,8 @@ class AzureOpenAI(LLMProvider):
             "api_version": api_version,
             "deployment_name": deployment_name,
             "model": self.model,
-            "model_kwargs": {
-                "top_p": 0.95,
-                "frequency_penalty": 1.03,
-            },
+            "top_p": 0.95,
+            "frequency_penalty": 1.03,
             "organization": None,
             "cache": None,
             "streaming": True,
@@ -134,7 +132,7 @@ class AzureOpenAI(LLMProvider):
             )
             return credential.get_token("https://cognitiveservices.azure.com/.default")
         except Exception as e:
-            logger.error(f"Error retrieving access token: {e}")
+            logger.error("Error retrieving access token: %s", e)
             return None
 
 

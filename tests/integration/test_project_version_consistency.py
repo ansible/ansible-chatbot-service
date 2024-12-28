@@ -1,11 +1,11 @@
 """Test that the project version is set consistently."""
 
 import json
-import tomllib
+import subprocess
 
 import semantic_version
 
-from ols import config
+from ols import config, version
 
 
 def read_version_from_openapi():
@@ -22,15 +22,13 @@ def read_version_from_openapi():
 
 def read_version_from_pyproject():
     """Read version from pyproject.toml file."""
-    with open("pyproject.toml", "rb") as fin:
-        pyproject = tomllib.load(fin)
-        assert pyproject is not None
-        assert "project" in pyproject, "section [project] is missing in pyproject.toml"
-        project = pyproject["project"]
-        assert (
-            "version" in project
-        ), "attribute 'version' is missing in section [project]"
-        return project["version"]
+    # it is not safe to just try to read version from pyproject.toml file directly
+    # the PDM tool itself is able to retrieve the version, even if the version
+    # is generated dynamically
+    completed = subprocess.run(  # noqa: S603
+        ["pdm", "show", "--version"], capture_output=True, check=True  # noqa: S607
+    )
+    return completed.stdout.decode("utf-8").strip()
 
 
 def read_version_from_app():
@@ -51,14 +49,23 @@ def check_semantic_version(value):
 
 def test_project_version_consistency():
     """Test than the project version is set consistently."""
+    # read the "true" version defined in sources
+    version_from_sources = version.__version__
+    check_semantic_version(version_from_sources)
+
+    # OpenAPI endpoint should contain version number
     openapi_version = read_version_from_openapi()
     check_semantic_version(openapi_version)
 
+    # version is dynamically put into pyproject.pdm
     project_version = read_version_from_pyproject()
     check_semantic_version(project_version)
 
+    # version is set into app object
     app_version = read_version_from_app()
     check_semantic_version(app_version)
 
+    # compare all versions for equality
+    assert version_from_sources == openapi_version
     assert openapi_version == project_version
     assert project_version == app_version

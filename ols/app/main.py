@@ -7,13 +7,13 @@ from fastapi import FastAPI, Request, Response
 from starlette.datastructures import Headers
 from starlette.responses import StreamingResponse
 
-from ols import config, constants
+from ols import config, constants, version
 from ols.app import metrics, routers
 
 app = FastAPI(
-    title="Swagger OpenShift LightSpeed Service - OpenAPI",
-    description="""OpenShift LightSpeed Service API specification.""",
-    version="0.2.0",
+    title="Swagger Road-core service - OpenAPI",
+    description="""Road-core service API specification.""",
+    version=version.__version__,
     license_info={
         "name": "Apache 2.0",
         "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
@@ -29,7 +29,10 @@ if config.dev_config.enable_dev_ui:
     # regular deployment
     from ols.src.ui.gradio_ui import GradioUI
 
-    app = GradioUI().mount_ui(app)
+    if config.dev_config.disable_tls:
+        app = GradioUI().mount_ui(app)
+    else:
+        app = GradioUI(ols_url="https://127.0.0.1:8443/v1/query").mount_ui(app)
 else:
     logger.info(
         "Embedded Gradio UI is disabled. To enable set `enable_dev_ui: true` "
@@ -117,8 +120,10 @@ async def log_requests_responses(
     ) -> AsyncGenerator[bytes, None]:
         async for chunk in response_body:
             logger.debug(
-                f"Response to {host}:{port} "
-                f"Body chunk: {chunk.decode('utf-8', errors='ignore')}"
+                "Response to %s:%d Body chunk: %s}",
+                host,
+                port,
+                chunk.decode("utf-8", errors="ignore"),
             )
             yield chunk
 

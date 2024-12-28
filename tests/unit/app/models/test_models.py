@@ -1,7 +1,5 @@
 """Unit tests for the API models."""
 
-import json
-
 import pytest
 from pydantic import ValidationError
 
@@ -13,6 +11,7 @@ from ols.app.models.models import (
     LivenessResponse,
     LLMRequest,
     LLMResponse,
+    RagChunk,
     ReadinessResponse,
     ReferencedDocument,
     StatusResponse,
@@ -41,7 +40,7 @@ class TestLLM:
         query = "Tell me about Kubernetes"
         conversation_id = "id"
         provider = "openai"
-        model = "gpt-3.5-turbo"
+        model = "gpt-4o-mini"
         llm_request = LLMRequest(
             query=query,
             conversation_id=conversation_id,
@@ -81,38 +80,6 @@ class TestLLM:
                 docs_url="https://foo.bar.com/index.html", title="Foo Bar"
             )
         ]
-
-        llm_response = LLMResponse(
-            conversation_id=conversation_id,
-            response=response,
-            referenced_documents=referenced_documents,
-            truncated=False,
-        )
-
-        assert llm_response.conversation_id == conversation_id
-        assert llm_response.response == response
-        assert llm_response.referenced_documents == referenced_documents
-        assert not llm_response.truncated
-
-    @staticmethod
-    def test_llm_response_referenced_documents_as_json():
-        """Test the LLMResponse model when referenced documents are passed as string with JSON."""
-        conversation_id = "id"
-        response = "response"
-
-        # check the object hook defined for ReferenceDocument
-        # data class
-        referenced_documents = json.loads(
-            """
-                [
-                    {
-                     \"docs_url\": \"https://foo.bar.com/index.html\",
-                     \"title\": \"Foo Bar\"
-                    }
-                ]
-                """,
-            object_hook=ReferencedDocument.json_decode_object_hook,
-        )
 
         llm_response = LLMResponse(
             conversation_id=conversation_id,
@@ -445,3 +412,23 @@ class TestCacheEntry:
             "human: what?",
             "ai: ",
         ]
+
+
+def test_ref_docs_from_rag_chunks():
+    """Test the ReferencedDocument model method `from_rag_chunks`."""
+    # urls are unsorted to ensure there is not a hidden sorting
+    rag_chunk_1 = RagChunk("bla2", "url2", "title2")
+    rag_chunk_2 = RagChunk("bla1", "url1", "title1")
+    rag_chunk_3 = RagChunk("bla3", "url3", "title3")
+    rag_chunk_4 = RagChunk("bla2", "url2", "title2")  # duplicated doc
+
+    ref_docs = ReferencedDocument.from_rag_chunks(
+        [rag_chunk_1, rag_chunk_2, rag_chunk_3, rag_chunk_4]
+    )
+    expected = [
+        ReferencedDocument(docs_url="url2", title="title2"),
+        ReferencedDocument(docs_url="url1", title="title1"),
+        ReferencedDocument(docs_url="url3", title="title3"),
+    ]
+
+    assert ref_docs == expected

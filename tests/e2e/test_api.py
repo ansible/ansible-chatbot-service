@@ -46,7 +46,6 @@ on_cluster = False
 client: Client
 metrics_client: Client
 
-
 OLS_READY = False
 
 
@@ -98,7 +97,7 @@ def postgres_connection():
     return retrieve_connection()
 
 
-@pytest.mark.smoketest()
+@pytest.mark.smoketest
 @retry(max_attempts=3, wait_between_runs=10)
 def test_readiness():
     """Test handler for /readiness REST API endpoint."""
@@ -110,7 +109,7 @@ def test_readiness():
         assert response.json() == {"ready": True, "reason": "service is ready"}
 
 
-@pytest.mark.smoketest()
+@pytest.mark.smoketest
 def test_liveness():
     """Test handler for /liveness REST API endpoint."""
     endpoint = "/liveness"
@@ -169,7 +168,7 @@ def test_one_default_model_provider():
     ), "one model and provider should be selected as default"
 
 
-@pytest.mark.cluster()
+@pytest.mark.cluster
 def test_improper_token():
     """Test accessing /v1/query endpoint using improper auth. token."""
     response = client.post(
@@ -181,7 +180,7 @@ def test_improper_token():
     assert response.status_code == requests.codes.forbidden
 
 
-@pytest.mark.cluster()
+@pytest.mark.cluster
 def test_forbidden_user():
     """Test scenarios where we expect an unauthorized response.
 
@@ -198,12 +197,12 @@ def test_forbidden_user():
     assert response.status_code == requests.codes.forbidden
 
 
-@pytest.mark.cluster()
+@pytest.mark.cluster
 def test_transcripts_storing_cluster():
     """Test if the transcripts are stored properly."""
     transcripts_path = OLS_USER_DATA_PATH + "/transcripts"
+    cluster_utils.wait_for_running_pod()
     pod_name = cluster_utils.get_pod_by_prefix()[0]
-
     # disable collector script to avoid interference with the test
     cluster_utils.create_file(pod_name, OLS_COLLECTOR_DISABLING_FILE, "")
 
@@ -364,7 +363,7 @@ def test_conversation_in_postgres_cache(postgres_connection) -> None:
     assert "OpenShift" in deserialized[3].content
 
 
-@pytest.mark.cluster()
+@pytest.mark.cluster
 def test_user_data_collection():
     """Test user data collection.
 
@@ -475,7 +474,7 @@ def test_user_data_collection():
             cluster_utils.create_file(pod_name, OLS_COLLECTOR_DISABLING_FILE, "")
 
 
-@pytest.mark.cluster()
+@pytest.mark.cluster
 def test_http_header_redaction():
     """Test that sensitive HTTP headers are redacted from the logs."""
     for header in HTTP_REQUEST_HEADERS_TO_REDACT:
@@ -499,7 +498,7 @@ def test_http_header_redaction():
         assert f'"{header}":"some_value"' not in container_log
 
 
-@pytest.mark.response_evaluation()
+@pytest.mark.response_evaluation
 def test_model_response(request) -> None:
     """Evaluate model response."""
     args = Namespace(**vars(request.config.option))
@@ -514,14 +513,14 @@ def test_model_response(request) -> None:
     assert val_success_flag
 
 
-@pytest.mark.model_evaluation()
+@pytest.mark.model_evaluation
 def test_model_evaluation(request) -> None:
     """Evaluate model."""
     # TODO: Use this to assert.
     ResponseEvaluation(request.config.option, client).evaluate_models()
 
 
-@pytest.mark.azure_entra_id()
+@pytest.mark.azure_entra_id
 def test_azure_entra_id():
     """Test single question via Azure Entra ID credentials."""
     response = client.post(

@@ -5,7 +5,7 @@ from typing import Optional
 
 from langchain.llms.base import LLM
 
-from ols import config
+from ols import config, constants
 from ols.app.models.config import LLMProviders, ProviderConfig
 from ols.src.llms.providers.registry import LLMProvidersRegistry
 
@@ -73,14 +73,16 @@ def load_llm(
         # using the class and overriding specific parameters
         generic_llm_params = {'temperature': 0.02, 'top_p': 0.95}
 
-        bare_llm = load_llm(provider="openai", model="gpt-3.5-turbo",
+        bare_llm = load_llm(provider="openai", model="gpt-4o-mini",
                             generic_llm_params=generic_llm_params).llm
         llm_chain = LLMChain(llm=bare_llm, prompt=prompt)
         ```
     """
     providers_config = config.config.llm_providers
     if providers_config is None:
-        raise LLMConfigurationError("Providers configuration missing in rcsconfig.yaml")
+        raise LLMConfigurationError(
+            f"Providers configuration missing in {constants.DEFAULT_CONFIGURATION_FILE}"
+        )
     llm_providers_reg = LLMProvidersRegistry
 
     provider_config = resolve_provider_config(provider, model, providers_config)
