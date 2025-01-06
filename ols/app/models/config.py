@@ -953,6 +953,7 @@ class OLSConfig(BaseModel):
     max_workers: Optional[int] = None
     query_filters: Optional[list[QueryFilter]] = None
     query_validation_method: Optional[str] = constants.QueryValidationMethod.DISABLED
+    use_hyde: bool = False
 
     user_data_collection: UserDataCollection = UserDataCollection()
     tls_security_profile: Optional[TLSSecurityProfile] = None
@@ -992,6 +993,7 @@ class OLSConfig(BaseModel):
         self.query_validation_method = data.get(
             "query_validation_method", constants.QueryValidationMethod.DISABLED
         )
+        self.use_hyde = data.get("use_hyde", False)
         self.user_data_collection = UserDataCollection(
             **data.get("user_data_collection", {})
         )

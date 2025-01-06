@@ -4,7 +4,9 @@ import logging
 from typing import Any, Optional
 
 from langchain.chains import LLMChain
-from llama_index.core import VectorStoreIndex
+from llama_index.core import VectorStoreIndex, QueryBundle
+from llama_index.core.indices.query.query_transform import HyDEQueryTransform
+from llama_index.core.query_engine import TransformQueryEngine
 
 from ols import config
 from ols.app.metrics import TokenMetricUpdater
@@ -88,9 +90,16 @@ class DocsSummarizer(QueryHelper):
         )
 
         if vector_index is not None:
-            retriever = vector_index.as_retriever(similarity_top_k=RAG_CONTENT_LIMIT)
+            if config.ols_config.use_hyde:
+                hyde = HyDEQueryTransform(include_original=True)
+                query_engine = vector_index.as_query_engine()
+                query_engine = TransformQueryEngine(query_engine, query_transform=hyde)
+                results = query_engine.retrieve(QueryBundle(query_str=query))
+            else:
+                retriever = vector_index.as_retriever(similarity_top_k=RAG_CONTENT_LIMIT)
+                results = retriever.retrieve(query)
             rag_chunks, available_tokens = token_handler.truncate_rag_context(
-                retriever.retrieve(query), self.model, available_tokens
+                results, self.model, available_tokens
             )
         else:
             logger.warning("Proceeding without RAG content. Check start up messages.")
