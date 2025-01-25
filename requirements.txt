@@ -341,9 +341,9 @@ jsonpointer==3.0.0 \
 kubernetes==30.1.0 \
     --hash=sha256:41e4c77af9f28e7a6c314e3bd06a8c6229ddd787cad684e0ab9f69b498e98ebc \
     --hash=sha256:e212e8b7579031dd2e512168b617373bc1e03888d41ac4e04039240a292d478d
-langchain==0.3.12 \
-    --hash=sha256:0d8247afbf37beb263b4adc29f7aa8a5ae83c43a6941894e2f9ba39d5c869e3b \
-    --hash=sha256:581ad93a9de12e4b957bc2af9ba8482eb86e3930e84c4ee20ed677da5e2311cd
+langchain==0.3.15 \
+    --hash=sha256:1204d67f8469cd8da5621d2b39501650a824d4c0d5a74264dfe3df9a7528897e \
+    --hash=sha256:2657735184054cae8181ac43fce6cbc9ee64ca81a2ad2aed3ccd6e5d6fe1f19f
 langchain-community==0.3.5 \
     --hash=sha256:03736105700960fa0acbd72bff678d1c97c49e38e9f8af3012b712d64e992982 \
     --hash=sha256:345febbc972a08c97f09cce6cc07d039aa7d1348fe8efdace85335be6ac9cb7d
