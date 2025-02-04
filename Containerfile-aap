@@ -1,0 +1,3 @@
+# A dummy Containerfile to let Renovate update this file
+# and trigger a new chatbot service image build.
+FROM quay.io/ansible/aap-rag-content:1.0.1738629981 AS base
