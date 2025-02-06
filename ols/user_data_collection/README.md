@@ -16,7 +16,7 @@ This document outlines the process of capturing user interactions and system res
 ### console.redhat.com - Ingress
 - Responsible for accepting payload (our archive), storing into internal AWS S3 Bucket (unreachable for us) and notifying relevant postprocessing (ccx pipeline)
 
-    > We have a special User-Agent: `openshift-lightspeed-operator/user-data-collection cluster/{cluster_id}`
+    > We have a special User-Agent: `ansible-lightspeed-operator/user-data-collection cluster/{cluster_id}`
 
 ### Observability (CCX) internal-data-pipeline
 - Is notified about the new incoming OLS archive.

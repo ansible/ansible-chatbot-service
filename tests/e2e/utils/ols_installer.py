@@ -21,7 +21,7 @@ def create_and_config_sas() -> tuple[str, str]:
         tuple containing token and metrics token.
     """
     cluster_utils.run_oc(
-        ["project", "openshift-lightspeed"], ignore_existing_resource=True
+        ["project", "ansible-lightspeed"], ignore_existing_resource=True
     )
     cluster_utils.create_user("test-user", ignore_existing_resource=True)
     cluster_utils.create_user("metrics-test-user", ignore_existing_resource=True)
@@ -126,10 +126,10 @@ def install_ols() -> tuple[str, str, str]:  # pylint: disable=R0915
     if not is_konflux:
         # setup the lightspeed namespace
         cluster_utils.run_oc(
-            ["create", "ns", "openshift-lightspeed"], ignore_existing_resource=True
+            ["create", "ns", "ansible-lightspeed"], ignore_existing_resource=True
         )
         cluster_utils.run_oc(
-            ["project", "openshift-lightspeed"], ignore_existing_resource=True
+            ["project", "ansible-lightspeed"], ignore_existing_resource=True
         )
         print("created OLS project")
 
@@ -159,7 +159,7 @@ def install_ols() -> tuple[str, str, str]:  # pylint: disable=R0915
                     "bundle",
                     "--timeout=20m",
                     "-n",
-                    "openshift-lightspeed",
+                    "ansible-lightspeed",
                     "quay.io/openshift-lightspeed/lightspeed-operator-bundle:latest",
                     "--verbose",
                 ],
