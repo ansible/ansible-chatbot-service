@@ -220,6 +220,107 @@ spec:
                 echo -n $(date -d @$(git log -1 --format=%at) "+%Y%m%d%H%M") > $(results.commit-timestamp.path)
           results:
             - name: commit-timestamp
+      - name: copy-embeddings
+        runAfter:
+          - clone-repository
+        workspaces:
+          - name: source
+            workspace: workspace
+        taskSpec:
+          workspaces:
+            - name: source
+          steps:
+            - name: copy-embeddings-step
+              image: quay.io/ansible/aap-rag-embeddings-image:latest
+              script: |
+                #!/bin/sh
+                cd "$(workspaces.source.path)/source"
+                cp -r /rag/embeddings_model .
+      - name: copy-vector-db
+        runAfter:
+          - copy-embeddings
+        workspaces:
+          - name: source
+            workspace: workspace
+        taskSpec:
+          workspaces:
+            - name: source
+          steps:
+            - name: copy-vector-db-step
+              image: quay.io/ansible/aap-rag-content:latest
+              script: |
+                #!/bin/sh
+                cd "$(workspaces.source.path)/source"
+                cp -r /rag/vector_db .
+      - name: eval-framework-testing
+        runAfter:
+          - copy-vector-db
+        workspaces:
+          - name: source
+            workspace: workspace
+        taskSpec:
+          workspaces:
+            - name: source
+          env:
+          - name: MODEL
+            value: granite3-8b
+          - name: ARTIFACT_DIR
+            value: tests/test_results
+          - name: TEST_TAGS
+            value: response_evaluation
+          - name: PROVIDER
+            value: my_rhoai_g3
+          - name: SUITE_ID
+            value: rhoai_vllm
+          - name: PROVIDER_KEY_PATH
+            value: ols-api-key
+          - name: OLS_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: ols-api-key
+                key: OLS_API_KEY
+          volumes:
+          - name: llm-access-tokens-volume
+            secret:
+              secretName: llm-access-tokens
+          - name: rcsconfig-volume
+            configMap:
+              name: rcsconfig
+          steps:
+          - name: install-dependency-run-e2e-eval-framework
+            image: registry.access.redhat.com/ubi9/ubi-minimal@sha256:db8bf20cac0f250659f1ffbba929639dcd7e09863c20c99c5cb8f3ce8ded0497
+            volumeMounts:
+            - mountPath: /credentials
+              name: llm-access-tokens-volume
+              readOnly: true
+            - mountPath: $(workspaces.source.path)/source/rcsconfig.yaml
+              name: rcsconfig-volume
+              subPath: rcsconfig.yaml
+              readOnly: true
+            script: |
+              #!/bin/sh
+              pwd
+              ls -l /credentials
+              ls -l "$(workspaces.source.path)/source"
+              microdnf install -y --nodocs --setopt=keepcache=0 --setopt=tsflags=nodocs \
+                tar python3.11 python3.11-devel python3.11-pip make
+              cd "$(workspaces.source.path)/source"
+              pip3.11 install --upgrade pip
+              pip3.11 install -r requirements-dev.txt
+              python3.11 runner.py &
+              SVCPID=$!
+              python3.11 -m pytest tests/e2e \
+                -s \
+                --durations=0 \
+                -o junit_suite_name="${SUITE_ID}" \
+                -m "${TEST_TAGS}" \
+                --junit-prefix="${SUITE_ID}" \
+                --junit-xml="${ARTIFACT_DIR}/junit_e2e_${SUITE_ID}.xml" \
+                --eval_provider ${PROVIDER} \
+                --eval_model ${MODEL} \
+                --eval_out_dir ${ARTIFACT_DIR} \
+                --rp_name=ols-e2e-tests
+              kill ${SVCPID}
       - name: prefetch-dependencies
         params:
           - name: input

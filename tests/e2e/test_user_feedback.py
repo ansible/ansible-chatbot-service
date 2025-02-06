@@ -16,8 +16,8 @@ def test_feedback_can_post_with_wrong_token():
         "/v1/feedback",
         json={
             "conversation_id": test_api.CONVERSATION_ID,
-            "user_question": "what is OCP4?",
-            "llm_response": "Openshift 4 is ...",
+            "user_question": "what is Ansible?",
+            "llm_response": "Ansible is ...",
             "sentiment": 1,
         },
         timeout=test_api.BASIC_ENDPOINTS_TIMEOUT,
@@ -47,8 +47,8 @@ def test_feedback_storing_cluster():
         "/v1/feedback",
         json={
             "conversation_id": test_api.CONVERSATION_ID,
-            "user_question": "what is OCP4?",
-            "llm_response": "Openshift 4 is ...",
+            "user_question": "what is Ansible?",
+            "llm_response": "Ansible is ...",
             "sentiment": 1,
         },
         timeout=test_api.BASIC_ENDPOINTS_TIMEOUT,
@@ -60,8 +60,8 @@ def test_feedback_storing_cluster():
 
     assert feedback_data["user_id"]  # we don't care about actual value
     assert feedback_data["conversation_id"] == test_api.CONVERSATION_ID
-    assert feedback_data["user_question"] == "what is OCP4?"
-    assert feedback_data["llm_response"] == "Openshift 4 is ..."
+    assert feedback_data["user_question"] == "what is Ansible?"
+    assert feedback_data["llm_response"] == "Ansible is ..."
     assert feedback_data["sentiment"] == 1
 
 
@@ -70,8 +70,8 @@ def test_feedback_missing_conversation_id():
     response = pytest.client.post(
         "/v1/feedback",
         json={
-            "user_question": "what is OCP4?",
-            "llm_response": "Openshift 4 is ...",
+            "user_question": "what is Ansible?",
+            "llm_response": "Ansible is ...",
             "sentiment": 1,
         },
         timeout=test_api.BASIC_ENDPOINTS_TIMEOUT,
@@ -86,7 +86,7 @@ def test_feedback_missing_user_question():
         "/v1/feedback",
         json={
             "conversation_id": test_api.CONVERSATION_ID,
-            "llm_response": "Openshift 4 is ...",
+            "llm_response": "Ansible is ...",
             "sentiment": 1,
         },
         timeout=test_api.BASIC_ENDPOINTS_TIMEOUT,
@@ -101,7 +101,7 @@ def test_feedback_missing_llm_response():
         "/v1/feedback",
         json={
             "conversation_id": test_api.CONVERSATION_ID,
-            "user_question": "what is OCP4?",
+            "user_question": "what is Ansible?",
             "sentiment": 1,
         },
         timeout=test_api.BASIC_ENDPOINTS_TIMEOUT,
@@ -116,8 +116,8 @@ def test_feedback_improper_conversation_id():
         "/v1/feedback",
         json={
             "conversation_id": "incorrect-conversation-id",
-            "user_question": "what is OCP4?",
-            "llm_response": "Openshift 4 is ...",
+            "user_question": "what is Ansible?",
+            "llm_response": "Ansible is ...",
             "sentiment": 1,
         },
         timeout=test_api.BASIC_ENDPOINTS_TIMEOUT,
