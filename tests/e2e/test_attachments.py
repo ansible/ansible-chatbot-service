@@ -46,12 +46,12 @@ def test_valid_question_with_one_attachment() -> None:
             endpoint,
             json={
                 "conversation_id": "",
-                "query": "what is kubernetes?",
+                "query": "what is ansible?",
                 "attachments": [
                     {
                         "attachment_type": "log",
                         "content_type": "text/plain",
-                        "content": "Kubernetes is a core component of OpenShift.",
+                        "content": "Ansible is an open source",
                     },
                 ],
             },
@@ -76,12 +76,12 @@ def test_valid_question_with_more_attachments() -> None:
             endpoint,
             json={
                 "conversation_id": "",
-                "query": "what is kubernetes?",
+                "query": "what is ansible?",
                 "attachments": [
                     {
                         "attachment_type": "log",
                         "content_type": "text/plain",
-                        "content": "Kubernetes is a core component of OpenShift.",
+                        "content": "Ansible is an open source",
                     },
                     {
                         "attachment_type": "configuration",
@@ -113,7 +113,7 @@ def test_valid_question_with_wrong_attachment_format_unknown_field() -> None:
             endpoint,
             json={
                 "conversation_id": "",
-                "query": "what is kubernetes?",
+                "query": "what is ansible?",
                 "attachments": [
                     {
                         "xyzzy": "log",  # unknown field
@@ -148,7 +148,7 @@ def test_valid_question_with_wrong_attachment_format_missing_fields() -> None:
             endpoint,
             json={
                 "conversation_id": "",
-                "query": "what is kubernetes?",
+                "query": "what is ansible?",
                 "attachments": [  # missing fields
                     {},
                 ],
@@ -179,7 +179,7 @@ def test_valid_question_with_wrong_attachment_format_field_of_different_type() -
             endpoint,
             json={
                 "conversation_id": "",
-                "query": "what is kubernetes?",
+                "query": "what is ansible?",
                 "attachments": [
                     {
                         "attachment_type": 42,  # not a string
@@ -214,7 +214,7 @@ def test_valid_question_with_wrong_attachment_format_unknown_attachment_type() -
             endpoint,
             json={
                 "conversation_id": "",
-                "query": "what is kubernetes?",
+                "query": "what is ansible?",
                 "attachments": [
                     {
                         "attachment_type": "unknown_type",
@@ -253,7 +253,7 @@ def test_valid_question_with_wrong_attachment_format_unknown_content_type() -> N
             endpoint,
             json={
                 "conversation_id": "",
-                "query": "what is kubernetes?",
+                "query": "what is ansible?",
                 "attachments": [
                     {
                         "attachment_type": "log",

@@ -51,7 +51,7 @@ INGRESS_MAX_RETRIES = 3  # exponential backoff parameter
 REDHAT_SSO_TIMEOUT = 5  # seconds
 
 OLS_USER_DATA_MAX_SIZE = 100 * 1024 * 1024  # 100 MiB
-USER_AGENT = "openshift-lightspeed-operator/user-data-collection cluster/{cluster_id}"
+USER_AGENT = "ansible-lightspeed-operator/user-data-collection cluster/{cluster_id}"
 logging.basicConfig(
     level=udc_config.log_level,
     stream=sys.stdout,
