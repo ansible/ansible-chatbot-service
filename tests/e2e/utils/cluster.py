@@ -148,7 +148,7 @@ def get_ols_url(route_name: str) -> str:
         raise Exception("Error getting route hostname") from e
 
 
-def get_pods(namespace: str = "ansible-lightspeed") -> list[str]:
+def get_pods(namespace: str = "openshift-lightspeed") -> list[str]:
     """Get the names of all running pods in the cluster."""
     try:
         result = run_oc(
@@ -169,7 +169,7 @@ def get_pods(namespace: str = "ansible-lightspeed") -> list[str]:
 
 def get_pod_by_prefix(
     prefix: str = "lightspeed-app-server-",
-    namespace: str = "ansible-lightspeed",
+    namespace: str = "openshift-lightspeed",
     fail_not_found: bool = True,
 ) -> list[str]:
     """Return name of the running pod(s) which match the specified prefix."""
@@ -184,7 +184,7 @@ def get_pod_by_prefix(
         raise Exception("Error getting pod name") from e
 
 
-def get_pod_containers(pod, namespace: str = "ansible-lightspeed") -> list[str]:
+def get_pod_containers(pod, namespace: str = "openshift-lightspeed") -> list[str]:
     """Get the names of all containers in the pod."""
     try:
         result = run_oc(
@@ -300,7 +300,7 @@ def remove_file(pod_name: str, path: str) -> None:
         raise Exception("Error removing file") from e
 
 
-def get_container_ready_status(pod: str, namespace: str = "ansible-lightspeed"):
+def get_container_ready_status(pod: str, namespace: str = "openshift-lightspeed"):
     """Get status for all containers in pod."""
     try:
         result = run_oc(
@@ -320,7 +320,7 @@ def get_container_ready_status(pod: str, namespace: str = "ansible-lightspeed"):
 
 
 def wait_for_running_pod(
-    name: str = "lightspeed-app-server-", namespace: str = "ansible-lightspeed"
+    name: str = "lightspeed-app-server-", namespace: str = "openshift-lightspeed"
 ):
     """Wait for the selected pod to be in running state."""
     r = retry_until_timeout_or_success(
@@ -373,7 +373,7 @@ def wait_for_running_pod(
 
 
 def get_certificate_secret_name(
-    name: str = "lightspeed-app-server", namespace: str = "ansible-lightspeed"
+    name: str = "lightspeed-app-server", namespace: str = "openshift-lightspeed"
 ) -> str:
     """Get the name of the certificates secret for the service."""
     try:

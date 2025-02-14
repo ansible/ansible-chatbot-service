@@ -98,7 +98,7 @@ def main():
     if "localhost" not in args.eval_api_url:
         with open(args.eval_api_token_file, mode="r", encoding="utf-8") as t_f:
             token = t_f.read().rstrip()
-        client.headers.update({"Authorization": f"Bearer {token}"})
+        client.headers.update({"Authorization": f"Bearer {token}", "Content-Type": "application/json"})
 
     resp_eval = ResponseEvaluation(args, client)
 

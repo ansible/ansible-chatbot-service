@@ -111,7 +111,7 @@ RAG_SIMILARITY_CUTOFF = 0.3
 CACHE_TYPE_MEMORY = "memory"
 IN_MEMORY_CACHE_MAX_ENTRIES = 1000
 CACHE_TYPE_REDIS = "redis"
-REDIS_CACHE_HOST = "lightspeed-redis-server.ansible-lightspeed.svc"
+REDIS_CACHE_HOST = "lightspeed-redis-server.openshift-lightspeed.svc"
 REDIS_CACHE_PORT = 6379
 REDIS_CACHE_MAX_MEMORY = "1024mb"
 REDIS_CACHE_MAX_MEMORY_POLICY = "allkeys-lru"
@@ -205,7 +205,7 @@ DEFAULT_AUTHENTICATION_MODULE = "k8s"
 SUPPORTED_AUTHENTICATION_MODULES = {"k8s", "noop"}
 
 # Default configuration file name
-DEFAULT_CONFIGURATION_FILE = "rcsconfig.yaml"
+DEFAULT_CONFIGURATION_FILE = "olsconfig.yaml"
 
 # Environment variable containing configuration file name to override default
 # configuration file
