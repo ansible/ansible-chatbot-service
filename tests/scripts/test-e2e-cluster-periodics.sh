@@ -49,7 +49,7 @@ function run_suites() {
   # (( rc = rc || $? ))
 
   # smoke tests for RHOAI VLLM-compatible provider
-  run_suite "rhoai_vllm" "smoketest" "rhoai_vllm" "$OPENAI_PROVIDER_KEY_PATH" "granite3-8b" "$OLS_IMAGE"
+  run_suite "rhoai_vllm" "smoketest" "rhoai_vllm" "$OPENAI_PROVIDER_KEY_PATH" "granite3-1-8b" "$OLS_IMAGE"
   (( rc = rc || $? ))
 
   # smoke tests for RHELAI VLLM-compatible provider
