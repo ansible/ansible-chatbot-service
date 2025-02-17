@@ -265,6 +265,7 @@ spec:
                 pip install reportportal_client
                 pip install pyyaml
                 pip install pydantic
+                pip install langchain
                 pdm run make test-e2e
       - name: prefetch-dependencies
         params:
