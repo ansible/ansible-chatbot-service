@@ -269,6 +269,7 @@ spec:
                 pip install langchain
                 pip install llama_index
                 pip install psycopg2-binary
+                pip install redis
                 pdm run make test-e2e
       - name: prefetch-dependencies
         params:
