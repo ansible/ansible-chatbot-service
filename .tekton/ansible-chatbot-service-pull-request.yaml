@@ -240,11 +240,13 @@ spec:
               image: registry.access.redhat.com/ubi9/ubi-minimal@sha256:db8bf20cac0f250659f1ffbba929639dcd7e09863c20c99c5cb8f3ce8ded0497
               script: |
                 #!/bin/sh
-                microdnf install -y tar python3.11 pip make
+                install -y --nodocs --setopt=keepcache=0 --setopt=tsflags=nodocs tar python3.11 python3.11-devel python3.11-pip make
                 pwd
                 cd "$(workspaces.source.path)/source"
                 python3.11 --version
+                pip3.11 install --upgrade pip
                 pwd
+                pip3.11 install --no-cache-dir -r requirements.txt
                 export MODEL=granite3-8b
                 export ARTIFACT_DIR=tests/test_results
                 export TEST_TAGS=response_evaluation
