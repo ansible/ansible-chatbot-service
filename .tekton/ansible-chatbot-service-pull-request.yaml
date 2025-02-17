@@ -264,13 +264,18 @@ spec:
                 pip install rouge-score
                 pip install pytest
                 pip install reportportal_client
-                pip install pyyaml
-                pip install pydantic
-                pip install langchain
-                pip install llama_index
-                pip install psycopg2-binary
-                pip install redis
-                pip install ibm-watsonx-ai
+                pip install pyyaml pydantic langchain llama_index psycopg2-binary
+                pip install redis ibm-watsonx-ai langchain-openai aiolimiter attrs
+                pip install azure-core azure-identity boto3 botocore cachetools cffi
+                pip install cryptography faiss-cpu fastapi ffmpy google-auth httpx-sse==0.4.0
+                pip install huggingface-hub ibm-generative-ai Jinja2 kubernetes langchain-community
+                pip install langchain-ibm langchain-openai llama-index-embeddings-huggingface
+                pip install llama-index-legacy llama-index-vector-stores-faiss MarkupSafe
+                pip install mpmath msal msal-extensions oauthlib pyarrow pyasn1 pyasn1_modules
+                pip install pydantic-settings pycparser requests-oauthlib rsa s3transfer
+                pip install safetensors scikit-learn scipy sentence-transformers starlette
+                pip install threadpoolctl tokenizers tomlkit torch transformers uvicorn
+                pip install websocket-client
                 which python
                 pip freeze list
                 pdm run make test-e2e
