@@ -236,7 +236,7 @@ spec:
                 name: ols-api-key
                 key: OLS_API_KEY
           steps:
-            - name: install make dependency and run e2e eval-framework
+            - name: install-dependency-run-e2e-eval-framework
               image: registry.access.redhat.com/ubi9/ubi-minimal@sha256:db8bf20cac0f250659f1ffbba929639dcd7e09863c20c99c5cb8f3ce8ded0497
               script: |
                 #!/bin/sh
