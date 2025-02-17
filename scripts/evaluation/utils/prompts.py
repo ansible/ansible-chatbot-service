@@ -16,11 +16,12 @@ When formulating a question, don't include text like "from the provided context"
 
 Use below json format for your response. Do not add any additional text apart from json output.
 {{
-    Question: [
+    "Question": [
         QUESTION 1,
         QUESTION 2,
+        QUESTION 3
     ],
-    Valid: 0 or 1
+    "Valid": 0 or 1
 }}
 
 ```

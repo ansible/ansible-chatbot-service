@@ -15,12 +15,12 @@ spec:
           name: llmcreds
         models:
           - name: granite3-8b
-        name: rhoai_vllm
+        name: my_rhoai_g3
         type: openai
-        url: "https://granite3-8b-wisdom-model-staging.apps.stage2-west.v2dz.p1.openshiftapps.com/v1"
+        url: "https://stage.ai.ansible.redhat.com"
   ols:
     defaultModel: granite3-8b
-    defaultProvider: rhoai_vllm
+    defaultProvider: my_rhoai_g3
     deployment:
       replicas: 1
     disableAuth: false
