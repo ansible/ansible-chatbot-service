@@ -240,7 +240,7 @@ spec:
               image: registry.access.redhat.com/ubi9/ubi-minimal@sha256:db8bf20cac0f250659f1ffbba929639dcd7e09863c20c99c5cb8f3ce8ded0497
               script: |
                 #!/bin/sh
-                microdnf install -y python3.11 pip make
+                microdnf install -y tar python3.11 pip make
                 pwd
                 cd "$(workspaces.source.path)/source"
                 pwd
@@ -248,6 +248,7 @@ spec:
                 pip install matplotlib
                 pip install rouge-score
                 pip install pdm
+                pip install pytest
                 export MODEL=granite3-8b
                 export ARTIFACT_DIR=tests/test_results
                 export TEST_TAGS=response_evaluation
