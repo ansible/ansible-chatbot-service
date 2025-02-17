@@ -220,6 +220,41 @@ spec:
                 echo -n $(date -d @$(git log -1 --format=%at) "+%Y%m%d%H%M") > $(results.commit-timestamp.path)
           results:
             - name: commit-timestamp
+      - name: eval-framework testing
+        runAfter:
+          - clone-repository
+        workspaces:
+          - name: source
+            workspace: workspace
+        taskSpec:
+          workspaces:
+            - name: source
+          env:
+          - name: OLS_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: ols-api-key
+                key: OLS_API_KEY
+          steps:
+            - name: install make dependency and run e2e eval-framework
+              image: registry.access.redhat.com/ubi9/ubi-minimal@sha256:db8bf20cac0f250659f1ffbba929639dcd7e09863c20c99c5cb8f3ce8ded0497
+              script: |
+                #!/bin/sh
+                microdnf install -y python3.11 pip
+                pwd
+                cd "$(workspaces.source.path)/source"
+                pwd
+                make install-deps
+                pip install matplotlib
+                pip install rouge-score
+                pip install pdm
+                export MODEL=granite3-8b
+                export ARTIFACT_DIR=tests/test_results
+                export TEST_TAGS=response_evaluation
+                export PROVIDER=my_rhoai_g3
+                export SUITE_ID=rhoai_vllm
+                export PROVIDER_KEY_PATH=ols-api-key
+                pdm run make test-e2e
       - name: prefetch-dependencies
         params:
           - name: input

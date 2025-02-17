@@ -3,7 +3,7 @@
         "eval1": {
             "question": "what is ansible?",
             "answer": {
-                "rhoai_vllm+granite3-8b+with_rag": {
+                "my_rhoai_g3+granite3-8b+with_rag": {
                     "cutoff_score": 0.35,
                     "text": [
                         "Ansible is an open source IT automation engine that automates various IT processes such as provisioning, configuration management, application deployment, orchestration, and more. It is free to use and benefits from the contributions of its thousands of contributors. Ansible does not require any paid subscription for its core functionalities."
@@ -11,7 +11,7 @@
                 },
                 "ground_truth": {
                     "cutoff_score": {
-                        "rhoai_vllm+granite3-8b+with_rag": 0.2
+                        "my_rhoai_g3+granite3-8b+with_rag": 0.2
                     },
                     "text": [
                         "Ansible is an open-source automation tool used for configuration management, application deployment, and IT orchestration. It is agentless, uses YAML-based playbooks, and communicates over SSH or WinRM. Ansible ensures idempotency, meaning tasks produce consistent results. It is widely used for server provisioning, cloud automation, and DevOps workflows."
@@ -19,7 +19,7 @@
                 },
                 "ground_truth+with_rag": {
                     "cutoff_score": {
-                        "rhoai_vllm+granite3-8b+with_rag": 0.2
+                        "my_rhoai_g3+granite3-8b+with_rag": 0.2
                     },
                     "text": [
                         "Ansible is an open source IT automation engine that automates various IT processes such as provisioning, configuration management, application deployment, orchestration, and more. It is free to use and benefits from the contributions of its thousands of contributors. Ansible does not require any paid subscription for its core functionalities."
@@ -27,7 +27,7 @@
                 },
                 "ground_truth+without_rag": {
                     "cutoff_score": {
-                        "rhoai_vllm+granite3-8b+with_rag": 0.2
+                        "my_rhoai_g3+granite3-8b+with_rag": 0.2
                     },
                     "text": [
                         "Ansible is an open-source automation tool used for configuration management, application deployment, and IT orchestration. It is agentless, uses YAML-based playbooks, and communicates over SSH or WinRM. Ansible ensures idempotency, meaning tasks produce consistent results. It is widely used for server provisioning, cloud automation, and DevOps workflows."

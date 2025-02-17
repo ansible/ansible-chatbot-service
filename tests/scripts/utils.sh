@@ -14,7 +14,7 @@ EOF
 function cleanup_ols() {
     # Deletes may fail if this is the first time running against
     # the cluster, so ignore failures
-    oc delete --wait --ignore-not-found ns ansible-lightspeed
+    oc delete --wait --ignore-not-found ns openshift-lightspeed
     oc delete --wait --ignore-not-found clusterrole ols-sar-check
     oc delete --wait --ignore-not-found clusterrolebinding ols-sar-check
     oc delete --wait --ignore-not-found clusterrole ols-user
@@ -32,7 +32,7 @@ function cleanup_ols_operator() {
     operator-sdk cleanup lightspeed-operator
     
     # delete the OLS namespace
-    oc delete --wait --ignore-not-found ns ansible-lightspeed
+    oc delete --wait --ignore-not-found ns openshift-lightspeed
 
     # delete the ImageDigestMirrorSet
     oc delete --wait --ignore-not-found imagedigestmirrorset/openshift-lightspeed-prod-to-ci
