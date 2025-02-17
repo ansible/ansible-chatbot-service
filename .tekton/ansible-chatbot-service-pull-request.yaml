@@ -244,10 +244,7 @@ spec:
                 pwd
                 cd "$(workspaces.source.path)/source"
                 pwd
-                pip install -r requirements.txt
-                pip install boto3
-                pip install pytest
-                pip install reportportal_client
+                make install-deps
                 pip install matplotlib
                 pip install rouge-score
                 pip install pdm
