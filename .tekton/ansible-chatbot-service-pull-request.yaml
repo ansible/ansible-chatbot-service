@@ -259,6 +259,7 @@ spec:
                 pip install pdm
                 pdm run make install-deps
                 pwd
+                pip3.11 install -r requirements.txt
                 pip install matplotlib
                 pip install rouge-score
                 pip install pytest
@@ -267,6 +268,7 @@ spec:
                 pip install pydantic
                 pip install langchain
                 pip install llama_index
+                pip install psycopg2
                 pdm run make test-e2e
       - name: prefetch-dependencies
         params:
