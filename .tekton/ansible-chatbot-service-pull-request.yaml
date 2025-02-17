@@ -266,6 +266,7 @@ spec:
                 pip install pyyaml
                 pip install pydantic
                 pip install langchain
+                pip install llama_index
                 pdm run make test-e2e
       - name: prefetch-dependencies
         params:
