@@ -247,7 +247,7 @@ spec:
                 pip3.11 install --upgrade pip
                 python3.11 -m venv .venv
                 source .venv/bin/activate
-                pip3.11 install --no-cache-dir -r requirements.txt
+                pip3.11 install -r requirements.txt
                 pwd
                 export MODEL=granite3-8b
                 export ARTIFACT_DIR=tests/test_results
@@ -264,6 +264,7 @@ spec:
                 pip install pytest
                 pip install reportportal_client
                 pip install pyyaml
+                pip install pydantic
                 pdm run make test-e2e
       - name: prefetch-dependencies
         params:
