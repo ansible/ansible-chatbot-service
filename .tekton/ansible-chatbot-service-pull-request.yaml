@@ -245,6 +245,7 @@ spec:
                 cd "$(workspaces.source.path)/source"
                 python3.11 --version
                 pip3.11 install --upgrade pip
+                source /workspace/source/source/.venv/bin/activate
                 pip3.11 install --no-cache-dir -r requirements-dev.txt
                 pwd
                 export MODEL=granite3-8b
