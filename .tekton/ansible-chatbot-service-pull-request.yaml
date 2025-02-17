@@ -245,8 +245,8 @@ spec:
                 cd "$(workspaces.source.path)/source"
                 python3.11 --version
                 pip3.11 install --upgrade pip
+                pip3.11 install --no-cache-dir -r requirements-dev.txt
                 pwd
-                pip3.11 install --no-cache-dir -r requirements.txt
                 export MODEL=granite3-8b
                 export ARTIFACT_DIR=tests/test_results
                 export TEST_TAGS=response_evaluation
@@ -254,11 +254,11 @@ spec:
                 export SUITE_ID=rhoai_vllm
                 export PROVIDER_KEY_PATH=ols-api-key
                 pwd
-                make install-deps
+                pip install pdm
+                pdm run make install-deps
                 pwd
                 pip install matplotlib
                 pip install rouge-score
-                pip install pdm
                 pip install pytest
                 pdm run make test-e2e
       - name: prefetch-dependencies
