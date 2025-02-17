@@ -14,12 +14,13 @@ spec:
       - credentialsSecretRef:
           name: llmcreds
         models:
-          - name: gpt-3.5-turbo
-        name: rhoai_vllm
-        type: rhoai_vllm
+          - name: granite3-8b
+        name: my_rhoai_g3
+        type: openai
+        url: "https://stage.ai.ansible.redhat.com"
   ols:
-    defaultModel: gpt-3.5-turbo
-    defaultProvider: rhoai_vllm
+    defaultModel: granite3-8b
+    defaultProvider: my_rhoai_g3
     deployment:
       replicas: 1
     disableAuth: false

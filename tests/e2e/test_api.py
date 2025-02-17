@@ -530,7 +530,7 @@ def test_generated_service_certs_rotation():
 def test_ca_service_certs_rotation():
     """Verify OLS responds after ca certificate rotation."""
     cluster_utils.delete_resource(
-        resource="secret", name="signing-key", namespace="ansible-service-ca"
+        resource="secret", name="signing-key", namespace="openshift-service-ca"
     )
     response = pytest.client.post(
         "/v1/query",
@@ -539,13 +539,13 @@ def test_ca_service_certs_rotation():
     )
     assert response.status_code == requests.codes.ok
     cluster_utils.restart_deployment(
-        name="lightspeed-operator-controller-manager", namespace="ansible-lightspeed"
+        name="lightspeed-operator-controller-manager", namespace="openshift-lightspeed"
     )
     cluster_utils.restart_deployment(
-        name="lightspeed-app-server", namespace="ansible-lightspeed"
+        name="lightspeed-app-server", namespace="openshift-lightspeed"
     )
     cluster_utils.restart_deployment(
-        name="lightspeed-console-plugin", namespace="ansible-lightspeed"
+        name="lightspeed-console-plugin", namespace="openshift-lightspeed"
     )
     # Wait for service to become available again
     time.sleep(120)
