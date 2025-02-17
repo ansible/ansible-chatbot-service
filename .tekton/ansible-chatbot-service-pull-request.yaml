@@ -263,7 +263,6 @@ spec:
                 pip install rouge-score
                 pip install pytest
                 pip install reportportal_client
-                pip install yaml
                 pdm run make test-e2e
       - name: prefetch-dependencies
         params:
