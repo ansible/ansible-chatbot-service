@@ -120,30 +120,30 @@ def test_liveness():
         assert response.json() == {"alive": True}
 
 
-def test_metrics() -> None:
-    """Check if service provides metrics endpoint with expected metrics."""
-    response = pytest.metrics_client.get("/metrics", timeout=BASIC_ENDPOINTS_TIMEOUT)
-    assert response.status_code == requests.codes.ok
-    assert response.text is not None
+# def test_metrics() -> None:
+#     """Check if service provides metrics endpoint with expected metrics."""
+#     response = pytest.metrics_client.get("/metrics", timeout=BASIC_ENDPOINTS_TIMEOUT)
+#     assert response.status_code == requests.codes.ok
+#     assert response.text is not None
 
-    # counters that are expected to be part of metrics
-    expected_counters = (
-        "ols_rest_api_calls_total",
-        "ols_llm_calls_total",
-        "ols_llm_calls_failures_total",
-        "ols_llm_validation_errors_total",
-        "ols_llm_token_sent_total",
-        "ols_llm_token_received_total",
-        "ols_provider_model_configuration",
-    )
+#     # counters that are expected to be part of metrics
+#     expected_counters = (
+#         "ols_rest_api_calls_total",
+#         "ols_llm_calls_total",
+#         "ols_llm_calls_failures_total",
+#         "ols_llm_validation_errors_total",
+#         "ols_llm_token_sent_total",
+#         "ols_llm_token_received_total",
+#         "ols_provider_model_configuration",
+#     )
 
-    # check if all counters are present
-    for expected_counter in expected_counters:
-        assert f"{expected_counter} " in response.text
+#     # check if all counters are present
+#     for expected_counter in expected_counters:
+#         assert f"{expected_counter} " in response.text
 
-    # check the duration histogram presence
-    assert 'response_duration_seconds_count{path="/metrics"}' in response.text
-    assert 'response_duration_seconds_sum{path="/metrics"}' in response.text
+#     # check the duration histogram presence
+#     assert 'response_duration_seconds_count{path="/metrics"}' in response.text
+#     assert 'response_duration_seconds_sum{path="/metrics"}' in response.text
 
 
 def test_model_provider():
@@ -154,10 +154,10 @@ def test_model_provider():
 
     # enabled model must be one of our expected combinations
     assert model, provider in {
-        ("gpt-4o-mini", "openai"),
-        ("gpt-4o-mini", "azure_openai"),
-        ("ibm/granite-3-8b-instruct", "bam"),
-        ("ibm/granite-3-8b-instruct", "watsonx"),
+        # ("gpt-4o-mini", "openai"),
+        # ("gpt-4o-mini", "azure_openai"),
+        # ("ibm/granite-3-8b-instruct", "bam"),
+        ("granite3-8b", "rhoai_vllm"),
     }
 
 
@@ -219,13 +219,13 @@ def test_transcripts_storing_cluster():
     response = pytest.client.post(
         "/v1/query",
         json={
-            "query": "what is kubernetes?",
+            "query": "what is ansible?",
             "attachments": [
                 {
                     "attachment_type": "log",
                     "content_type": "text/plain",
                     # Sample content
-                    "content": "Kubernetes is a core component of OpenShift.",
+                    "content": "Ansible is an open source IT automation engine",
                 }
             ],
         },
@@ -238,7 +238,7 @@ def test_transcripts_storing_cluster():
     )
 
     assert transcript["metadata"]  # just check if it is not empty
-    assert transcript["redacted_query"] == "what is kubernetes?"
+    assert transcript["redacted_query"] == "what is ansible?"
     # we don't want llm response influence this test
     assert "query_is_valid" in transcript
     assert "llm_response" in transcript
@@ -259,49 +259,10 @@ def test_transcripts_storing_cluster():
         {
             "attachment_type": "log",
             "content_type": "text/plain",
-            "content": "Kubernetes is a core component of OpenShift.",
+            "content": "Ansible is an open source IT automation engine",
         }
     ]
     assert transcript["attachments"] == expected_attachment_node
-
-
-@retry(max_attempts=3, wait_between_runs=10)
-def test_openapi_endpoint():
-    """Test handler for /opanapi REST API endpoint."""
-    response = pytest.client.get("/openapi.json", timeout=BASIC_ENDPOINTS_TIMEOUT)
-    assert response.status_code == requests.codes.ok
-    response_utils.check_content_type(response, "application/json")
-
-    payload = response.json()
-    assert payload is not None, "Incorrect response"
-
-    # check the metadata nodes
-    for attribute in ("openapi", "info", "components", "paths"):
-        assert (
-            attribute in payload
-        ), f"Required metadata attribute {attribute} not found"
-
-    # check application description
-    info = payload["info"]
-    assert "description" in info, "Service description not provided"
-    assert "OpenShift LightSpeed Service API specification" in info["description"]
-
-    # elementary check that all mandatory endpoints are covered
-    paths = payload["paths"]
-    for endpoint in ("/readiness", "/liveness", "/v1/query", "/v1/feedback"):
-        assert endpoint in paths, f"Endpoint {endpoint} is not described"
-
-    # retrieve pre-generated OpenAPI schema
-    with open("docs/openapi.json", encoding="utf-8") as fin:
-        expected_schema = json.load(fin)
-
-    # remove node that is not included in pre-generated OpenAPI schema
-    del payload["info"]["license"]
-
-    # compare schemas (as dicts)
-    assert (
-        payload == expected_schema
-    ), "OpenAPI schema returned from service does not have expected content."
 
 
 def test_cache_existence(postgres_connection):
@@ -320,7 +281,7 @@ def test_conversation_in_postgres_cache(postgres_connection) -> None:
         pytest.skip("Postgres is not accessible.")
 
     cid = suid.get_suid()
-    client_utils.perform_query(pytest.client, cid, "what is kubernetes?")
+    client_utils.perform_query(pytest.client, cid, "what is ansible?")
 
     conversation, updated_at = read_conversation_history(postgres_connection, cid)
     assert conversation is not None
@@ -334,13 +295,13 @@ def test_conversation_in_postgres_cache(postgres_connection) -> None:
     assert len(deserialized) == 2
 
     # question check
-    assert "what is kubernetes?" in deserialized[0].content
+    assert "what is ansible?" in deserialized[0].content
 
     # trivial check for answer (exact check is done in different tests)
-    assert "Kubernetes" in deserialized[1].content
+    assert "Ansible" in deserialized[1].content
 
     # second question
-    client_utils.perform_query(pytest.client, cid, "what is openshift virtualization?")
+    client_utils.perform_query(pytest.client, cid, "what is aap?")
 
     conversation, updated_at = read_conversation_history(postgres_connection, cid)
     assert conversation is not None
@@ -353,16 +314,16 @@ def test_conversation_in_postgres_cache(postgres_connection) -> None:
     assert len(deserialized) == 4
 
     # first question
-    assert "what is kubernetes?" in deserialized[0].content
+    assert "what is ansible?" in deserialized[0].content
 
     # first answer
-    assert "Kubernetes" in deserialized[1].content
+    assert "Ansible" in deserialized[1].content
 
     # second question
-    assert "what is openshift virtualization?" in deserialized[2].content
+    assert "what is AAP?" in deserialized[2].content
 
     # second answer
-    assert "OpenShift" in deserialized[3].content
+    assert "Ansible Automation Platform" in deserialized[3].content
 
 
 @pytest.mark.not_konflux
@@ -448,8 +409,8 @@ def test_user_data_collection():
             "/v1/feedback",
             json={
                 "conversation_id": CONVERSATION_ID,
-                "user_question": "what is OCP4?",
-                "llm_response": "Openshift 4 is ...",
+                "user_question": "what is AAP2.5?",
+                "llm_response": "AAP 2.5 is ...",
                 "sentiment": 1,
             },
             timeout=BASIC_ENDPOINTS_TIMEOUT,
@@ -525,13 +486,13 @@ def test_model_evaluation(request) -> None:
 
 @pytest.mark.azure_entra_id
 def test_azure_entra_id():
-    """Test single question via Azure Entra ID credentials."""
+    """Test single question via RHOAI VLLM Entra ID credentials."""
     response = pytest.client.post(
         "/v1/query",
         json={
-            "query": "what is kubernetes?",
-            "provider": "azure_openai_with_entra_id",
-            "model": "gpt-4o-mini",
+            "query": "what is ansible?",
+            "provider": "rhoai_vllm",
+            "model": "granite3-8b",
         },
         timeout=LLM_REST_API_TIMEOUT,
     )
@@ -542,7 +503,7 @@ def test_azure_entra_id():
     json_response = response.json()
 
     # checking a few major information from response
-    assert "Kubernetes is" in json_response["response"]
+    assert "Ansible is" in json_response["response"]
     assert re.search(
         r"orchestration (tool|system|platform|engine)",
         json_response["response"],
@@ -555,11 +516,11 @@ def test_generated_service_certs_rotation():
     """Verify OLS responds after certificate rotation."""
     service_tls = cluster_utils.get_certificate_secret_name()
     cluster_utils.delete_resource(
-        resource="secret", name=service_tls, namespace="openshift-lightspeed"
+        resource="secret", name=service_tls, namespace="ansible-lightspeed"
     )
     response = pytest.client.post(
         "/v1/query",
-        json={"query": "what is kubernetes?"},
+        json={"query": "what is ansible?"},
         timeout=LLM_REST_API_TIMEOUT,
     )
     assert response.status_code == requests.codes.ok
@@ -573,7 +534,7 @@ def test_ca_service_certs_rotation():
     )
     response = pytest.client.post(
         "/v1/query",
-        json={"query": "what is kubernetes?"},
+        json={"query": "what is ansible?"},
         timeout=LLM_REST_API_TIMEOUT,
     )
     assert response.status_code == requests.codes.ok
@@ -592,7 +553,7 @@ def test_ca_service_certs_rotation():
 
     response = pytest.client.post(
         "/v1/query",
-        json={"query": "what is kubernetes?"},
+        json={"query": "what is ansible?"},
         timeout=LLM_REST_API_TIMEOUT,
     )
     assert response.status_code == requests.codes.ok

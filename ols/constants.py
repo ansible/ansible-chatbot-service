@@ -205,7 +205,7 @@ DEFAULT_AUTHENTICATION_MODULE = "k8s"
 SUPPORTED_AUTHENTICATION_MODULES = {"k8s", "noop"}
 
 # Default configuration file name
-DEFAULT_CONFIGURATION_FILE = "rcsconfig.yaml"
+DEFAULT_CONFIGURATION_FILE = "olsconfig.yaml"
 
 # Environment variable containing configuration file name to override default
 # configuration file
