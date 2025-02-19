@@ -49,16 +49,6 @@ class ModelFamily(StrEnum):
     GRANITE = "granite"
 
 
-# BAM
-GRANITE_13B_CHAT_V2 = "ibm/granite-13b-chat-v2"
-
-# OpenAI & Azure OpenAI
-GPT35_TURBO = "gpt-3.5-turbo"
-GPT_4O_MINI = "gpt-4o-mini"
-
-FAKE_MODEL = "fake_model"
-
-
 class GenericLLMParameters:
     """Generic LLM parameters that can be mapped into LLM provider-specific parameters."""
 

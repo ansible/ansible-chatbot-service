@@ -53,7 +53,10 @@ def resolve_provider_config(
 
 
 def load_llm(
-    provider: str, model: str, generic_llm_params: Optional[dict] = None
+    provider: str,
+    model: str,
+    generic_llm_params: Optional[dict] = None,
+    streaming: Optional[bool] = None,
 ) -> LLM:
     """Load LLM according to input provider and model.
 
@@ -61,6 +64,7 @@ def load_llm(
         provider: The provider name.
         model: The model name.
         generic_llm_params: The optional parameters that will be converted into LLM-specific ones.
+        streaming: The optional parameter that enable streaming on LLM side if set to True.
 
     Raises:
         LLMConfigurationError: If the whole provider configuration is missing.
@@ -94,4 +98,6 @@ def load_llm(
     logger.debug("loading LLM model '%s' from provider '%s'", model, provider)
 
     llm_provider = llm_providers_reg.llm_providers[provider_config.type]
-    return llm_provider(model, provider_config, generic_llm_params or {}).load()
+    return llm_provider(
+        model, provider_config, generic_llm_params or {}, streaming
+    ).load()

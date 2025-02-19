@@ -4,17 +4,28 @@ import logging
 from unittest.mock import ANY, call, patch
 
 import pytest
+from langchain_core.messages import AIMessage, HumanMessage
 
 from ols import config
-from ols.app.models.config import LoggingConfig
-from ols.src.query_helpers.docs_summarizer import DocsSummarizer, QueryHelper
-from ols.utils import suid
-from ols.utils.logging_configurator import configure_logging
-from tests import constants
-from tests.mock_classes.mock_langchain_interface import mock_langchain_interface
-from tests.mock_classes.mock_llama_index import MockLlamaIndex
-from tests.mock_classes.mock_llm_chain import mock_llm_chain
-from tests.mock_classes.mock_llm_loader import mock_llm_loader
+
+# needs to be setup there before is_user_authorized is imported
+config.ols_config.authentication_config.module = "k8s"
+
+
+from ols.app.models.config import LoggingConfig  # noqa:E402
+from ols.src.query_helpers.docs_summarizer import (  # noqa:E402
+    DocsSummarizer,
+    QueryHelper,
+)
+from ols.utils import suid  # noqa:E402
+from ols.utils.logging_configurator import configure_logging  # noqa:E402
+from tests import constants  # noqa:E402
+from tests.mock_classes.mock_langchain_interface import (  # noqa:E402
+    mock_langchain_interface,
+)
+from tests.mock_classes.mock_llama_index import MockLlamaIndex  # noqa:E402
+from tests.mock_classes.mock_llm_chain import mock_llm_chain  # noqa:E402
+from tests.mock_classes.mock_llm_loader import mock_llm_loader  # noqa:E402
 
 conversation_id = suid.get_suid()
 
@@ -47,7 +58,19 @@ def test_if_system_prompt_was_updated():
     summarizer = DocsSummarizer(llm_loader=mock_llm_loader(None))
     # expected prompt was loaded during configuration phase
     expected_prompt = config.ols_config.system_prompt
-    assert summarizer.system_prompt == expected_prompt
+    assert summarizer._system_prompt == expected_prompt
+
+
+def test_docs_summarizer_streaming_parameter():
+    """Test if optional streaming parameter is stored."""
+    summarizer = DocsSummarizer(llm_loader=mock_llm_loader(None))
+    assert summarizer.streaming is False
+
+    summarizer = DocsSummarizer(llm_loader=mock_llm_loader(None), streaming=False)
+    assert summarizer.streaming is False
+
+    summarizer = DocsSummarizer(llm_loader=mock_llm_loader(None), streaming=True)
+    assert summarizer.streaming is True
 
 
 @patch("ols.utils.token_handler.RAG_SIMILARITY_CUTOFF", 0.4)
@@ -114,7 +137,7 @@ def test_summarize_truncation():
     rag_index = MockLlamaIndex()
 
     # too long history
-    history = ["human: What is Kubernetes?"] * 10000
+    history = [HumanMessage("What is Kubernetes?")] * 10000
     summary = summarizer.create_response(question, rag_index, history)
 
     # truncation should be done
@@ -127,7 +150,7 @@ def test_prepare_prompt_context():
     """Basic test for DocsSummarizer to check re-structuring of context for the 'temp' prompt."""
     summarizer = DocsSummarizer(llm_loader=mock_llm_loader(None))
     question = "What's the ultimate question with answer 42?"
-    history = ["human: What is Kubernetes?"]
+    history = [HumanMessage("What is Kubernetes?")]
     rag_index = MockLlamaIndex()
 
     with patch(
@@ -142,7 +165,7 @@ def test_prepare_prompt_context():
         return_value="patched_history",
     ) as restructure_history:
         summarizer.create_response(question, rag_index, history)
-        restructure_history.assert_has_calls([call("ai: sample", ANY)])
+        restructure_history.assert_has_calls([call(AIMessage("sample"), ANY)])
 
 
 @patch("ols.src.query_helpers.docs_summarizer.LLMChain", new=mock_llm_chain(None))

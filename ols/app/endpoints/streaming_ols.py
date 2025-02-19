@@ -92,6 +92,7 @@ def conversation_request(
         attachments,
         valid,
         timestamps,
+        skip_user_id_check,
     ) = process_request(auth, llm_request)
 
     summarizer_response = (
@@ -113,6 +114,7 @@ def conversation_request(
             query_without_attachments,
             llm_request.media_type,
             timestamps,
+            skip_user_id_check,
         ),
         media_type=llm_request.media_type,
     )
@@ -127,13 +129,19 @@ async def invalid_response_generator() -> AsyncGenerator[str, None]:
     yield prompts.INVALID_QUERY_RESP
 
 
+def format_stream_data(d: dict) -> str:
+    """Format outbound data in the Event Stream Format if required."""
+    data = json.dumps(d)
+    return f"data: {data}\n\n" if config.ols_config.enable_event_stream_format else data
+
+
 def stream_start_event(conversation_id: str) -> str:
     """Yield the start of the data stream.
 
     Args:
         conversation_id: The conversation ID (UUID).
     """
-    return json.dumps(
+    return format_stream_data(
         {
             "event": "start",
             "data": {
@@ -155,7 +163,7 @@ def stream_end_event(
         token_counter: Token counter for the whole stream.
     """
     if media_type == constants.MEDIA_TYPE_JSON:
-        return json.dumps(
+        return format_stream_data(
             {
                 "event": "end",
                 "data": {
@@ -171,7 +179,7 @@ def stream_end_event(
             }
         )
     ref_docs_string = "\n".join(
-        f'{item["doc_title"]}: {item["doc_url"]}' for item in ref_docs
+        f"{item['doc_title']}: {item['doc_url']}" for item in ref_docs
     )
     return f"\n\n---\n\n{ref_docs_string}" if ref_docs_string else ""
 
@@ -201,7 +209,7 @@ def prompt_too_long_error(error: PromptTooLongError, media_type: str) -> str:
     logger.error("Prompt is too long: %s", error)
     if media_type == MEDIA_TYPE_TEXT:
         return f"Prompt is too long: {error}"
-    return json.dumps(
+    return format_stream_data(
         {
             "event": "error",
             "data": {
@@ -228,7 +236,7 @@ def generic_llm_error(error: Exception, media_type: str) -> str:
 
     if media_type == MEDIA_TYPE_TEXT:
         return f"{response}: {cause}"
-    return json.dumps(
+    return format_stream_data(
         {
             "event": "error",
             "data": {
@@ -252,7 +260,12 @@ def build_yield_item(item: str, idx: int, media_type: str) -> str:
     """
     if media_type == MEDIA_TYPE_TEXT:
         return item
-    return json.dumps({"event": "token", "data": {"id": idx, "token": item}})
+    return format_stream_data(
+        {
+            "event": "token",
+            "data": {"id": idx, "token": item},
+        }
+    )
 
 
 def store_data(
@@ -266,6 +279,7 @@ def store_data(
     rag_chunks: list[RagChunk],
     history_truncated: bool,
     timestamps: dict[str, float],
+    skip_user_id_check: bool,
 ) -> None:
     """Store conversation history and transcript if enabled.
 
@@ -280,9 +294,16 @@ def store_data(
         rag_chunks: list of RAG (Retrieve-And-Generate) chunks used in the response.
         history_truncated: Indicates if the conversation history was truncated.
         timestamps: Dictionary tracking timestamps for various stages.
+        skip_user_id_check: Skip user_id usid check.
     """
     store_conversation_history(
-        user_id, conversation_id, llm_request, response, attachments
+        user_id,
+        conversation_id,
+        llm_request,
+        response,
+        attachments,
+        timestamps,
+        skip_user_id_check,
     )
 
     if not config.ols_config.user_data_collection.transcripts_disabled:
@@ -310,6 +331,7 @@ async def response_processing_wrapper(
     query_without_attachments: str,
     media_type: str,
     timestamps: dict[str, float],
+    skip_user_id_check: bool,
 ) -> AsyncGenerator[str, None]:
     """Process the response from the generator and handle metadata and errors.
 
@@ -323,6 +345,7 @@ async def response_processing_wrapper(
         query_without_attachments: Query content excluding attachments.
         media_type: Media type of the response (e.g. text or JSON).
         timestamps: Dictionary tracking timestamps for various stages.
+        skip_user_id_check: Skip user_id usid check.
 
     Yields:
         str: The response items or error messages.
@@ -368,6 +391,7 @@ async def response_processing_wrapper(
         rag_chunks,
         history_truncated,
         timestamps,
+        skip_user_id_check,
     )
 
     yield stream_end_event(

@@ -3,11 +3,9 @@
 # pylint: disable=W0621
 
 import pytest
+from langchain_core.messages import AIMessage, HumanMessage
 
 from ols.constants import (
-    GPT35_TURBO,
-    GPT_4O_MINI,
-    GRANITE_13B_CHAT_V2,
     PROVIDER_AZURE_OPENAI,
     PROVIDER_BAM,
     PROVIDER_OPENAI,
@@ -19,12 +17,12 @@ from ols.src.prompts.prompt_generator import GeneratePrompt
 
 # providers and models used by parametrized benchmarks
 provider_and_model = (
-    (PROVIDER_BAM, GRANITE_13B_CHAT_V2),
-    (PROVIDER_OPENAI, GPT_4O_MINI),
-    (PROVIDER_WATSONX, GRANITE_13B_CHAT_V2),
-    (PROVIDER_AZURE_OPENAI, GPT_4O_MINI),
-    (PROVIDER_RHOAI_VLLM, GPT35_TURBO),
-    (PROVIDER_RHELAI_VLLM, GPT35_TURBO),
+    (PROVIDER_BAM, "some-granite-model"),
+    (PROVIDER_OPENAI, "some-gpt-model"),
+    (PROVIDER_WATSONX, "some-granite-model"),
+    (PROVIDER_AZURE_OPENAI, "some-gpt-model"),
+    (PROVIDER_RHOAI_VLLM, "some-granite-model"),
+    (PROVIDER_RHELAI_VLLM, "some-granite-model"),
 )
 
 
@@ -38,8 +36,8 @@ def empty_history():
 def conversation_history():
     """Non-empty conversation history."""
     return [
-        "First human message",
-        "First AI response",
+        HumanMessage("First human message"),
+        AIMessage("First AI response"),
     ] * 50
 
 
@@ -47,8 +45,8 @@ def conversation_history():
 def long_history():
     """Long conversation history."""
     return [
-        "First human message",
-        "First AI response",
+        HumanMessage("First human message"),
+        AIMessage("First AI response"),
     ] * 10000
 
 

@@ -4,8 +4,10 @@ from math import ceil
 from unittest import TestCase, mock
 
 import pytest
+from langchain_core.messages import AIMessage, HumanMessage
 
 from ols.constants import TOKEN_BUFFER_WEIGHT, ModelFamily
+from ols.src.prompts.prompt_generator import restructure_history
 from ols.utils.token_handler import PromptTooLongError, TokenHandler
 from tests.mock_classes.mock_retrieved_node import MockRetrievedNode
 
@@ -198,12 +200,12 @@ class TestTokenHandler(TestCase):
     def test_limit_conversation_history(self):
         """Check the behaviour of limiting long conversation history."""
         history = [
-            "human: first message from human",
-            "ai: first answer from AI",
-            "human: second message from human",
-            "ai: second answer from AI",
-            "human: third message from human",
-            "ai: third answer from AI",
+            HumanMessage("first message from human"),
+            AIMessage("first answer from AI"),
+            HumanMessage("second message from human"),
+            AIMessage("second answer from AI"),
+            HumanMessage("third message from human"),
+            AIMessage("third answer from AI"),
         ]
         # for each of the above actual messages the tokens count is 4.
         # then 2 tokens for the tags. Total tokens are 6.
@@ -280,4 +282,13 @@ class TestTokenHandler(TestCase):
         )
         # history should truncate to empty list and flag should be True
         assert truncated_history == []
+        assert truncated
+
+        # Test formatted history for granite
+        model = ModelFamily.GRANITE
+        truncated_history, truncated = (
+            self._token_handler_obj.limit_conversation_history(history, model, 22)
+        )
+        assert len(truncated_history) == 1
+        assert truncated_history[-1] == restructure_history(history[-1], model)
         assert truncated
