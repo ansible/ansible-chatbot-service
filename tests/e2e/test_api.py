@@ -120,30 +120,30 @@ def test_liveness():
         assert response.json() == {"alive": True}
 
 
-# def test_metrics() -> None:
-#     """Check if service provides metrics endpoint with expected metrics."""
-#     response = pytest.metrics_client.get("/metrics", timeout=BASIC_ENDPOINTS_TIMEOUT)
-#     assert response.status_code == requests.codes.ok
-#     assert response.text is not None
+def test_metrics() -> None:
+    """Check if service provides metrics endpoint with expected metrics."""
+    response = pytest.metrics_client.get("/metrics", timeout=BASIC_ENDPOINTS_TIMEOUT)
+    assert response.status_code == requests.codes.ok
+    assert response.text is not None
 
-#     # counters that are expected to be part of metrics
-#     expected_counters = (
-#         "ols_rest_api_calls_total",
-#         "ols_llm_calls_total",
-#         "ols_llm_calls_failures_total",
-#         "ols_llm_validation_errors_total",
-#         "ols_llm_token_sent_total",
-#         "ols_llm_token_received_total",
-#         "ols_provider_model_configuration",
-#     )
+    # counters that are expected to be part of metrics
+    expected_counters = (
+        "ols_rest_api_calls_total",
+        "ols_llm_calls_total",
+        "ols_llm_calls_failures_total",
+        "ols_llm_validation_errors_total",
+        "ols_llm_token_sent_total",
+        "ols_llm_token_received_total",
+        "ols_provider_model_configuration",
+    )
 
-#     # check if all counters are present
-#     for expected_counter in expected_counters:
-#         assert f"{expected_counter} " in response.text
+    # check if all counters are present
+    for expected_counter in expected_counters:
+        assert f"{expected_counter} " in response.text
 
-#     # check the duration histogram presence
-#     assert 'response_duration_seconds_count{path="/metrics"}' in response.text
-#     assert 'response_duration_seconds_sum{path="/metrics"}' in response.text
+    # check the duration histogram presence
+    assert 'response_duration_seconds_count{path="/metrics"}' in response.text
+    assert 'response_duration_seconds_sum{path="/metrics"}' in response.text
 
 
 def test_model_provider():
@@ -154,10 +154,12 @@ def test_model_provider():
 
     # enabled model must be one of our expected combinations
     assert model, provider in {
-        # ("gpt-4o-mini", "openai"),
-        # ("gpt-4o-mini", "azure_openai"),
-        # ("ibm/granite-3-8b-instruct", "bam"),
-        ("granite3-8b", "rhoai_vllm"),
+        ("gpt-4o-mini", "openai"),
+        ("gpt-4o-mini", "azure_openai"),
+        ("ibm/granite-3-8b-instruct", "bam"),
+        ("ibm/granite-3-8b-instruct", "watsonx"),
+        ("granite3-8b", "my_rhoai_g3"),
+        ("granite3-1-8b", "my_rhoai_g31"),
     }
 
 
@@ -263,6 +265,44 @@ def test_transcripts_storing_cluster():
         }
     ]
     assert transcript["attachments"] == expected_attachment_node
+
+@retry(max_attempts=3, wait_between_runs=10)
+def test_openapi_endpoint():
+    """Test handler for /opanapi REST API endpoint."""
+    response = pytest.client.get("/openapi.json", timeout=BASIC_ENDPOINTS_TIMEOUT)
+    assert response.status_code == requests.codes.ok
+    response_utils.check_content_type(response, "application/json")
+
+    payload = response.json()
+    assert payload is not None, "Incorrect response"
+
+    # check the metadata nodes
+    for attribute in ("openapi", "info", "components", "paths"):
+        assert (
+            attribute in payload
+        ), f"Required metadata attribute {attribute} not found"
+
+    # check application description
+    info = payload["info"]
+    assert "description" in info, "Service description not provided"
+    assert "OpenShift LightSpeed Service API specification" in info["description"]
+
+    # elementary check that all mandatory endpoints are covered
+    paths = payload["paths"]
+    for endpoint in ("/readiness", "/liveness", "/v1/query", "/v1/feedback"):
+        assert endpoint in paths, f"Endpoint {endpoint} is not described"
+
+    # retrieve pre-generated OpenAPI schema
+    with open("docs/openapi.json", encoding="utf-8") as fin:
+        expected_schema = json.load(fin)
+
+    # remove node that is not included in pre-generated OpenAPI schema
+    del payload["info"]["license"]
+
+    # compare schemas (as dicts)
+    assert (
+        payload == expected_schema
+    ), "OpenAPI schema returned from service does not have expected content."
 
 
 def test_cache_existence(postgres_connection):

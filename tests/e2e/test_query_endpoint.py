@@ -33,9 +33,9 @@ def test_invalid_question():
         json_response = response.json()
         assert json_response["conversation_id"] == cid
         assert json_response["referenced_documents"] == []
-        # assert json_response["input_tokens"] > 0
-        # assert json_response["output_tokens"] > 0
-        # assert not json_response["truncated"]
+        assert json_response["input_tokens"] > 0
+        assert json_response["output_tokens"] > 0
+        assert not json_response["truncated"]
         # LLM shouldn't answer non-ocp queries or
         # at least acknowledges that query is non-ocp.
         # Below assert is minimal due to model randomness.
@@ -62,8 +62,8 @@ def test_invalid_question_without_conversation_id():
         json_response = response.json()
         assert json_response["referenced_documents"] == []
         assert json_response["truncated"] is False
-        # assert json_response["input_tokens"] > 0
-        # assert json_response["output_tokens"] > 0
+        assert json_response["input_tokens"] > 0
+        assert json_response["output_tokens"] > 0
         # Query classification is disabled by default,
         # and we rely on the model (controlled by prompt) to reject non-ocp queries.
         # Randomness in response is expected.
@@ -193,7 +193,7 @@ def test_too_long_question() -> None:
         print(vars(response))
         json_response = response.json()
         assert "detail" in json_response
-        # assert json_response["detail"]["response"] == "Prompt is too long"
+        assert json_response["detail"]["response"] == "Prompt is too long"
 
 
 @pytest.mark.smoketest
@@ -221,8 +221,33 @@ def test_valid_question() -> None:
             json_response["response"],
             re.IGNORECASE,
         )
-        # assert json_response["input_tokens"] > 0
-        # assert json_response["output_tokens"] > 0
+        assert json_response["input_tokens"] > 0
+        assert json_response["output_tokens"] > 0
+
+
+@pytest.mark.rag
+def test_ocp_docs_version_same_as_cluster_version() -> None:
+    """Check that the version of OCP docs matches the cluster we're on."""
+    with metrics_utils.RestAPICallCounterChecker(pytest.metrics_client, QUERY_ENDPOINT):
+        cid = suid.get_suid()
+        response = pytest.client.post(
+            QUERY_ENDPOINT,
+            json={
+                "conversation_id": cid,
+                "query": "welcome openshift container platform documentation",
+            },
+            timeout=test_api.LLM_REST_API_TIMEOUT,
+        )
+        assert response.status_code == requests.codes.ok
+
+        response_utils.check_content_type(response, "application/json")
+        print(vars(response))
+        json_response = response.json()
+
+        major, minor = cluster_utils.get_cluster_version()
+
+        assert len(json_response["referenced_documents"]) > 1
+        assert f"{major}.{minor}" in json_response["referenced_documents"][0]["title"]
 
 
 def test_valid_question_tokens_counter() -> None:
