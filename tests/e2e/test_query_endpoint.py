@@ -130,7 +130,7 @@ def test_valid_question_improper_conversation_id() -> None:
     ):
         response = pytest.client.post(
             QUERY_ENDPOINT,
-            json={"conversation_id": "not-uuid", "query": "what is kubernetes?"},
+            json={"conversation_id": "not-uuid", "query": "what is ansible?"},
             timeout=test_api.LLM_REST_API_TIMEOUT,
         )
         assert response.status_code == requests.codes.internal_server_error
@@ -154,7 +154,7 @@ def test_valid_question_missing_conversation_id() -> None:
     ):
         response = pytest.client.post(
             QUERY_ENDPOINT,
-            json={"conversation_id": "", "query": "what is kubernetes?"},
+            json={"conversation_id": "", "query": "what is ansible?"},
             timeout=test_api.LLM_REST_API_TIMEOUT,
         )
         assert response.status_code == requests.codes.ok
@@ -174,7 +174,7 @@ def test_valid_question_missing_conversation_id() -> None:
 def test_too_long_question() -> None:
     """Check the REST API /v1/query with too long question."""
     # let's make the query really large, larger that context window size
-    query = "what is kubernetes?" * 10000
+    query = "what is ansible?" * 10000
 
     with metrics_utils.RestAPICallCounterChecker(
         pytest.metrics_client,
@@ -204,7 +204,7 @@ def test_valid_question() -> None:
         cid = suid.get_suid()
         response = pytest.client.post(
             QUERY_ENDPOINT,
-            json={"conversation_id": cid, "query": "what is kubernetes?"},
+            json={"conversation_id": cid, "query": "what is ansible?"},
             timeout=test_api.LLM_REST_API_TIMEOUT,
         )
         assert response.status_code == requests.codes.ok
@@ -215,7 +215,7 @@ def test_valid_question() -> None:
 
         # checking a few major information from response
         assert json_response["conversation_id"] == cid
-        assert "Kubernetes is" in json_response["response"]
+        assert "Ansible is" in json_response["response"]
         assert re.search(
             r"orchestration (tool|system|platform|engine)",
             json_response["response"],
@@ -262,7 +262,7 @@ def test_valid_question_tokens_counter() -> None:
     ):
         response = pytest.client.post(
             QUERY_ENDPOINT,
-            json={"query": "what is kubernetes?"},
+            json={"query": "what is ansible?"},
             timeout=test_api.LLM_REST_API_TIMEOUT,
         )
         assert response.status_code == requests.codes.ok
@@ -352,7 +352,7 @@ def test_rag_question() -> None:
     with metrics_utils.RestAPICallCounterChecker(pytest.metrics_client, QUERY_ENDPOINT):
         response = pytest.client.post(
             QUERY_ENDPOINT,
-            json={"query": "what is openshift virtualization?"},
+            json={"query": "what is aap eda?"},
             timeout=test_api.LLM_REST_API_TIMEOUT,
         )
         assert response.status_code == requests.codes.ok
@@ -362,7 +362,7 @@ def test_rag_question() -> None:
         json_response = response.json()
         assert "conversation_id" in json_response
         assert len(json_response["referenced_documents"]) > 1
-        assert "virt" in json_response["referenced_documents"][0]["docs_url"]
+        assert "rulebook" in json_response["referenced_documents"][0]["docs_url"]
         assert "https://" in json_response["referenced_documents"][0]["docs_url"]
         assert json_response["referenced_documents"][0]["title"]
 

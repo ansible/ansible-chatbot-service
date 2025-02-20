@@ -18,7 +18,7 @@ DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 . "$DIR/utils.sh"
 
-# install operator-sdk 
+# install operator-sdk
 export ARCH=$(case $(uname -m) in x86_64) echo -n amd64 ;; aarch64) echo -n arm64 ;; *) echo -n $(uname -m) ;; esac)
 export OS=$(uname | awk '{print tolower($0)}')
 export OPERATOR_SDK_DL_URL=https://github.com/operator-framework/operator-sdk/releases/download/v1.36.1
@@ -39,8 +39,8 @@ function run_suites() {
   (( rc = rc || $? ))
 
   # BAM is currently not working, commenting for now
-  # run_suite "bam" "not model_evaluation" "bam" "$BAM_PROVIDER_KEY_PATH" "ibm/granite-3-8b-instruct" "$OLS_IMAGE"
-  # (( rc = rc || $? ))
+  run_suite "bam" "not model_evaluation" "bam" "$BAM_PROVIDER_KEY_PATH" "ibm/granite-3-8b-instruct" "$OLS_IMAGE"
+  (( rc = rc || $? ))
 
   run_suite "openai" "not model_evaluation and not azure_entra_id and not certificates" "openai" "$OPENAI_PROVIDER_KEY_PATH" "gpt-4o-mini" "$OLS_IMAGE"
   (( rc = rc || $? ))
@@ -49,13 +49,13 @@ function run_suites() {
   (( rc = rc || $? ))
 
   # smoke tests for RHOAI VLLM-compatible provider
-  run_suite "rhoai_vllm" "smoketest" "rhoai_vllm" "$OPENAI_PROVIDER_KEY_PATH" "gpt-3.5-turbo" "$OLS_IMAGE"
+  run_suite "rhoai_vllm" "smoketest" "rhoai_vllm" "$OPENAI_PROVIDER_KEY_PATH" "granite3-1-8b" "$OLS_IMAGE"
   (( rc = rc || $? ))
 
   # smoke tests for RHELAI VLLM-compatible provider
   run_suite "rhelai_vllm" "smoketest" "rhelai_vllm" "$OPENAI_PROVIDER_KEY_PATH" "gpt-3.5-turbo" "$OLS_IMAGE"
   (( rc = rc || $? ))
-  
+
   run_suite "openai" "certificates" "openai" "$OPENAI_PROVIDER_KEY_PATH" "gpt-4o-mini" "$OLS_IMAGE"
   (( rc = rc || $? ))
 

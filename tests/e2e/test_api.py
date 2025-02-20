@@ -158,6 +158,8 @@ def test_model_provider():
         ("gpt-4o-mini", "azure_openai"),
         ("ibm/granite-3-8b-instruct", "bam"),
         ("ibm/granite-3-8b-instruct", "watsonx"),
+        ("granite3-8b", "my_rhoai_g3"),
+        ("granite3-1-8b", "my_rhoai_g31"),
     }
 
 
@@ -219,13 +221,13 @@ def test_transcripts_storing_cluster():
     response = pytest.client.post(
         "/v1/query",
         json={
-            "query": "what is kubernetes?",
+            "query": "what is ansible?",
             "attachments": [
                 {
                     "attachment_type": "log",
                     "content_type": "text/plain",
                     # Sample content
-                    "content": "Kubernetes is a core component of OpenShift.",
+                    "content": "Ansible is an open source IT automation engine",
                 }
             ],
         },
@@ -238,7 +240,7 @@ def test_transcripts_storing_cluster():
     )
 
     assert transcript["metadata"]  # just check if it is not empty
-    assert transcript["redacted_query"] == "what is kubernetes?"
+    assert transcript["redacted_query"] == "what is ansible?"
     # we don't want llm response influence this test
     assert "query_is_valid" in transcript
     assert "llm_response" in transcript
@@ -259,11 +261,10 @@ def test_transcripts_storing_cluster():
         {
             "attachment_type": "log",
             "content_type": "text/plain",
-            "content": "Kubernetes is a core component of OpenShift.",
+            "content": "Ansible is an open source IT automation engine",
         }
     ]
     assert transcript["attachments"] == expected_attachment_node
-
 
 @retry(max_attempts=3, wait_between_runs=10)
 def test_openapi_endpoint():
@@ -320,7 +321,7 @@ def test_conversation_in_postgres_cache(postgres_connection) -> None:
         pytest.skip("Postgres is not accessible.")
 
     cid = suid.get_suid()
-    client_utils.perform_query(pytest.client, cid, "what is kubernetes?")
+    client_utils.perform_query(pytest.client, cid, "what is ansible?")
 
     conversation, updated_at = read_conversation_history(postgres_connection, cid)
     assert conversation is not None
@@ -334,13 +335,13 @@ def test_conversation_in_postgres_cache(postgres_connection) -> None:
     assert len(deserialized) == 2
 
     # question check
-    assert "what is kubernetes?" in deserialized[0].content
+    assert "what is ansible?" in deserialized[0].content
 
     # trivial check for answer (exact check is done in different tests)
-    assert "Kubernetes" in deserialized[1].content
+    assert "Ansible" in deserialized[1].content
 
     # second question
-    client_utils.perform_query(pytest.client, cid, "what is openshift virtualization?")
+    client_utils.perform_query(pytest.client, cid, "what is aap?")
 
     conversation, updated_at = read_conversation_history(postgres_connection, cid)
     assert conversation is not None
@@ -353,16 +354,16 @@ def test_conversation_in_postgres_cache(postgres_connection) -> None:
     assert len(deserialized) == 4
 
     # first question
-    assert "what is kubernetes?" in deserialized[0].content
+    assert "what is ansible?" in deserialized[0].content
 
     # first answer
-    assert "Kubernetes" in deserialized[1].content
+    assert "Ansible" in deserialized[1].content
 
     # second question
-    assert "what is openshift virtualization?" in deserialized[2].content
+    assert "what is AAP?" in deserialized[2].content
 
     # second answer
-    assert "OpenShift" in deserialized[3].content
+    assert "Ansible Automation Platform" in deserialized[3].content
 
 
 @pytest.mark.not_konflux
@@ -448,8 +449,8 @@ def test_user_data_collection():
             "/v1/feedback",
             json={
                 "conversation_id": CONVERSATION_ID,
-                "user_question": "what is OCP4?",
-                "llm_response": "Openshift 4 is ...",
+                "user_question": "what is AAP2.5?",
+                "llm_response": "AAP 2.5 is ...",
                 "sentiment": 1,
             },
             timeout=BASIC_ENDPOINTS_TIMEOUT,
@@ -525,13 +526,13 @@ def test_model_evaluation(request) -> None:
 
 @pytest.mark.azure_entra_id
 def test_azure_entra_id():
-    """Test single question via Azure Entra ID credentials."""
+    """Test single question via RHOAI VLLM Entra ID credentials."""
     response = pytest.client.post(
         "/v1/query",
         json={
-            "query": "what is kubernetes?",
-            "provider": "azure_openai_with_entra_id",
-            "model": "gpt-4o-mini",
+            "query": "what is ansible?",
+            "provider": "my_rhoai_g3",
+            "model": "granite3-8b",
         },
         timeout=LLM_REST_API_TIMEOUT,
     )
@@ -542,7 +543,7 @@ def test_azure_entra_id():
     json_response = response.json()
 
     # checking a few major information from response
-    assert "Kubernetes is" in json_response["response"]
+    assert "Ansible is" in json_response["response"]
     assert re.search(
         r"orchestration (tool|system|platform|engine)",
         json_response["response"],
@@ -555,11 +556,11 @@ def test_generated_service_certs_rotation():
     """Verify OLS responds after certificate rotation."""
     service_tls = cluster_utils.get_certificate_secret_name()
     cluster_utils.delete_resource(
-        resource="secret", name=service_tls, namespace="openshift-lightspeed"
+        resource="secret", name=service_tls, namespace="ansible-lightspeed"
     )
     response = pytest.client.post(
         "/v1/query",
-        json={"query": "what is kubernetes?"},
+        json={"query": "what is ansible?"},
         timeout=LLM_REST_API_TIMEOUT,
     )
     assert response.status_code == requests.codes.ok
@@ -573,7 +574,7 @@ def test_ca_service_certs_rotation():
     )
     response = pytest.client.post(
         "/v1/query",
-        json={"query": "what is kubernetes?"},
+        json={"query": "what is ansible?"},
         timeout=LLM_REST_API_TIMEOUT,
     )
     assert response.status_code == requests.codes.ok
@@ -592,7 +593,7 @@ def test_ca_service_certs_rotation():
 
     response = pytest.client.post(
         "/v1/query",
-        json={"query": "what is kubernetes?"},
+        json={"query": "what is ansible?"},
         timeout=LLM_REST_API_TIMEOUT,
     )
     assert response.status_code == requests.codes.ok

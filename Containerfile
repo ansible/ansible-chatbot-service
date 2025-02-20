@@ -1,11 +1,11 @@
 # vim: set filetype=dockerfile
-ARG LIGHTSPEED_RAG_CONTENT_IMAGE=quay.io/openshift-lightspeed/lightspeed-rag-content@sha256:3e96332648a6f8ff1879c7ae11c818ea7f1c8d5b8a99c4bff406c98c8a7d4541
-ARG LIGHTSPEED_RAG_EMBEDDINGS_IMAGE=quay.io/openshift-lightspeed/lightspeed-rag-content@sha256:3e96332648a6f8ff1879c7ae11c818ea7f1c8d5b8a99c4bff406c98c8a7d4541
+ARG ANSIBLE_RAG_CONTENT_IMAGE=quay.io/ansible/aap-rag-content:latest
+ARG ANSIBLE_RAG_EMBEDDINGS_IMAGE=quay.io/ansible/aap-rag-conten:latest
 ARG RAG_CONTENTS_SUB_FOLDER=vector_db/ocp_product_docs
 
-FROM ${LIGHTSPEED_RAG_CONTENT_IMAGE} as lightspeed-rag-content
+FROM ${ANSIBLE_RAG_CONTENT_IMAGE} as ansible-rag-content
 
-FROM ${LIGHTSPEED_RAG_EMBEDDINGS_IMAGE} as lightspeed-rag-embeddings
+FROM ${ANSIBLE_RAG_EMBEDDINGS_IMAGE} as ansible-rag-embeddings
 
 FROM registry.access.redhat.com/ubi9/ubi-minimal AS production
 
@@ -27,8 +27,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app-root
 
-COPY --from=lightspeed-rag-content /rag/${RAG_CONTENTS_SUB_FOLDER} ${APP_ROOT}/${RAG_CONTENTS_SUB_FOLDER}
-COPY --from=lightspeed-rag-embeddings /rag/embeddings_model ./embeddings_model
+COPY --from=ansible-rag-content /rag/${RAG_CONTENTS_SUB_FOLDER} ${APP_ROOT}/${RAG_CONTENTS_SUB_FOLDER}
+COPY --from=ansible-rag-embeddings /rag/embeddings_model ./embeddings_model
 
 # Add explicit files and directories
 # (avoid accidental inclusion of local directories or env files or credentials)
