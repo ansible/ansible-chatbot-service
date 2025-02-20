@@ -36,8 +36,7 @@ class AnswerRelevancyScore:
                     {"answer": response, "num_questions": N_QUESTIONS}
                 )
                 break
-            except Exception as ex:
-                print("** get_score ** failed with EXCEPTION: ", ex)
+            except Exception:
                 if retry_counter == retry_attemps - 1:
                     out = None  ## Continue with without result
                     # raise

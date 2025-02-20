@@ -14,13 +14,12 @@ spec:
       - credentialsSecretRef:
           name: llmcreds
         models:
-          - name: granite3-8b
-        name: rhoai_vllm
-        type: openai
-        url: "https://granite3-8b-wisdom-model-staging.apps.stage2-west.v2dz.p1.openshiftapps.com/v1"
+          - name: gpt-3.5-turbo
+        name: rhelai_vllm
+        type: rhelai_vllm
   ols:
-    defaultModel: granite3-8b
-    defaultProvider: rhoai_vllm
+    defaultModel: gpt-3.5-turbo
+    defaultProvider: rhelai_vllm
     deployment:
       replicas: 1
     disableAuth: false

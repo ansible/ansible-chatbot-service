@@ -531,7 +531,7 @@ def test_azure_entra_id():
         "/v1/query",
         json={
             "query": "what is ansible?",
-            "provider": "rhoai_vllm",
+            "provider": "my_rhoai_g3",
             "model": "granite3-8b",
         },
         timeout=LLM_REST_API_TIMEOUT,
