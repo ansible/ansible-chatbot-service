@@ -89,6 +89,9 @@ def conversation_request(
     """
     processed_request = process_request(auth, llm_request)
 
+    # TODO: Parse here the LSJWToken from LLMRequest, and store necessary info (user,org,etc) somewhere (mem, db)?
+    # TODO: Request an API token to the GW + Add information ^^ into it -> then call the target GW service
+
     summarizer_response: SummarizerResponse | Generator
 
     if not processed_request.valid:

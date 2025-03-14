@@ -19,7 +19,8 @@ def start_uvicorn(config: config_model.Config) -> None:
     port = (
         config.dev_config.uvicorn_port_number
         if config.dev_config.uvicorn_port_number
-        else 8080 if config.dev_config.disable_tls else 8443
+        # TODO: Changed to port 8085 to get rid of conflicts with the docker env.
+        else 8085 if config.dev_config.disable_tls else 8443
     )
     log_level = config.ols_config.logging_config.uvicorn_log_level
 

@@ -4,7 +4,7 @@ import logging
 
 from ols.app.models.config import OLSConfig
 
-from . import k8s, noop
+from . import k8s, noop, aap
 from .auth_dependency_interface import AuthDependencyInterface
 
 logger = logging.getLogger(__name__)
@@ -22,6 +22,11 @@ def use_k8s_auth(ols_config: OLSConfig) -> bool:
 def get_auth_dependency(
     ols_config: OLSConfig, virtual_path: str
 ) -> AuthDependencyInterface:
+
+    # TODO: Just as for a PoC.
+    if True:
+        return aap.AuthDependency(virtual_path=virtual_path)
+
     """Select the configured authentication dependency interface."""
     if ols_config is None or ols_config.authentication_config is None:
         raise Exception("Authentication is not configured properly")
