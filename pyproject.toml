@@ -130,7 +130,7 @@ dependencies = [
     "starlette==0.41.3",
     "tqdm==4.67.1",
     "findpython==0.6.2",
-    "filelock==3.16.1",
+    "filelock==3.18.0",
     "ffmpy==0.4.0",
     "virtualenv==20.28.0",
     "msgpack==1.1.0",
