@@ -281,7 +281,7 @@ Depends on configuration, but usually it is not needed to generate or use API ke
 
    It is possible to configure the service to use local *ollama* server.
    Please look into an
-   [examples/olsconfig-local-ollama.yaml](examples/olsconfig-local-ollama.yaml)
+   [examples/olsconfig-local-ollama.yaml](examples/rcsconfig-local-ollama.yaml)
    file that describes all required steps.
 
    1. Common providers configuration options
