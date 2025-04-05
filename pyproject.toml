@@ -129,7 +129,7 @@ dependencies = [
     "scikit-learn==1.5.2",
     "starlette==0.41.3",
     "tqdm==4.67.1",
-    "findpython==0.6.2",
+    "findpython==0.6.3",
     "filelock==3.16.1",
     "ffmpy==0.4.0",
     "virtualenv==20.28.0",
