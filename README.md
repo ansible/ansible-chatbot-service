@@ -156,11 +156,12 @@ Please look at into [Generating API keys for authentication](https://www.ibm.com
 (TODO: to be updated)
 
 ### BAM (not officially supported)
-    1. Get a BAM API Key at [https://bam.res.ibm.com](https://bam.res.ibm.com)
-        * Login with your IBM W3 Id credentials.
-        * Copy the API Key from the Documentation section.
-        ![BAM API Key](docs/bam_api_key.png)
-    2. BAM API URL: https://bam-api.res.ibm.com
+
+ 1. Get a BAM API Key at [https://bam.res.ibm.com](https://bam.res.ibm.com)
+     * Login with your IBM W3 Id credentials.
+     * Copy the API Key from the Documentation section.
+     ![BAM API Key](docs/bam_api_key.png)
+ 2. BAM API URL: https://bam-api.res.ibm.com
 
 ### Locally running InstructLab
 
