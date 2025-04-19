@@ -378,9 +378,9 @@ langchain-core==0.3.31 \
 langchain-ibm==0.3.6 \
     --hash=sha256:419fcb29d7b1665cfa02828ac14b9f55ec4a885bd3ba0284f054df32f09cffca \
     --hash=sha256:447c9c5ab4375ea1259277fa9a207cf10087e15c0dcf61b27afb9d068e494b9f
-langchain-openai==0.2.9 \
-    --hash=sha256:2723015e56879f9e5edfcb175fdbec6c296c1b3bf65caad28579ce9c4d1bd652 \
-    --hash=sha256:38a0f2004f17cdad622d46d4dcfb92d75adbf51909dadc76d0360dd94b0d4f70
+langchain-openai==0.3.14 \
+    --hash=sha256:0662db78620c2e5c3ccfc1c36dc959c0ddc80e6bdf7ef81632cbf4b2cc9b9461 \
+    --hash=sha256:b8e648d2d7678a5540818199d141ff727c6f1514294b3e1e999a95357c9d66a0
 langchain-text-splitters==0.3.5 \
     --hash=sha256:11cb7ca3694e5bdd342bc16d3875b7f7381651d4a53cbb91d34f22412ae16443 \
     --hash=sha256:8c9b059827438c5fa8f327b4df857e307828a5ec815163c9b5c9569a3e82c8ee
