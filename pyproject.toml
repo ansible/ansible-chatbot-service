@@ -88,7 +88,7 @@ dynamic = ["version"]
 description = "Road-core service is an AI powered assistant that runs on OpenShift and provides answers to product questions using backend LLM services."
 authors = []
 dependencies = [
-    "pdm==2.21.0",
+    "pdm==2.24.1",
     'torch@http://download.pytorch.org/whl/cpu/torch-2.5.1%2Bcpu-cp311-cp311-linux_x86_64.whl ; platform_system != "Darwin"',
     'torch-macos@http://download.pytorch.org/whl/cpu/torch-2.5.1-cp311-none-macosx_11_0_arm64.whl ; platform_system == "Darwin"',
     "pandas>=2.2.3",
