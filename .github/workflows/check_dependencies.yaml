@@ -17,6 +17,8 @@ jobs:
           python-version: '3.11'
       - name: Check Python version
         run: python --version
+      - name: Upgrade pip
+        run: pip install --upgrade pip
       - name: Install pip-tools
         run: pip install --user pip-tools
       - name: Check lip-compile version
