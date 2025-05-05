@@ -17,11 +17,9 @@ jobs:
           python-version: '3.11'
       - name: Check Python version
         run: python --version
-      - name: Install pip-tools
-        run: pip install --user pip-tools
-      - name: Check lip-compile version
-        run: pip-compile --version
-      - name: Generate requirements.txt file
-        run: pip-compile -v --generate-hashes pyproject.toml
+      - name: Install PDM
+        run: pip install pdm
+      - name: Export dependencies to requirements.txt
+        run: pdm export --without-hashes --format requirements > requirements.txt
       - name: List requirements.txt file
         run: cat requirements.txt
