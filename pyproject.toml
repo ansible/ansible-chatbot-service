@@ -98,7 +98,7 @@ dependencies = [
     "langchain-ibm>=0.3.10",
     "llama-index>=0.12.28",
     "llama-index-core>=0.12.28",
-    "llama-index-vector-stores-faiss==0.3.0",
+    "llama-index-vector-stores-faiss==0.4.0",
     "llama-index-embeddings-huggingface==0.4.0",
     "uvicorn==0.32.1",
     "redis==5.2.0",
