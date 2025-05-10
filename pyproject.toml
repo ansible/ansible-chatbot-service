@@ -99,7 +99,7 @@ dependencies = [
     "llama-index>=0.12.28",
     "llama-index-core>=0.12.28",
     "llama-index-vector-stores-faiss==0.3.0",
-    "llama-index-embeddings-huggingface==0.4.0",
+    "llama-index-embeddings-huggingface==0.5.4",
     "uvicorn==0.32.1",
     "redis==5.2.0",
     "faiss-cpu==1.9.0.post1",
