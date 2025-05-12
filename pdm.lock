@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:84070227aeb7a4a0e512007993c4bc9138056194818d8f72f88eb566bbcdcfcd"
+content_hash = "sha256:0833fc1655571998b6316fa8b7f4ca74859f8509db48ad81a0c597ef9d5c994d"
 
 [[metadata.targets]]
 requires_python = ">=3.11.1,<=3.12.8"
@@ -126,6 +126,20 @@ dependencies = [
 files = [
     {file = "aiosignal-1.3.2-py2.py3-none-any.whl", hash = "sha256:45cde58e409a301715980c2b01d0c28bdde3770d8290b5eb2173759d9acb31a5"},
     {file = "aiosignal-1.3.2.tar.gz", hash = "sha256:a8c255c66fafb1e499c9351d0bf32ff2d8a0321595ebac3b93713656d2436f54"},
+]
+
+[[package]]
+name = "aiosqlite"
+version = "0.21.0"
+requires_python = ">=3.9"
+summary = "asyncio bridge to the standard sqlite3 module"
+groups = ["default"]
+dependencies = [
+    "typing-extensions>=4.0",
+]
+files = [
+    {file = "aiosqlite-0.21.0-py3-none-any.whl", hash = "sha256:2549cf4057f95f53dcba16f2b64e8e2791d7e1adedb13197dd8ed77bb226d7d0"},
+    {file = "aiosqlite-0.21.0.tar.gz", hash = "sha256:131bb8056daa3bc875608c631c678cda73922a2d4ba8aec373b19f18c17e7aa3"},
 ]
 
 [[package]]
@@ -1129,16 +1143,13 @@ files = [
 
 [[package]]
 name = "h11"
-version = "0.14.0"
-requires_python = ">=3.7"
+version = "0.16.0"
+requires_python = ">=3.8"
 summary = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
 groups = ["default", "dev"]
-dependencies = [
-    "typing-extensions; python_version < \"3.8\"",
-]
 files = [
-    {file = "h11-0.14.0-py3-none-any.whl", hash = "sha256:e3fe4ac4b851c468cc8363d500db52c2ead036020723024a109d37346efaa761"},
-    {file = "h11-0.14.0.tar.gz", hash = "sha256:8f19fbbe99e72420ff35c00b27a34cb9937e902a8b810e2c88300c6f0a3b699d"},
+    {file = "h11-0.16.0-py3-none-any.whl", hash = "sha256:63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"},
+    {file = "h11-0.16.0.tar.gz", hash = "sha256:4e35b956cf45792e4caa5885e69fba00bdbc6ffafbfa020300e549b208ee5ff1"},
 ]
 
 [[package]]
@@ -1157,17 +1168,17 @@ files = [
 
 [[package]]
 name = "httpcore"
-version = "1.0.7"
+version = "1.0.9"
 requires_python = ">=3.8"
 summary = "A minimal low-level HTTP client."
 groups = ["default", "dev"]
 dependencies = [
     "certifi",
-    "h11<0.15,>=0.13",
+    "h11>=0.16",
 ]
 files = [
-    {file = "httpcore-1.0.7-py3-none-any.whl", hash = "sha256:a3fff8f43dc260d5bd363d9f9cf1830fa3a458b332856f34282de498ed420edd"},
-    {file = "httpcore-1.0.7.tar.gz", hash = "sha256:8551cb62a169ec7162ac7be8d4817d561f60e08eaa485234898414bb5a8a0b4c"},
+    {file = "httpcore-1.0.9-py3-none-any.whl", hash = "sha256:2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55"},
+    {file = "httpcore-1.0.9.tar.gz", hash = "sha256:6e34463af53fd2ab5d807f399a9b45ea31c3dfa2276f15a2c3f00afff6e176e8"},
 ]
 
 [[package]]
@@ -1664,7 +1675,7 @@ files = [
 
 [[package]]
 name = "langchain-community"
-version = "0.3.23"
+version = "0.3.24"
 requires_python = ">=3.9"
 summary = "Community contributed LangChain integrations."
 groups = ["default"]
@@ -1674,8 +1685,8 @@ dependencies = [
     "aiohttp<4.0.0,>=3.8.3",
     "dataclasses-json<0.7,>=0.5.7",
     "httpx-sse<1.0.0,>=0.4.0",
-    "langchain-core<1.0.0,>=0.3.56",
-    "langchain<1.0.0,>=0.3.24",
+    "langchain-core<1.0.0,>=0.3.59",
+    "langchain<1.0.0,>=0.3.25",
     "langsmith<0.4,>=0.1.125",
     "numpy>=1.26.2; python_version < \"3.13\"",
     "numpy>=2.1.0; python_version >= \"3.13\"",
@@ -1684,13 +1695,13 @@ dependencies = [
     "tenacity!=8.4.0,<10,>=8.1.0",
 ]
 files = [
-    {file = "langchain_community-0.3.23-py3-none-any.whl", hash = "sha256:7b5328e749df6bbaf8e60c53d810a95ab22f2d2262911b206b0fb582d58350b7"},
-    {file = "langchain_community-0.3.23.tar.gz", hash = "sha256:afb4b34d8b75fc00f78b2270e988bb48fff96b333d23fae05ab32d012940973f"},
+    {file = "langchain_community-0.3.24-py3-none-any.whl", hash = "sha256:b6cdb376bf1c2f4d2503aca20f8f35f2d5b3d879c52848277f20ce1950e7afaf"},
+    {file = "langchain_community-0.3.24.tar.gz", hash = "sha256:62d9e8cf9aadf35182ec3925f9ec1c8e5e84fb4f199f67a01aee496d289dc264"},
 ]
 
 [[package]]
 name = "langchain-core"
-version = "0.3.58"
+version = "0.3.59"
 requires_python = ">=3.9"
 summary = "Building applications with LLMs through composability"
 groups = ["default"]
@@ -1705,8 +1716,8 @@ dependencies = [
     "typing-extensions>=4.7",
 ]
 files = [
-    {file = "langchain_core-0.3.58-py3-none-any.whl", hash = "sha256:266f90d2a079fe9510190ad3be88bd993baad43e6cee0f822a883767a4bfdd5b"},
-    {file = "langchain_core-0.3.58.tar.gz", hash = "sha256:6ee2282b02fa65bf4ee1afa869d431505536757ff2f1f9f0b432d8ca755d66c6"},
+    {file = "langchain_core-0.3.59-py3-none-any.whl", hash = "sha256:9686baaff43f2c8175535da13faf40e6866769015e93130c3c1e4243e7244d70"},
+    {file = "langchain_core-0.3.59.tar.gz", hash = "sha256:052a37cf298c505144f007e5aeede6ecff2dc92c827525d1ef59101eb3a4551c"},
 ]
 
 [[package]]
@@ -1805,14 +1816,14 @@ files = [
 
 [[package]]
 name = "llama-index"
-version = "0.12.34"
+version = "0.12.35"
 requires_python = "<4.0,>=3.9"
 summary = "Interface between LLMs and your data"
 groups = ["default"]
 dependencies = [
     "llama-index-agent-openai<0.5,>=0.4.0",
     "llama-index-cli<0.5,>=0.4.1",
-    "llama-index-core<0.13,>=0.12.34",
+    "llama-index-core<0.13,>=0.12.35",
     "llama-index-embeddings-openai<0.4,>=0.3.0",
     "llama-index-indices-managed-llama-cloud>=0.4.0",
     "llama-index-llms-openai<0.4,>=0.3.0",
@@ -1824,8 +1835,8 @@ dependencies = [
     "nltk>3.8.1",
 ]
 files = [
-    {file = "llama_index-0.12.34-py3-none-any.whl", hash = "sha256:da76964c15e283e91b10e0dfa8121a4d133bbe9a63cc84641628a332df346e66"},
-    {file = "llama_index-0.12.34.tar.gz", hash = "sha256:6a94ca245606c9a8f98e7c36bd3269176bf3e3430066876e7739a8cdd3df1ffe"},
+    {file = "llama_index-0.12.35-py3-none-any.whl", hash = "sha256:86c6e070705febec56f4fd96d30467bce134f7af0f1ba38287e7e30f2b7a239d"},
+    {file = "llama_index-0.12.35.tar.gz", hash = "sha256:6a64748d92edd0e4474e72c69f967d1105c25a2513c8c2f06560481814b0f27e"},
 ]
 
 [[package]]
@@ -1862,12 +1873,13 @@ files = [
 
 [[package]]
 name = "llama-index-core"
-version = "0.12.34.post1"
+version = "0.12.35"
 requires_python = "<4.0,>=3.9"
 summary = "Interface between LLMs and your data"
 groups = ["default"]
 dependencies = [
     "aiohttp<4,>=3.8.6",
+    "aiosqlite",
     "banks<3,>=2.0.0",
     "dataclasses-json",
     "deprecated>=1.2.9.3",
@@ -1893,8 +1905,8 @@ dependencies = [
     "wrapt",
 ]
 files = [
-    {file = "llama_index_core-0.12.34.post1-py3-none-any.whl", hash = "sha256:2b8262b5ec6537d979e7fb1b3c0e56747055ae7321b8dcb184ef43eee1df6396"},
-    {file = "llama_index_core-0.12.34.post1.tar.gz", hash = "sha256:1673566b134c75e99f5f64e9ec8ca979078bee2e70efa40fd009562b68c18307"},
+    {file = "llama_index_core-0.12.35-py3-none-any.whl", hash = "sha256:19db7b5ac22012d8c240efe9b3b8b59cbab4002adbe70d915840781f30453f3d"},
+    {file = "llama_index_core-0.12.35.tar.gz", hash = "sha256:6b03747aafb01582c286f2cd76385c82350245b21037a3984241a6c2fb884525"},
 ]
 
 [[package]]
@@ -2054,20 +2066,20 @@ files = [
 
 [[package]]
 name = "llama-index-vector-stores-postgres"
-version = "0.5.1"
+version = "0.5.3"
 requires_python = "<4.0,>=3.9"
 summary = "llama-index vector_stores postgres integration"
 groups = ["default"]
 dependencies = [
     "asyncpg<1.0.0,>=0.29.0",
-    "llama-index-core<0.13.0,>=0.12.6",
+    "llama-index-core<0.13,>=0.12.6",
     "pgvector<1.0.0,>=0.3.6",
     "psycopg2-binary<3.0.0,>=2.9.9",
     "sqlalchemy[asyncio]<2.1,>=1.4.49",
 ]
 files = [
-    {file = "llama_index_vector_stores_postgres-0.5.1-py3-none-any.whl", hash = "sha256:aed0e03613b0d2b6e812c7fa31d909198ecf3c1053478095baaf325ff5170c90"},
-    {file = "llama_index_vector_stores_postgres-0.5.1.tar.gz", hash = "sha256:871847544f3a5e89918120eea523d83e27aea5f2abb1aa364134b8a5b9eb460b"},
+    {file = "llama_index_vector_stores_postgres-0.5.3-py3-none-any.whl", hash = "sha256:bd002d8c0fd4c33c35d96370efed5c8596bfb732fd4ec4778f360b58f8f1d32a"},
+    {file = "llama_index_vector_stores_postgres-0.5.3.tar.gz", hash = "sha256:3f8827fb59a6e26f226a1ec5d7201b326f7e7007f2b7e58ac47e0972afbd3b69"},
 ]
 
 [[package]]
@@ -2543,7 +2555,7 @@ files = [
 
 [[package]]
 name = "openai"
-version = "1.77.0"
+version = "1.78.1"
 requires_python = ">=3.8"
 summary = "The official Python library for the openai API"
 groups = ["default"]
@@ -2558,8 +2570,8 @@ dependencies = [
     "typing-extensions<5,>=4.11",
 ]
 files = [
-    {file = "openai-1.77.0-py3-none-any.whl", hash = "sha256:07706e91eb71631234996989a8ea991d5ee56f0744ef694c961e0824d4f39218"},
-    {file = "openai-1.77.0.tar.gz", hash = "sha256:897969f927f0068b8091b4b041d1f8175bcf124f7ea31bab418bf720971223bc"},
+    {file = "openai-1.78.1-py3-none-any.whl", hash = "sha256:7368bf147ca499804cc408fe68cdb6866a060f38dec961bbc97b04f9d917907e"},
+    {file = "openai-1.78.1.tar.gz", hash = "sha256:8b26b364531b100df1b961d03560042e5f5be11301d7d49a6cd1a2b9af824dca"},
 ]
 
 [[package]]

@@ -38,9 +38,6 @@ exclude_dirs = ["tests", "scripts"]
 [tool.pdm]
 distribution = true
 
-[tool.pdm.overrides]
-"h11" = ">=0.16.0"
-
 [tool.pdm.dev-dependencies]
 dev = [
     "black==25.1.0",
@@ -138,6 +135,7 @@ dependencies = [
     "virtualenv==20.28.0",
     "msgpack==1.1.0",
     "llama-index-vector-stores-postgres>=0.4.0",
+    "h11>=0.16.0",
 ]
 requires-python = ">=3.11.1,<=3.12.8"
 readme = "README.md"
