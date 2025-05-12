@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:ad6f86f38b719384ac79186c866857b1678fc3f01ebbc31247113ee01b864c5a"
+content_hash = "sha256:84070227aeb7a4a0e512007993c4bc9138056194818d8f72f88eb566bbcdcfcd"
 
 [[metadata.targets]]
 requires_python = ">=3.11.1,<=3.12.8"
@@ -1315,7 +1315,7 @@ files = [
 
 [[package]]
 name = "ibm-watsonx-ai"
-version = "1.3.3"
+version = "1.3.13"
 requires_python = "<3.13,>=3.10"
 summary = "IBM watsonx.ai API Client"
 groups = ["default"]
@@ -1331,8 +1331,8 @@ dependencies = [
     "urllib3",
 ]
 files = [
-    {file = "ibm_watsonx_ai-1.3.3-py3-none-any.whl", hash = "sha256:f0dd9aadd5b94085b6e22251aafebdd7b5bf1865a7e8c4dca50951c1e89e8e21"},
-    {file = "ibm_watsonx_ai-1.3.3.tar.gz", hash = "sha256:b52f3404219e6fa887672c8ba37145a07fd197e2b87bfbfeeb09a24562dd02d8"},
+    {file = "ibm_watsonx_ai-1.3.13-py3-none-any.whl", hash = "sha256:79cbffba0c60614dcb84b235526ffe9473eaa75b3a1500e0eee531c77335b527"},
+    {file = "ibm_watsonx_ai-1.3.13.tar.gz", hash = "sha256:6aea90c592f4bc1afe8231fe18e308fe820c3fb85eb347915d40e85623302b10"},
 ]
 
 [[package]]
@@ -1643,59 +1643,55 @@ files = [
 
 [[package]]
 name = "langchain"
-version = "0.3.12"
-requires_python = "<4.0,>=3.9"
+version = "0.3.25"
+requires_python = ">=3.9"
 summary = "Building applications with LLMs through composability"
 groups = ["default"]
 dependencies = [
     "PyYAML>=5.3",
     "SQLAlchemy<3,>=1.4",
-    "aiohttp<4.0.0,>=3.8.3",
     "async-timeout<5.0.0,>=4.0.0; python_version < \"3.11\"",
-    "langchain-core<0.4.0,>=0.3.25",
-    "langchain-text-splitters<0.4.0,>=0.3.3",
-    "langsmith<0.3,>=0.1.17",
-    "numpy<2,>=1.22.4; python_version < \"3.12\"",
-    "numpy<3,>=1.26.2; python_version >= \"3.12\"",
+    "langchain-core<1.0.0,>=0.3.58",
+    "langchain-text-splitters<1.0.0,>=0.3.8",
+    "langsmith<0.4,>=0.1.17",
     "pydantic<3.0.0,>=2.7.4",
     "requests<3,>=2",
-    "tenacity!=8.4.0,<10,>=8.1.0",
 ]
 files = [
-    {file = "langchain-0.3.12-py3-none-any.whl", hash = "sha256:581ad93a9de12e4b957bc2af9ba8482eb86e3930e84c4ee20ed677da5e2311cd"},
-    {file = "langchain-0.3.12.tar.gz", hash = "sha256:0d8247afbf37beb263b4adc29f7aa8a5ae83c43a6941894e2f9ba39d5c869e3b"},
+    {file = "langchain-0.3.25-py3-none-any.whl", hash = "sha256:931f7d2d1eaf182f9f41c5e3272859cfe7f94fc1f7cef6b3e5a46024b4884c21"},
+    {file = "langchain-0.3.25.tar.gz", hash = "sha256:a1d72aa39546a23db08492d7228464af35c9ee83379945535ceef877340d2a3a"},
 ]
 
 [[package]]
 name = "langchain-community"
-version = "0.3.5"
-requires_python = "<4.0,>=3.9"
+version = "0.3.23"
+requires_python = ">=3.9"
 summary = "Community contributed LangChain integrations."
 groups = ["default"]
 dependencies = [
     "PyYAML>=5.3",
-    "SQLAlchemy<2.0.36,>=1.4",
+    "SQLAlchemy<3,>=1.4",
     "aiohttp<4.0.0,>=3.8.3",
     "dataclasses-json<0.7,>=0.5.7",
-    "httpx-sse<0.5.0,>=0.4.0",
-    "langchain-core<0.4.0,>=0.3.15",
-    "langchain<0.4.0,>=0.3.6",
-    "langsmith<0.2.0,>=0.1.125",
-    "numpy<2,>=1; python_version < \"3.12\"",
-    "numpy<2.0.0,>=1.26.0; python_version >= \"3.12\"",
+    "httpx-sse<1.0.0,>=0.4.0",
+    "langchain-core<1.0.0,>=0.3.56",
+    "langchain<1.0.0,>=0.3.24",
+    "langsmith<0.4,>=0.1.125",
+    "numpy>=1.26.2; python_version < \"3.13\"",
+    "numpy>=2.1.0; python_version >= \"3.13\"",
     "pydantic-settings<3.0.0,>=2.4.0",
     "requests<3,>=2",
     "tenacity!=8.4.0,<10,>=8.1.0",
 ]
 files = [
-    {file = "langchain_community-0.3.5-py3-none-any.whl", hash = "sha256:03736105700960fa0acbd72bff678d1c97c49e38e9f8af3012b712d64e992982"},
-    {file = "langchain_community-0.3.5.tar.gz", hash = "sha256:345febbc972a08c97f09cce6cc07d039aa7d1348fe8efdace85335be6ac9cb7d"},
+    {file = "langchain_community-0.3.23-py3-none-any.whl", hash = "sha256:7b5328e749df6bbaf8e60c53d810a95ab22f2d2262911b206b0fb582d58350b7"},
+    {file = "langchain_community-0.3.23.tar.gz", hash = "sha256:afb4b34d8b75fc00f78b2270e988bb48fff96b333d23fae05ab32d012940973f"},
 ]
 
 [[package]]
 name = "langchain-core"
-version = "0.3.31"
-requires_python = "<4.0,>=3.9"
+version = "0.3.58"
+requires_python = ">=3.9"
 summary = "Building applications with LLMs through composability"
 groups = ["default"]
 dependencies = [
@@ -1709,53 +1705,53 @@ dependencies = [
     "typing-extensions>=4.7",
 ]
 files = [
-    {file = "langchain_core-0.3.31-py3-none-any.whl", hash = "sha256:882e64ad95887c951dce8e835889e43263b11848c394af3b73e06912624bd743"},
-    {file = "langchain_core-0.3.31.tar.gz", hash = "sha256:5ffa56354c07de9efaa4139609659c63e7d9b29da2c825f6bab9392ec98300df"},
+    {file = "langchain_core-0.3.58-py3-none-any.whl", hash = "sha256:266f90d2a079fe9510190ad3be88bd993baad43e6cee0f822a883767a4bfdd5b"},
+    {file = "langchain_core-0.3.58.tar.gz", hash = "sha256:6ee2282b02fa65bf4ee1afa869d431505536757ff2f1f9f0b432d8ca755d66c6"},
 ]
 
 [[package]]
 name = "langchain-ibm"
-version = "0.3.6"
+version = "0.3.10"
 requires_python = "<3.13,>=3.10"
 summary = "An integration package connecting IBM watsonx.ai and LangChain"
 groups = ["default"]
 dependencies = [
-    "ibm-watsonx-ai<2.0.0,>=1.1.16",
-    "langchain-core<0.4,>=0.3.0",
+    "ibm-watsonx-ai<2.0.0,>=1.2.10",
+    "langchain-core<0.4.0,>=0.3.39",
 ]
 files = [
-    {file = "langchain_ibm-0.3.6-py3-none-any.whl", hash = "sha256:419fcb29d7b1665cfa02828ac14b9f55ec4a885bd3ba0284f054df32f09cffca"},
-    {file = "langchain_ibm-0.3.6.tar.gz", hash = "sha256:447c9c5ab4375ea1259277fa9a207cf10087e15c0dcf61b27afb9d068e494b9f"},
+    {file = "langchain_ibm-0.3.10-py3-none-any.whl", hash = "sha256:a7c6026879e47f069f7831d5d0cc39a97ae9cf4f75752cbf9b7102cf5ad23fa2"},
+    {file = "langchain_ibm-0.3.10.tar.gz", hash = "sha256:a3023903b8b094fe0226c1e3dafb348ed60caf537415ebea9bdf4ceebc6cd4ad"},
 ]
 
 [[package]]
 name = "langchain-openai"
-version = "0.2.9"
-requires_python = "<4.0,>=3.9"
+version = "0.3.16"
+requires_python = ">=3.9"
 summary = "An integration package connecting OpenAI and LangChain"
 groups = ["default"]
 dependencies = [
-    "langchain-core<0.4.0,>=0.3.17",
-    "openai<2.0.0,>=1.54.0",
+    "langchain-core<1.0.0,>=0.3.58",
+    "openai<2.0.0,>=1.68.2",
     "tiktoken<1,>=0.7",
 ]
 files = [
-    {file = "langchain_openai-0.2.9-py3-none-any.whl", hash = "sha256:2723015e56879f9e5edfcb175fdbec6c296c1b3bf65caad28579ce9c4d1bd652"},
-    {file = "langchain_openai-0.2.9.tar.gz", hash = "sha256:38a0f2004f17cdad622d46d4dcfb92d75adbf51909dadc76d0360dd94b0d4f70"},
+    {file = "langchain_openai-0.3.16-py3-none-any.whl", hash = "sha256:eae74a6758d38a26159c5fde5abf8ef313e6400efb01a08f12dd7410c9f4fd0f"},
+    {file = "langchain_openai-0.3.16.tar.gz", hash = "sha256:4e423e39d072f1432adc9430f2905fe635cc019f01ad1bdffa5ed8d0dda32149"},
 ]
 
 [[package]]
 name = "langchain-text-splitters"
-version = "0.3.5"
+version = "0.3.8"
 requires_python = "<4.0,>=3.9"
 summary = "LangChain text splitting utilities"
 groups = ["default"]
 dependencies = [
-    "langchain-core<0.4.0,>=0.3.29",
+    "langchain-core<1.0.0,>=0.3.51",
 ]
 files = [
-    {file = "langchain_text_splitters-0.3.5-py3-none-any.whl", hash = "sha256:8c9b059827438c5fa8f327b4df857e307828a5ec815163c9b5c9569a3e82c8ee"},
-    {file = "langchain_text_splitters-0.3.5.tar.gz", hash = "sha256:11cb7ca3694e5bdd342bc16d3875b7f7381651d4a53cbb91d34f22412ae16443"},
+    {file = "langchain_text_splitters-0.3.8-py3-none-any.whl", hash = "sha256:e75cc0f4ae58dcf07d9f18776400cf8ade27fadd4ff6d264df6278bb302f6f02"},
+    {file = "langchain_text_splitters-0.3.8.tar.gz", hash = "sha256:116d4b9f2a22dda357d0b79e30acf005c5518177971c66a9f1ab0edfdb0f912e"},
 ]
 
 [[package]]
@@ -1809,27 +1805,27 @@ files = [
 
 [[package]]
 name = "llama-index"
-version = "0.12.28"
+version = "0.12.34"
 requires_python = "<4.0,>=3.9"
 summary = "Interface between LLMs and your data"
 groups = ["default"]
 dependencies = [
-    "llama-index-agent-openai<0.5.0,>=0.4.0",
-    "llama-index-cli<0.5.0,>=0.4.1",
-    "llama-index-core<0.13.0,>=0.12.28",
-    "llama-index-embeddings-openai<0.4.0,>=0.3.0",
+    "llama-index-agent-openai<0.5,>=0.4.0",
+    "llama-index-cli<0.5,>=0.4.1",
+    "llama-index-core<0.13,>=0.12.34",
+    "llama-index-embeddings-openai<0.4,>=0.3.0",
     "llama-index-indices-managed-llama-cloud>=0.4.0",
-    "llama-index-llms-openai<0.4.0,>=0.3.0",
-    "llama-index-multi-modal-llms-openai<0.5.0,>=0.4.0",
-    "llama-index-program-openai<0.4.0,>=0.3.0",
-    "llama-index-question-gen-openai<0.4.0,>=0.3.0",
-    "llama-index-readers-file<0.5.0,>=0.4.0",
+    "llama-index-llms-openai<0.4,>=0.3.0",
+    "llama-index-multi-modal-llms-openai<0.5,>=0.4.0",
+    "llama-index-program-openai<0.4,>=0.3.0",
+    "llama-index-question-gen-openai<0.4,>=0.3.0",
+    "llama-index-readers-file<0.5,>=0.4.0",
     "llama-index-readers-llama-parse>=0.4.0",
     "nltk>3.8.1",
 ]
 files = [
-    {file = "llama_index-0.12.28-py3-none-any.whl", hash = "sha256:e5e422a54cf4a7ee38a2c4ffacbd0c34a33bd57df993dad1213544e47b8fffec"},
-    {file = "llama_index-0.12.28.tar.gz", hash = "sha256:11f2e4bd25a9b9e2a6a0ff326b4336af10a62433d1b13ec1831debcff31a1ac8"},
+    {file = "llama_index-0.12.34-py3-none-any.whl", hash = "sha256:da76964c15e283e91b10e0dfa8121a4d133bbe9a63cc84641628a332df346e66"},
+    {file = "llama_index-0.12.34.tar.gz", hash = "sha256:6a94ca245606c9a8f98e7c36bd3269176bf3e3430066876e7739a8cdd3df1ffe"},
 ]
 
 [[package]]
@@ -1866,39 +1862,39 @@ files = [
 
 [[package]]
 name = "llama-index-core"
-version = "0.12.28"
+version = "0.12.34.post1"
 requires_python = "<4.0,>=3.9"
 summary = "Interface between LLMs and your data"
 groups = ["default"]
 dependencies = [
-    "PyYAML>=6.0.1",
-    "SQLAlchemy[asyncio]>=1.4.49",
-    "aiohttp<4.0.0,>=3.8.6",
-    "banks<3.0.0,>=2.0.0",
+    "aiohttp<4,>=3.8.6",
+    "banks<3,>=2.0.0",
     "dataclasses-json",
     "deprecated>=1.2.9.3",
-    "dirtyjson<2.0.0,>=1.0.8",
-    "eval-type-backport<0.3.0,>=0.2.0; python_version < \"3.10\"",
-    "filetype<2.0.0,>=1.2.0",
+    "dirtyjson<2,>=1.0.8",
+    "eval-type-backport<0.3,>=0.2.0; python_version < \"3.10\"",
+    "filetype<2,>=1.2.0",
     "fsspec>=2023.5.0",
     "httpx",
-    "nest-asyncio<2.0.0,>=1.5.8",
+    "nest-asyncio<2,>=1.5.8",
     "networkx>=3.0",
     "nltk>3.8.1",
     "numpy",
     "pillow>=9.0.0",
     "pydantic>=2.8.0",
+    "pyyaml>=6.0.1",
     "requests>=2.31.0",
+    "sqlalchemy[asyncio]>=1.4.49",
     "tenacity!=8.4.0,<10.0.0,>=8.2.0",
-    "tiktoken>=0.3.3",
-    "tqdm<5.0.0,>=4.66.1",
+    "tiktoken>=0.7.0",
+    "tqdm<5,>=4.66.1",
     "typing-extensions>=4.5.0",
     "typing-inspect>=0.8.0",
     "wrapt",
 ]
 files = [
-    {file = "llama_index_core-0.12.28-py3-none-any.whl", hash = "sha256:9bd24224bd57dd5e97bb0a2550f31f6c08b7dc396305f35bbe9714d17b1409a6"},
-    {file = "llama_index_core-0.12.28.tar.gz", hash = "sha256:bf4a9697525e1294855d2df5c3a56b9720c185cde0eae2da713e7629c456c643"},
+    {file = "llama_index_core-0.12.34.post1-py3-none-any.whl", hash = "sha256:2b8262b5ec6537d979e7fb1b3c0e56747055ae7321b8dcb184ef43eee1df6396"},
+    {file = "llama_index_core-0.12.34.post1.tar.gz", hash = "sha256:1673566b134c75e99f5f64e9ec8ca979078bee2e70efa40fd009562b68c18307"},
 ]
 
 [[package]]
@@ -2058,7 +2054,7 @@ files = [
 
 [[package]]
 name = "llama-index-vector-stores-postgres"
-version = "0.4.2"
+version = "0.5.1"
 requires_python = "<4.0,>=3.9"
 summary = "llama-index vector_stores postgres integration"
 groups = ["default"]
@@ -2070,8 +2066,8 @@ dependencies = [
     "sqlalchemy[asyncio]<2.1,>=1.4.49",
 ]
 files = [
-    {file = "llama_index_vector_stores_postgres-0.4.2-py3-none-any.whl", hash = "sha256:e99a02bf7d92934ac737445fef7e1c064b3c0e8dfc80ea0cf84bdb9dac209332"},
-    {file = "llama_index_vector_stores_postgres-0.4.2.tar.gz", hash = "sha256:4719a5c1cc4f9aa73820bcc6d35d763e9d7af7ad0b6dfdb5d776836af0ea0e00"},
+    {file = "llama_index_vector_stores_postgres-0.5.1-py3-none-any.whl", hash = "sha256:aed0e03613b0d2b6e812c7fa31d909198ecf3c1053478095baaf325ff5170c90"},
+    {file = "llama_index_vector_stores_postgres-0.5.1.tar.gz", hash = "sha256:871847544f3a5e89918120eea523d83e27aea5f2abb1aa364134b8a5b9eb460b"},
 ]
 
 [[package]]
@@ -2547,13 +2543,12 @@ files = [
 
 [[package]]
 name = "openai"
-version = "1.54.3"
+version = "1.77.0"
 requires_python = ">=3.8"
 summary = "The official Python library for the openai API"
 groups = ["default"]
 dependencies = [
     "anyio<5,>=3.5.0",
-    "cached-property; python_version < \"3.8\"",
     "distro<2,>=1.7.0",
     "httpx<1,>=0.23.0",
     "jiter<1,>=0.4.0",
@@ -2563,8 +2558,8 @@ dependencies = [
     "typing-extensions<5,>=4.11",
 ]
 files = [
-    {file = "openai-1.54.3-py3-none-any.whl", hash = "sha256:f18dbaf09c50d70c4185b892a2a553f80681d1d866323a2da7f7be2f688615d5"},
-    {file = "openai-1.54.3.tar.gz", hash = "sha256:7511b74eeb894ac0b0253dc71f087a15d2e4d71d22d0088767205143d880cca6"},
+    {file = "openai-1.77.0-py3-none-any.whl", hash = "sha256:07706e91eb71631234996989a8ea991d5ee56f0744ef694c961e0824d4f39218"},
+    {file = "openai-1.77.0.tar.gz", hash = "sha256:897969f927f0068b8091b4b041d1f8175bcf124f7ea31bab418bf720971223bc"},
 ]
 
 [[package]]
