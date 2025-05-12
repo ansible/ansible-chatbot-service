@@ -38,6 +38,9 @@ exclude_dirs = ["tests", "scripts"]
 [tool.pdm]
 distribution = true
 
+[tool.pdm.overrides]
+"h11" = ">=0.16.0"
+
 [tool.pdm.dev-dependencies]
 dev = [
     "black==25.1.0",
@@ -92,7 +95,7 @@ dependencies = [
     'torch@http://download.pytorch.org/whl/cpu/torch-2.5.1%2Bcpu-cp311-cp311-linux_x86_64.whl ; platform_system != "Darwin"',
     'torch-macos@http://download.pytorch.org/whl/cpu/torch-2.5.1-cp311-none-macosx_11_0_arm64.whl ; platform_system == "Darwin"',
     "pandas>=2.2.3",
-    "httpx==0.28.1",
+    "httpx==0.27.2",
     "fastapi==0.115.6",
     "langchain==0.3.12",
     "langchain-ibm==0.3.6",
