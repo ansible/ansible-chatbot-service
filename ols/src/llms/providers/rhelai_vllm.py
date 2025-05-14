@@ -4,7 +4,6 @@ import logging
 from typing import Any, Optional
 
 from langchain.llms.base import LLM
-from langchain_openai import ChatOpenAI
 
 from ols import constants
 from ols.src.llms.providers.provider import LLMProvider

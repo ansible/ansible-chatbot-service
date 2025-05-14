@@ -54,7 +54,7 @@ class RHOAIVLLM(LLMProvider):
 
 
 class ChatRHOAI(ChatOpenAI):
-    """Workaround for the compatibility issue between max_tokens and max_completion_tokens"""
+    """Workaround for the compatibility issue between max_tokens and max_completion_tokens."""
 
     def _get_request_payload(
         self,
