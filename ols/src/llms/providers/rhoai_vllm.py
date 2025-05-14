@@ -1,7 +1,7 @@
 """Red Hat OpenShift VLLM provider implementation."""
 
 import logging
-from typing import Any, Optional, List
+from typing import Any, List, Optional
 
 from langchain.llms.base import LLM
 from langchain_core.language_models import LanguageModelInput
