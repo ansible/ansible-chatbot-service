@@ -4,11 +4,11 @@ import logging
 from typing import Any, Optional
 
 from langchain.llms.base import LLM
-from langchain_openai import ChatOpenAI
 
 from ols import constants
 from ols.src.llms.providers.provider import LLMProvider
 from ols.src.llms.providers.registry import register_llm_provider_as
+from ols.src.llms.providers.rhoai_vllm import ChatRHOAI
 
 logger = logging.getLogger(__name__)
 
@@ -49,4 +49,4 @@ class RHELAIVLLM(LLMProvider):
 
     def load(self) -> LLM:
         """Load LLM."""
-        return ChatOpenAI(**self.params)
+        return ChatRHOAI(**self.params)
