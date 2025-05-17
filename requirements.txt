@@ -1032,9 +1032,9 @@ tqdm==4.67.1 \
 transformers==4.48.1 \
     --hash=sha256:24be0564b0a36d9e433d9a65de248f1545b6f6edce1737669605eb6a8141bbbb \
     --hash=sha256:7c1931facc3ee8adcbf86fc7a87461d54c1e40eca3bb57fef1ee9f3ecd32187e
-truststore==0.10.0; python_version >= "3.10" \
-    --hash=sha256:5da347c665714fdfbd46f738c823fe9f0d8775e41ac5fb94f325749091187896 \
-    --hash=sha256:b3798548e421ffe2ca2a6217cca49e7a17baf40b72d86a5505dc7d701e77d15b
+truststore==0.10.1; python_version >= "3.10" \
+    --hash=sha256:b64e6025a409a43ebdd2807b0c41c8bff49ea7ae6550b5087ac6df6619352d4c \
+    --hash=sha256:eda021616b59021812e800fa0a071e51b266721bef3ce092db8a699e21c63539
 typing-extensions==4.12.2 \
     --hash=sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d \
     --hash=sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8
