@@ -304,9 +304,9 @@ httpx-sse==0.4.0 \
 httpx[socks]==0.27.2 \
     --hash=sha256:7bb2708e112d8fdd7829cd4243970f0c223274051cb35ee80c03301ee29a3df0 \
     --hash=sha256:f7c2be1d2f3c3c3160d441802406b206c2b76f5947b11115e6df10c6c65e66c2
-huggingface-hub[inference]==0.26.1 \
-    --hash=sha256:414c0d9b769eecc86c70f9d939d0f48bb28e8461dd1130021542eff0212db890 \
-    --hash=sha256:5927a8fc64ae68859cd954b7cc29d1c8390a5e15caba6d3d349c973be8fdacf3
+huggingface-hub[inference]==0.32.0 \
+    --hash=sha256:dd66c9365ea43049ec9b939bdcdb21a0051e1bd70026fc50304e4fb1bb6a15ba \
+    --hash=sha256:e56e94109649ce6ebdb59b4e393ee3543ec0eca2eab4f41b269e1d885c88d08c
 ibm-cos-sdk==2.13.6 \
     --hash=sha256:171cf2ae4ab662a4b8ab58dcf4ac994b0577d6c92d78490295fd7704a83978f6
 ibm-cos-sdk-core==2.13.6 \
