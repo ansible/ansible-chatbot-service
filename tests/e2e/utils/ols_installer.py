@@ -152,7 +152,7 @@ def install_ols() -> tuple[str, str, str]:  # pylint: disable=R0915  # noqa: C90
             ignore_existing_resource=True,
         )
         try:
-            subprocess.run(  # noqa: S603
+            subprocess.run(
                 [  # noqa: S607
                     "operator-sdk",
                     "run",
