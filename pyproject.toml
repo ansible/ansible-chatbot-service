@@ -62,7 +62,7 @@ dev = [
     "pytest-reportportal==5.4.1",
     "pytest-benchmark[histogram]>=4.0.0",
     "typing-extensions==4.12.2",
-    "pytest-subtests==0.13.1",
+    "pytest-subtests==0.14.2",
     "build==1.2.2.post1",
     "twine==5.1.1",
     "pylint==3.3.2",
