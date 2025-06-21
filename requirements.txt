@@ -307,8 +307,8 @@ httpx[socks]==0.27.2 \
 huggingface-hub[inference]==0.26.1 \
     --hash=sha256:414c0d9b769eecc86c70f9d939d0f48bb28e8461dd1130021542eff0212db890 \
     --hash=sha256:5927a8fc64ae68859cd954b7cc29d1c8390a5e15caba6d3d349c973be8fdacf3
-ibm-cos-sdk==2.13.6 \
-    --hash=sha256:171cf2ae4ab662a4b8ab58dcf4ac994b0577d6c92d78490295fd7704a83978f6
+ibm-cos-sdk==2.14.2 \
+    --hash=sha256:d859422c1dfd03e52cd66acbb2b45b4c944a390725c3a91d4a8e003f0cfc4e4b
 ibm-cos-sdk-core==2.13.6 \
     --hash=sha256:dd41fb789eeb65546501afabcd50e78846ab4513b6ad4042e410b6a14ff88413
 ibm-cos-sdk-s3transfer==2.13.6 \
