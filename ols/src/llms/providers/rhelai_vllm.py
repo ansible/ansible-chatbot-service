@@ -6,9 +6,9 @@ from typing import Any, Optional
 from langchain.llms.base import LLM
 
 from ols import constants
+from ols.src.llms.providers.chat_rhoai import ChatRHOAI
 from ols.src.llms.providers.provider import LLMProvider
 from ols.src.llms.providers.registry import register_llm_provider_as
-from ols.src.llms.providers.rhoai_vllm import ChatRHOAI
 
 logger = logging.getLogger(__name__)
 

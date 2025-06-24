@@ -1,13 +1,12 @@
 """Red Hat OpenShift VLLM provider implementation."""
 
 import logging
-from typing import Any, List, Optional
+from typing import Any, Optional
 
 from langchain.llms.base import LLM
-from langchain_core.language_models import LanguageModelInput
-from langchain_openai import ChatOpenAI
 
 from ols import constants
+from ols.src.llms.providers.chat_rhoai import ChatRHOAI
 from ols.src.llms.providers.provider import LLMProvider
 from ols.src.llms.providers.registry import register_llm_provider_as
 
@@ -51,19 +50,3 @@ class RHOAIVLLM(LLMProvider):
     def load(self) -> LLM:
         """Load LLM."""
         return ChatRHOAI(**self.params)
-
-
-class ChatRHOAI(ChatOpenAI):
-    """Workaround for the compatibility issue between max_tokens and max_completion_tokens."""
-
-    def _get_request_payload(
-        self,
-        input_: LanguageModelInput,
-        *,
-        stop: Optional[List[str]] = None,
-        **kwargs: Any,
-    ) -> dict:
-        payload = super()._get_request_payload(input_, stop=stop, **kwargs)
-        if "max_completion_tokens" in payload:
-            payload["max_tokens"] = payload.pop("max_completion_tokens")
-        return payload

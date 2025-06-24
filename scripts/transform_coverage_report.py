@@ -17,7 +17,7 @@ def write_go_coverage_format(
     executed_lines = file_data.get("executed_lines", [])
     missing_lines = file_data.get("missing_lines", [])
     with open(output_file_name, "a", encoding="utf-8") as f:
-        for line in executed_lines:
+        for line in executed_lines:  # noqa: FURB122
             f.write(f"{file_path}:{line}.0,{line + 1}.0 1 1\n")
 
         for line in missing_lines:
