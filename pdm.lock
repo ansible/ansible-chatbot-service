@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:5eb752b0ed10d8c64bc9e0b6603b56e5fe9171f9869ed359dc35d3fe24760804"
+content_hash = "sha256:7d41415a9723b3c91954cf49c0745840139efb4c3314a9d69680fd9397192bbf"
 
 [[metadata.targets]]
 requires_python = ">=3.11.1,<=3.12.8"
@@ -919,13 +919,13 @@ files = [
 
 [[package]]
 name = "ffmpy"
-version = "0.4.0"
-requires_python = "<4.0.0,>=3.8.1"
+version = "0.6.0"
+requires_python = ">=3.9"
 summary = "A simple Python wrapper for FFmpeg"
 groups = ["default", "dev"]
 files = [
-    {file = "ffmpy-0.4.0-py3-none-any.whl", hash = "sha256:39c0f20c5b465e7f8d29a5191f3a7d7675a8c546d9d985de8921151cd9b59e14"},
-    {file = "ffmpy-0.4.0.tar.gz", hash = "sha256:131b57794e802ad555f579007497f7a3d0cab0583d37496c685b8acae4837b1d"},
+    {file = "ffmpy-0.6.0-py3-none-any.whl", hash = "sha256:c8369bf45f8bd5285ebad94c4a789a79e7af86eded74c1f8c36eccf57aaea58c"},
+    {file = "ffmpy-0.6.0.tar.gz", hash = "sha256:332dd93198a162db61e527e866a04578d3713e577bfe68f2ed26ba9d09dbc948"},
 ]
 
 [[package]]
