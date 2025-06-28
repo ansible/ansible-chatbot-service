@@ -1791,7 +1791,7 @@ files = [
 
 [[package]]
 name = "langchain-openai"
-version = "0.3.26"
+version = "0.3.27"
 requires_python = ">=3.9"
 summary = "An integration package connecting OpenAI and LangChain"
 groups = ["default"]
@@ -1801,8 +1801,8 @@ dependencies = [
     "tiktoken<1,>=0.7",
 ]
 files = [
-    {file = "langchain_openai-0.3.26-py3-none-any.whl", hash = "sha256:2f216b92195e43fc30a28af8842cf704e72abe3b0ae2cbf85004ca75c5274575"},
-    {file = "langchain_openai-0.3.26.tar.gz", hash = "sha256:6f8420f164095834477d13715bc08a7553cdc229df30110d390c3d8880b728f3"},
+    {file = "langchain_openai-0.3.27-py3-none-any.whl", hash = "sha256:efe636c3523978c44adc41cf55c8b3766c05c77547982465884d1258afe705df"},
+    {file = "langchain_openai-0.3.27.tar.gz", hash = "sha256:5d5a55adbff739274dfc3a4102925771736f893758f63679b64ae62fed79ca30"},
 ]
 
 [[package]]
@@ -1821,7 +1821,7 @@ files = [
 
 [[package]]
 name = "langsmith"
-version = "0.4.3"
+version = "0.4.4"
 requires_python = ">=3.9"
 summary = "Client library to connect to the LangSmith LLM Tracing and Evaluation Platform."
 groups = ["default"]
@@ -1835,8 +1835,8 @@ dependencies = [
     "zstandard<0.24.0,>=0.23.0",
 ]
 files = [
-    {file = "langsmith-0.4.3-py3-none-any.whl", hash = "sha256:b8ed57fb21fb3370bc7e4e8c4a3003017040336df694a66a34afe6f9872e68da"},
-    {file = "langsmith-0.4.3.tar.gz", hash = "sha256:151d8cbf3d26a49f67bd720462eae20d3282196958f86b59d1ac1aad484c52f1"},
+    {file = "langsmith-0.4.4-py3-none-any.whl", hash = "sha256:014c68329bd085bd6c770a6405c61bb6881f82eb554ce8c4d1984b0035fd1716"},
+    {file = "langsmith-0.4.4.tar.gz", hash = "sha256:70c53bbff24a7872e88e6fa0af98270f4986a6e364f9e85db1cc5636defa4d66"},
 ]
 
 [[package]]
@@ -2641,7 +2641,7 @@ files = [
 
 [[package]]
 name = "openai"
-version = "1.92.3"
+version = "1.93.0"
 requires_python = ">=3.8"
 summary = "The official Python library for the openai API"
 groups = ["default"]
@@ -2656,8 +2656,8 @@ dependencies = [
     "typing-extensions<5,>=4.11",
 ]
 files = [
-    {file = "openai-1.92.3-py3-none-any.whl", hash = "sha256:979f00c097d023a28f22c63373a646a675e4b9e1fad586e2424bf7274a2689f2"},
-    {file = "openai-1.92.3.tar.gz", hash = "sha256:6b707bc926a9fffab262dbd1eb4be29c36d627b9012633a66ccdbe2d615a9532"},
+    {file = "openai-1.93.0-py3-none-any.whl", hash = "sha256:3d746fe5498f0dd72e0d9ab706f26c91c0f646bf7459e5629af8ba7c9dbdf090"},
+    {file = "openai-1.93.0.tar.gz", hash = "sha256:988f31ade95e1ff0585af11cc5a64510225e4f5cd392698c675d0a9265b8e337"},
 ]
 
 [[package]]
@@ -2770,13 +2770,13 @@ files = [
 
 [[package]]
 name = "pbs-installer"
-version = "2025.6.12"
+version = "2025.6.26"
 requires_python = ">=3.8"
 summary = "Installer for Python Build Standalone"
 groups = ["default"]
 files = [
-    {file = "pbs_installer-2025.6.12-py3-none-any.whl", hash = "sha256:438e75de131a2114ac5e86156fc51da7dadd6734844de329ad162cca63709297"},
-    {file = "pbs_installer-2025.6.12.tar.gz", hash = "sha256:ae2d3990848652dca699a680b00ea8e19b970cb6172967cb00539bfeed5a7465"},
+    {file = "pbs_installer-2025.6.26-py3-none-any.whl", hash = "sha256:bb8bc2c489d8c5af6f7b5e4563e56070f828f2be555f06eb2fe67abd72ee44e1"},
+    {file = "pbs_installer-2025.6.26.tar.gz", hash = "sha256:e0a0995f6245dd38fcf178bfd8ee7253627cdbe52e46361228b91a173b7ea0de"},
 ]
 
 [[package]]
