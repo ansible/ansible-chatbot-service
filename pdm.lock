@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:5eb752b0ed10d8c64bc9e0b6603b56e5fe9171f9869ed359dc35d3fe24760804"
+content_hash = "sha256:e3bfd5f523624845ea644e2fb86c2a9f9a6b7a05752e6c526de048cf7c6e974c"
 
 [[metadata.targets]]
 requires_python = ">=3.11.1,<=3.12.8"
@@ -240,7 +240,7 @@ files = [
 
 [[package]]
 name = "azure-core"
-version = "1.34.0"
+version = "1.35.0"
 requires_python = ">=3.9"
 summary = "Microsoft Azure Core Library for Python"
 groups = ["default"]
@@ -250,14 +250,14 @@ dependencies = [
     "typing-extensions>=4.6.0",
 ]
 files = [
-    {file = "azure_core-1.34.0-py3-none-any.whl", hash = "sha256:0615d3b756beccdb6624d1c0ae97284f38b78fb59a2a9839bf927c66fbbdddd6"},
-    {file = "azure_core-1.34.0.tar.gz", hash = "sha256:bdb544989f246a0ad1c85d72eeb45f2f835afdcbc5b45e43f0dbde7461c81ece"},
+    {file = "azure_core-1.35.0-py3-none-any.whl", hash = "sha256:8db78c72868a58f3de8991eb4d22c4d368fae226dac1002998d6c50437e7dad1"},
+    {file = "azure_core-1.35.0.tar.gz", hash = "sha256:c0be528489485e9ede59b6971eb63c1eaacf83ef53001bfe3904e475e972be5c"},
 ]
 
 [[package]]
 name = "azure-identity"
-version = "1.18.0"
-requires_python = ">=3.8"
+version = "1.23.0"
+requires_python = ">=3.9"
 summary = "Microsoft Azure Identity Library for Python"
 groups = ["default"]
 dependencies = [
@@ -268,8 +268,8 @@ dependencies = [
     "typing-extensions>=4.0.0",
 ]
 files = [
-    {file = "azure_identity-1.18.0-py3-none-any.whl", hash = "sha256:bccf6106245b49ff41d0c4cd7b72851c5a2ba3a32cef7589da246f5727f26f02"},
-    {file = "azure_identity-1.18.0.tar.gz", hash = "sha256:f567579a65d8932fa913c76eddf3305101a15e5727a5e4aa5df649a0f553d4c3"},
+    {file = "azure_identity-1.23.0-py3-none-any.whl", hash = "sha256:dbbeb64b8e5eaa81c44c565f264b519ff2de7ff0e02271c49f3cb492762a50b0"},
+    {file = "azure_identity-1.23.0.tar.gz", hash = "sha256:d9cdcad39adb49d4bb2953a217f62aec1f65bbb3c63c9076da2be2a47e53dde4"},
 ]
 
 [[package]]
