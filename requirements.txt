@@ -430,9 +430,9 @@ llama-index-embeddings-huggingface==0.4.0 \
 llama-index-embeddings-openai==0.3.1 \
     --hash=sha256:1368aad3ce24cbaed23d5ad251343cef1eb7b4a06d6563d6606d59cb347fef20 \
     --hash=sha256:f15a3d13da9b6b21b8bd51d337197879a453d1605e625a1c6d45e741756c0290
-llama-index-indices-managed-llama-cloud==0.7.7 \
-    --hash=sha256:5a8a24de6a2f425a5616818582b57f603e4192179443045f636e865efc6692c4 \
-    --hash=sha256:7fd730a2967dc20eb422ae2fa4028b4cf7023114a5cfadb5232355137754186f
+llama-index-indices-managed-llama-cloud==0.7.8 \
+    --hash=sha256:7eff6bb44a9aa3e9d2e98039178c31d9de649fddc82acc05e81f24199a8071a2 \
+    --hash=sha256:a3f421e2c82c4c641995da72f939b0ae83409d62bb0f7c7a8db24c5f59a75e49
 llama-index-llms-openai==0.4.7 \
     --hash=sha256:3b8d9d3c1bcadc2cff09724de70f074f43eafd5b7048a91247c9a41b7cd6216d \
     --hash=sha256:564af8ab39fb3f3adfeae73a59c0dca46c099ab844a28e725eee0c551d4869f8
