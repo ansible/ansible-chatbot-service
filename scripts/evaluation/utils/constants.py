@@ -12,7 +12,7 @@ INSCOPE_MODELS = {
     "ollama+llama3.1:latest": ("ollama", "llama3.1:latest"),
     "ollama+mistral": ("ollama", "mistral"),
     "my_rhoai_g31+granite3-1-8b": ("my_rhoai_g31", "granite3-1-8b"),
-    "my_rhoai_g32+granite3-2-8b": ("my_rhoai_g32", "granite3-2-8b"),
+    "my_rhoai_g33+granite-3.3-8b-instruct": ("my_rhoai_g33", "granite-3.3-8b-instruct"),
 }
 
 NON_LLM_EVALS = {
