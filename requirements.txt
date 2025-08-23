@@ -397,7 +397,7 @@ langchain-core==0.3.66 \
 langchain-ibm==0.3.13 \
     --hash=sha256:61f3ece7c665bb37da6809f60824a521420eeda84d00927414e76d9221340cc6 \
     --hash=sha256:ca68cbb4338b50fdffd08926e8901fa96ebe12e07422193decc2f46c32ab5ea1
-langchain-openai==0.3.26 \
+langchain-openai==0.3.31 \
     --hash=sha256:2f216b92195e43fc30a28af8842cf704e72abe3b0ae2cbf85004ca75c5274575 \
     --hash=sha256:6f8420f164095834477d13715bc08a7553cdc229df30110d390c3d8880b728f3
 langchain-text-splitters==0.3.8 \
