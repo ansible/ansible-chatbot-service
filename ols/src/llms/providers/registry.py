@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class LLMProvidersRegistry:
     """Registry for LLM providers."""
 
-    llm_providers: ClassVar = {}
+    llm_providers: ClassVar[dict[str, Callable]] = {}
 
     @classmethod
     def register(cls, provider_type: str, llm_provider: Callable) -> None:
