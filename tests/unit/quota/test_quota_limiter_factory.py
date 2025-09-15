@@ -123,5 +123,5 @@ def test_quota_limiters_unknown_limiter(postgres_mock):
             }
         ]
     )
-    with pytest.raises(ValueError, match="Invalid limiter type: UNKNOWN."):
+    with pytest.raises(ValueError, match=r"Invalid limiter type: UNKNOWN."):
         QuotaLimiterFactory.quota_limiters(config)
