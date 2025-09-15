@@ -81,9 +81,9 @@ azure-core==1.34.0 \
 azure-identity==1.18.0 \
     --hash=sha256:bccf6106245b49ff41d0c4cd7b72851c5a2ba3a32cef7589da246f5727f26f02 \
     --hash=sha256:f567579a65d8932fa913c76eddf3305101a15e5727a5e4aa5df649a0f553d4c3
-banks==2.2.0 \
-    --hash=sha256:963cd5c85a587b122abde4f4064078def35c50c688c1b9d36f43c92503854e7d \
-    --hash=sha256:d1446280ce6e00301e3e952dd754fd8cee23ff277d29ed160994a84d0d7ffe62
+banks==2.1.3 \
+    --hash=sha256:9e1217dc977e6dd1ce42c5ff48e9bcaf238d788c81b42deb6a555615ffcffbab \
+    --hash=sha256:c0dd2cb0c5487274a513a552827e6a8ddbd0ab1a1b967f177e71a6e4748a3ed2
 beautifulsoup4==4.13.4 \
     --hash=sha256:9bbbb14bfde9d79f38b8cd5f8c7c85f4b8f2523190ebed90e950a8dea4cb1c4b \
     --hash=sha256:dbb3c4e1ceae6aefebdaf2423247260cd062430a410e38c66f2baa50a8437195
@@ -388,9 +388,9 @@ kubernetes==30.1.0 \
 langchain==0.3.26 \
     --hash=sha256:361bb2e61371024a8c473da9f9c55f4ee50f269c5ab43afdb2b1309cb7ac36cf \
     --hash=sha256:8ff034ee0556d3e45eff1f1e96d0d745ced57858414dba7171c8ebdbeb5580c9
-langchain-community==0.3.26 \
-    --hash=sha256:49f9d71dc20bc42ccecd6875d02fafef1be0e211a0b22cecbd678f5fd3719487 \
-    --hash=sha256:b25a553ee9d44a6c02092a440da6c561a9312c7013ffc25365ac3f8694edb53a
+langchain-community==0.3.27 \
+    --hash=sha256:581f97b795f9633da738ea95da9cb78f8879b538090c9b7a68c0aed49c828f0d \
+    --hash=sha256:e1037c3b9da0c6d10bf06e838b034eb741e016515c79ef8f3f16e53ead33d882
 langchain-core==0.3.66 \
     --hash=sha256:350c92e792ec1401f4b740d759b95f297710a50de29e1be9fbfff8676ef62117 \
     --hash=sha256:65cd6c3659afa4f91de7aa681397a0c53ff9282425c281e53646dd7faf16099e
@@ -403,9 +403,9 @@ langchain-openai==0.3.26 \
 langchain-text-splitters==0.3.8 \
     --hash=sha256:116d4b9f2a22dda357d0b79e30acf005c5518177971c66a9f1ab0edfdb0f912e \
     --hash=sha256:e75cc0f4ae58dcf07d9f18776400cf8ade27fadd4ff6d264df6278bb302f6f02
-langsmith==0.4.4 \
-    --hash=sha256:014c68329bd085bd6c770a6405c61bb6881f82eb554ce8c4d1984b0035fd1716 \
-    --hash=sha256:70c53bbff24a7872e88e6fa0af98270f4986a6e364f9e85db1cc5636defa4d66
+langsmith==0.4.3 \
+    --hash=sha256:151d8cbf3d26a49f67bd720462eae20d3282196958f86b59d1ac1aad484c52f1 \
+    --hash=sha256:b8ed57fb21fb3370bc7e4e8c4a3003017040336df694a66a34afe6f9872e68da
 llama-cloud==0.1.26 \
     --hash=sha256:2c0b2663e619b71c0645885ef622d6443725ab37bdc6ae5fb723e097f3af9459 \
     --hash=sha256:b307f91b1ad97189b5278119ac4ad665931b65f240fb643b3e384d0a1fc81f56
@@ -454,9 +454,9 @@ llama-index-readers-llama-parse==0.4.0 \
 llama-index-vector-stores-faiss==0.3.0 \
     --hash=sha256:2148163dba1222c855bd367a7b796bc35d46dc2e77d57bafd321ba14aac00177 \
     --hash=sha256:c9df99dd00fe7058606ef4fce113535fa30b73edd650136be87c9b5b240df3f9
-llama-index-vector-stores-postgres==0.5.4 \
-    --hash=sha256:40fa6757c7ddccc1a23f5413f6676e339583c5bfb3364dbf7e371aab5d94ed07 \
-    --hash=sha256:df6f05ffd7c148e4d3663ab386cf059a76fb59b3c9b34110add97fc154a16e2a
+llama-index-vector-stores-postgres==0.5.2 \
+    --hash=sha256:51926e4e350f814ca10c4615b0e153980e411ef71a6bec83bc547e740d424ff9 \
+    --hash=sha256:a70b4db043ac590f772b316ff59e3937d39da5e17bb9d3f4422fbaa96e066e53
 llama-parse==0.6.34 \
     --hash=sha256:395174c3c4d22dc372ab310727de2b3fc4e268e36f11fe9959a95bfa9cf63d66 \
     --hash=sha256:a228619806687ff7b3fb44f21210e98c337f7e05f19374f0fb52196158caae0d

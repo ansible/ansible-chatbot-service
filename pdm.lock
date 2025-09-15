@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:5eb752b0ed10d8c64bc9e0b6603b56e5fe9171f9869ed359dc35d3fe24760804"
+content_hash = "sha256:d9bcc0f737ffcf972d8a9c27c88ab1d6c17a7f8ee4e28452483305266a01f59e"
 
 [[metadata.targets]]
 requires_python = ">=3.11.1,<=3.12.8"
@@ -1730,7 +1730,7 @@ files = [
 
 [[package]]
 name = "langchain-community"
-version = "0.3.26"
+version = "0.3.27"
 requires_python = ">=3.9"
 summary = "Community contributed LangChain integrations."
 groups = ["default"]
@@ -1750,8 +1750,8 @@ dependencies = [
     "tenacity!=8.4.0,<10,>=8.1.0",
 ]
 files = [
-    {file = "langchain_community-0.3.26-py3-none-any.whl", hash = "sha256:b25a553ee9d44a6c02092a440da6c561a9312c7013ffc25365ac3f8694edb53a"},
-    {file = "langchain_community-0.3.26.tar.gz", hash = "sha256:49f9d71dc20bc42ccecd6875d02fafef1be0e211a0b22cecbd678f5fd3719487"},
+    {file = "langchain_community-0.3.27-py3-none-any.whl", hash = "sha256:581f97b795f9633da738ea95da9cb78f8879b538090c9b7a68c0aed49c828f0d"},
+    {file = "langchain_community-0.3.27.tar.gz", hash = "sha256:e1037c3b9da0c6d10bf06e838b034eb741e016515c79ef8f3f16e53ead33d882"},
 ]
 
 [[package]]
@@ -2141,7 +2141,7 @@ files = [
 
 [[package]]
 name = "llama-index-vector-stores-postgres"
-version = "0.5.4"
+version = "0.5.2"
 requires_python = "<4.0,>=3.9"
 summary = "llama-index vector_stores postgres integration"
 groups = ["default"]
@@ -2153,8 +2153,8 @@ dependencies = [
     "sqlalchemy[asyncio]<2.1,>=1.4.49",
 ]
 files = [
-    {file = "llama_index_vector_stores_postgres-0.5.4-py3-none-any.whl", hash = "sha256:40fa6757c7ddccc1a23f5413f6676e339583c5bfb3364dbf7e371aab5d94ed07"},
-    {file = "llama_index_vector_stores_postgres-0.5.4.tar.gz", hash = "sha256:df6f05ffd7c148e4d3663ab386cf059a76fb59b3c9b34110add97fc154a16e2a"},
+    {file = "llama_index_vector_stores_postgres-0.5.2-py3-none-any.whl", hash = "sha256:a70b4db043ac590f772b316ff59e3937d39da5e17bb9d3f4422fbaa96e066e53"},
+    {file = "llama_index_vector_stores_postgres-0.5.2.tar.gz", hash = "sha256:51926e4e350f814ca10c4615b0e153980e411ef71a6bec83bc547e740d424ff9"},
 ]
 
 [[package]]
