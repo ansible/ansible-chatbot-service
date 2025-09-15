@@ -371,7 +371,7 @@ def test_validate_question_too_long_query(llm_validate_question_mock):
     query = "Tell me about Kubernetes?"
     llm_request = LLMRequest(query=query, conversation_id=conversation_id)
     # PromptTooLongError should be caught and HTTPException needs to be raised
-    with pytest.raises(HTTPException, match="413: {'response': 'Prompt is too long'"):
+    with pytest.raises(HTTPException, match=r"413: {'response': 'Prompt is too long'"):
         ols.validate_question(conversation_id, llm_request)
 
 

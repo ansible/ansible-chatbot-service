@@ -1471,7 +1471,7 @@ def test_loading_incorrect_additional_config_file_rhdh_type():
 def test_additional_config_file_incorrect_type():
     """Check how an additional configuration file is handled with an incorrect type."""
     with pytest.raises(
-        ValueError, match="Configuration file type 'wrongtype' not recognized."
+        ValueError, match=r"Configuration file type 'wrongtype' not recognized."
     ):
         config.reload_additional_config_file(
             "tests/config/valid_rhdh_config.yaml", "wrongtype"

@@ -1703,7 +1703,7 @@ def test_tls_config_no_data_provided():
     tls_config = TLSConfig(None)
     with pytest.raises(
         InvalidConfigurationError,
-        match="Can not enable TLS without ols_config.tls_config.tls_certificate_path",
+        match=r"Can not enable TLS without ols_config.tls_config.tls_certificate_path",
     ):
         tls_config.validate_yaml(False)
 
@@ -1718,7 +1718,7 @@ def test_tls_config_no_tls_key_path():
     )
     with pytest.raises(
         InvalidConfigurationError,
-        match="Can not enable TLS without ols_config.tls_config.tls_key_path",
+        match=r"Can not enable TLS without ols_config.tls_config.tls_key_path",
     ):
         tls_config.validate_yaml(False)
 
@@ -3615,7 +3615,7 @@ def test_ols_config_with_non_existing_system_prompt(tmpdir):
     """Test the OLSConfig model with system prompt path specification that does not exist."""
     with pytest.raises(
         FileNotFoundError,
-        match="No such file or directory: 'tests/config/non_existing_file.txt'",
+        match=r"No such file or directory: 'tests/config/non_existing_file.txt'",
     ):
         OLSConfig(
             {
@@ -3921,7 +3921,7 @@ def test_missing_lightspeed_id_attribute():
         }
     ]
 
-    with pytest.raises(KeyError, match="lightspeed id is missing."):
+    with pytest.raises(KeyError, match=r"lightspeed id is missing."):
         config._parse_rhdh_lightspeed_config(data)
 
 
@@ -3936,7 +3936,7 @@ def test_missing_lightspeed_url_attribute():
             "token": "lightspeed-token",
         }
     ]
-    with pytest.raises(KeyError, match="lightspeed url is missing."):
+    with pytest.raises(KeyError, match=r"lightspeed url is missing."):
         config._parse_rhdh_lightspeed_config(data)
 
 
@@ -3951,7 +3951,7 @@ def test_missing_lightspeed_models_attribute():
             "token": "lightspeed-token",
         }
     ]
-    with pytest.raises(KeyError, match="lightspeed models missing."):
+    with pytest.raises(KeyError, match=r"lightspeed models missing."):
         config._parse_rhdh_lightspeed_config(data)
 
 
@@ -3966,7 +3966,7 @@ def test_missing_lightspeed_token_attribute():
             "type": "lightspeed-type",
         }
     ]
-    with pytest.raises(KeyError, match="lightspeed token is missing."):
+    with pytest.raises(KeyError, match=r"lightspeed token is missing."):
         config._parse_rhdh_lightspeed_config(data)
 
 
