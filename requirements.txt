@@ -81,7 +81,7 @@ azure-core==1.34.0 \
 azure-identity==1.18.0 \
     --hash=sha256:bccf6106245b49ff41d0c4cd7b72851c5a2ba3a32cef7589da246f5727f26f02 \
     --hash=sha256:f567579a65d8932fa913c76eddf3305101a15e5727a5e4aa5df649a0f553d4c3
-banks==2.1.3 \
+banks==2.2.0 \
     --hash=sha256:9e1217dc977e6dd1ce42c5ff48e9bcaf238d788c81b42deb6a555615ffcffbab \
     --hash=sha256:c0dd2cb0c5487274a513a552827e6a8ddbd0ab1a1b967f177e71a6e4748a3ed2
 beautifulsoup4==4.13.4 \
