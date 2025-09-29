@@ -200,7 +200,7 @@ distlib==0.3.9 \
 distro==1.9.0 \
     --hash=sha256:2fa77c6fd8940f116ee1d6b94a2f90b13b5ea8d019b98bc8bafdcabcdd9bdbed \
     --hash=sha256:7bffd925d65168f85027d8da9af6bddab658135b840670a223589bc0c8ef02b2
-faiss-cpu==1.9.0.post1 \
+faiss-cpu==1.12.0 \
     --hash=sha256:274a66868a498687641faf964f6eddbe70ccb5bee56239862ee0aa079415779e \
     --hash=sha256:3b4d5e79643a09d91d339ba7609fb2e9b3ce6de3cd069b9183e97a843261e0e8 \
     --hash=sha256:5bd1a0412528202e4a4cc38953f81bb7d9b9a783881fa06d822b717a1b090bdd \
