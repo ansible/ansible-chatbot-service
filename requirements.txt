@@ -290,7 +290,7 @@ greenlet==3.2.3 \
     --hash=sha256:be52af4b6292baecfa0f397f3edb3c6092ce071b499dd6fe292c9ac9f2c8f264 \
     --hash=sha256:c667c0bf9d406b77a15c924ef3285e1e05250948001220368e039b6aa5b5034b \
     --hash=sha256:d2971d93bb99e05f8c2c0c2f4aa9484a18d98c4c3bd3c62b65b7e6ae33dfcfaf
-griffe==1.7.3 \
+griffe==1.14.0 \
     --hash=sha256:52ee893c6a3a968b639ace8015bec9d36594961e156e23315c8e8e51401fa50b \
     --hash=sha256:c6b3ee30c2f0f17f30bcdef5068d6ab7a2a4f1b8bf1a3e74b56fffd21e1c5f75
 h11==0.16.0 \
