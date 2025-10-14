@@ -391,18 +391,18 @@ langchain==0.3.26 \
 langchain-community==0.3.27 \
     --hash=sha256:581f97b795f9633da738ea95da9cb78f8879b538090c9b7a68c0aed49c828f0d \
     --hash=sha256:e1037c3b9da0c6d10bf06e838b034eb741e016515c79ef8f3f16e53ead33d882
-langchain-core==0.3.66 \
-    --hash=sha256:350c92e792ec1401f4b740d759b95f297710a50de29e1be9fbfff8676ef62117 \
-    --hash=sha256:65cd6c3659afa4f91de7aa681397a0c53ff9282425c281e53646dd7faf16099e
+langchain-core==0.3.79 \
+    --hash=sha256:024ba54a346dd9b13fb8b2342e0c83d0111e7f26fa01f545ada23ad772b55a60 \
+    --hash=sha256:92045bfda3e741f8018e1356f83be203ec601561c6a7becfefe85be5ddc58fdb
 langchain-ibm==0.3.13 \
     --hash=sha256:61f3ece7c665bb37da6809f60824a521420eeda84d00927414e76d9221340cc6 \
     --hash=sha256:ca68cbb4338b50fdffd08926e8901fa96ebe12e07422193decc2f46c32ab5ea1
 langchain-openai==0.3.26 \
     --hash=sha256:2f216b92195e43fc30a28af8842cf704e72abe3b0ae2cbf85004ca75c5274575 \
     --hash=sha256:6f8420f164095834477d13715bc08a7553cdc229df30110d390c3d8880b728f3
-langchain-text-splitters==0.3.8 \
-    --hash=sha256:116d4b9f2a22dda357d0b79e30acf005c5518177971c66a9f1ab0edfdb0f912e \
-    --hash=sha256:e75cc0f4ae58dcf07d9f18776400cf8ade27fadd4ff6d264df6278bb302f6f02
+langchain-text-splitters==0.3.11 \
+    --hash=sha256:7a50a04ada9a133bbabb80731df7f6ddac51bc9f1b9cab7fa09304d71d38a6cc \
+    --hash=sha256:cf079131166a487f1372c8ab5d0bfaa6c0a4291733d9c43a34a16ac9bcd6a393
 langsmith==0.4.3 \
     --hash=sha256:151d8cbf3d26a49f67bd720462eae20d3282196958f86b59d1ac1aad484c52f1 \
     --hash=sha256:b8ed57fb21fb3370bc7e4e8c4a3003017040336df694a66a34afe6f9872e68da
