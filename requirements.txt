@@ -415,18 +415,18 @@ llama-cloud==0.1.26 \
 llama-cloud-services==0.6.34 \
     --hash=sha256:02df81b03ed0286422a1cce0c650a3fe0eba385c88b12ac690a23153aab55432 \
     --hash=sha256:b56884ee0cc2298fd625b6b6d9f161e09340cb962cdb04006770ecf097e925ae
-llama-index==0.12.42 \
-    --hash=sha256:9a304b2bd71d6772fc6c2e9995e119815c00716fc98813b15ea79caee09f1fe2 \
-    --hash=sha256:d2bd2b9ea06bc42ebe74697aaa0b66c79bd3dee8ff5d06c53294d49ca44512e7
+llama-index==0.12.52 \
+    --hash=sha256:21e05e5a02b3601e18358eeed8748384eac8d35d384fdcbe16d03f0ffb09ea61 \
+    --hash=sha256:3a81fa4fbf1a36e30502d2fb7da26d53bc1a1ab02db1db12e62f06bb014d5ad9
 llama-index-agent-openai==0.4.11 \
     --hash=sha256:957bae65a072bde8b6c4c49fbd6e1cb47c182f55fa8fd2d748eb008176c22fe0 \
     --hash=sha256:bcd25f34412d1700f19a691c5f47db48f438f72a09f7467a20cffc6d3fdc326c
 llama-index-cli==0.4.3 \
     --hash=sha256:dae8183a10551bbd89686b94ed294a6cf44633c3dd6285c4f991c85031b7a55f \
     --hash=sha256:f0af55ce4b90e5a2466e394b88f4ac6085ea3e6286019bc3f49de6673ce2238d
-llama-index-core==0.12.42 \
-    --hash=sha256:0534cd9a4f6113175aa406a47ae9a683b5a43fd55532e9dbbffa96838ff18e07 \
-    --hash=sha256:cff21fe15610826997c876a6b1d28d52727932c5f9c2af04b23e041a10f40a24
+llama-index-core==0.12.52 \
+    --hash=sha256:c75719bb46a445c2917b1c6631c633247b4a3a0a0b82b8c166df7565bd0ff241 \
+    --hash=sha256:4cf58dce96d8bd46722dc595c058bcd0e546a900fb5b93b06b9ca052c198f0a4
 llama-index-embeddings-huggingface==0.4.0 \
     --hash=sha256:a5890bab349b118398054138b298a9e429776b85bcf8017fdf01cd5d60fbba12 \
     --hash=sha256:ce8f8b30b29cff85401aba2118285fb63fb8147a56b656ee20f7e8510ca085a2
