@@ -792,6 +792,7 @@
                                             "type": "string"
                                         },
                                         {
+                                            "additionalProperties": true,
                                             "type": "object"
                                         }
                                     ]
@@ -802,10 +803,12 @@
                         "title": "Content"
                     },
                     "additional_kwargs": {
+                        "additionalProperties": true,
                         "type": "object",
                         "title": "Additional Kwargs"
                     },
                     "response_metadata": {
+                        "additionalProperties": true,
                         "type": "object",
                         "title": "Response Metadata"
                     },
@@ -1365,6 +1368,7 @@
                         "title": "Functionality"
                     },
                     "status": {
+                        "additionalProperties": true,
                         "type": "object",
                         "title": "Status"
                     }
