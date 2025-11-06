@@ -308,7 +308,7 @@ hf-xet==1.1.5; platform_machine == "x86_64" or platform_machine == "amd64" or pl
     --hash=sha256:dbba1660e5d810bd0ea77c511a99e9242d920790d0e63c0e4673ed36c4022d18 \
     --hash=sha256:f52c2fa3635b8c37c7764d8796dfa72706cc4eded19d638331161e82b0792e23 \
     --hash=sha256:fc874b5c843e642f45fd85cda1ce599e123308ad2901ead23d3510a47ff506d1
-hishel==0.1.1 \
+hishel==0.1.5 \
     --hash=sha256:1f6421b78cc23fc43c610f651b7848c9b8eee2d29551d64a2ab0d45b319b6559 \
     --hash=sha256:5b51acc340303faeef2f5cfc1658acb1db1fdc3e3ad76406265a485f9707c5d6
 httpcore==1.0.9 \
