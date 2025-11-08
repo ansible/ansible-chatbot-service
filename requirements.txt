@@ -512,7 +512,7 @@ msal==1.32.3 \
 msal-extensions==1.3.1 \
     --hash=sha256:96d3de4d034504e969ac5e85bae8106c8373b5c6568e4c8fa7af2eca9dbe6bca \
     --hash=sha256:c5b0fd10f65ef62b5f1d62f4251d51cbcaf003fcedae8c91b040a488614be1a4
-msgpack==1.1.0 \
+msgpack==1.1.2 \
     --hash=sha256:06f5fd2f6bb2a7914922d935d3b8bb4a7fff3a9a91cfce6d06c13bc42bec975b \
     --hash=sha256:115a7af8ee9e8cddc10f87636767857e7e3717b7a2e97379dc2054712693e90f \
     --hash=sha256:17fb65dd0bec285907f68b15734a993ad3fc94332b5bb21b0435846228de1f39 \
