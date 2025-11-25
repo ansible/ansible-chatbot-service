@@ -412,9 +412,9 @@ langsmith==0.4.3 \
 llama-cloud==0.1.26 \
     --hash=sha256:2c0b2663e619b71c0645885ef622d6443725ab37bdc6ae5fb723e097f3af9459 \
     --hash=sha256:b307f91b1ad97189b5278119ac4ad665931b65f240fb643b3e384d0a1fc81f56
-llama-cloud-services==0.6.34 \
-    --hash=sha256:02df81b03ed0286422a1cce0c650a3fe0eba385c88b12ac690a23153aab55432 \
-    --hash=sha256:b56884ee0cc2298fd625b6b6d9f161e09340cb962cdb04006770ecf097e925ae
+llama-cloud-services==0.6.83 \
+    --hash=sha256:5210f67f695329e782efb3c9af79f938fba287044fa6317b6f87952bdd77cd8a \
+    --hash=sha256:5d337f3777a6defdf6261dd59808a1fd2122d8eb317e51dfbd740659932ae932
 llama-index==0.12.52 \
     --hash=sha256:21e05e5a02b3601e18358eeed8748384eac8d35d384fdcbe16d03f0ffb09ea61 \
     --hash=sha256:3a81fa4fbf1a36e30502d2fb7da26d53bc1a1ab02db1db12e62f06bb014d5ad9
