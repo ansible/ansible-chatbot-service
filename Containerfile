@@ -35,6 +35,7 @@ COPY --from=lightspeed-rag-embeddings /rag/embeddings_model ./embeddings_model
 COPY runner.py requirements.txt ./
 
 RUN pip3.11 install --upgrade pip
+RUN pip3.11 install --upgrade --ignore-installed setuptools
 RUN pip3.11 install --no-cache-dir -r requirements.txt
 
 COPY ols ./ols
