@@ -230,9 +230,9 @@ filelock==3.16.1 \
 filetype==1.2.0 \
     --hash=sha256:66b56cd6474bf41d8c54660347d37afcc3f7d1970648de365c102ef77548aadb \
     --hash=sha256:7ce71b6880181241cf7ac8697a2f1eb6a8bd9b429f7ad6d27b8db9ba5f1c2d25
-findpython==0.6.2 \
-    --hash=sha256:bda62477f858ea623ef2269f5e734469a018104a5f6c0fd9317ba238464ddb76 \
-    --hash=sha256:e0c75ba9f35a7f9bb4423eb31bd17358cccf15761b6837317719177aeff46723
+findpython==0.7.1 \
+    --hash=sha256:1b78b1ff6e886cbddeffe80f8ecdbf2b8b061169bbd18b673070e26b644c51ac \
+    --hash=sha256:9f29e6a3dabdb75f2b39c949772c0ed26eab15308006669f3478cdab0d867c78
 frozenlist==1.7.0 \
     --hash=sha256:15a7eaba63983d22c54d255b854e8108e7e5f3e89f647fc854bd77a237e767df \
     --hash=sha256:1eaa7e9c6d15df825bf255649e05bd8a74b04a4d2baa1ae46d9c2d00b2ca2cb5 \
