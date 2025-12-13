@@ -42,9 +42,9 @@ aiolimiter==1.2.1 \
 aiosignal==1.3.2 \
     --hash=sha256:45cde58e409a301715980c2b01d0c28bdde3770d8290b5eb2173759d9acb31a5 \
     --hash=sha256:a8c255c66fafb1e499c9351d0bf32ff2d8a0321595ebac3b93713656d2436f54
-aiosqlite==0.21.0 \
-    --hash=sha256:131bb8056daa3bc875608c631c678cda73922a2d4ba8aec373b19f18c17e7aa3 \
-    --hash=sha256:2549cf4057f95f53dcba16f2b64e8e2791d7e1adedb13197dd8ed77bb226d7d0
+aiosqlite==0.22.0 \
+    --hash=sha256:7e9e52d72b319fcdeac727668975056c49720c995176dc57370935e5ba162bb9 \
+    --hash=sha256:96007fac2ce70eda3ca1bba7a3008c435258a592b8fbf2ee3eeaa36d33971a09
 annotated-doc==0.0.3 \
     --hash=sha256:348ec6664a76f1fd3be81f43dffbee4c7e8ce931ba71ec67cc7f4ade7fbbb580 \
     --hash=sha256:e18370014c70187422c33e945053ff4c286f453a984eba84d0dbfa0c935adeda
