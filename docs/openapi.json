@@ -846,7 +846,7 @@
                     "type"
                 ],
                 "title": "BaseMessage",
-                "description": "Base abstract message class.\n\nMessages are the inputs and outputs of ChatModels."
+                "description": "Base abstract message class.\n\nMessages are the inputs and outputs of ``ChatModel``s."
             },
             "ChatHistoryResponse": {
                 "properties": {
