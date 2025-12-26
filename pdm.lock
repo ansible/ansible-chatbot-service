@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:fa61dcdc40972d16755e709754f111678d47818a383ff6d2c925a4e9d8e93626"
+content_hash = "sha256:4e16b4f9738a270b3bc0cd5b7cb9fafb5ae875512e4759d853a90010ffa21749"
 
 [[metadata.targets]]
 requires_python = ">=3.11.1,<=3.12.8"
@@ -1779,7 +1779,7 @@ files = [
 
 [[package]]
 name = "langchain-core"
-version = "0.3.80"
+version = "0.3.81"
 requires_python = "<4.0.0,>=3.9.0"
 summary = "Building applications with LLMs through composability"
 groups = ["default"]
@@ -1793,8 +1793,8 @@ dependencies = [
     "typing-extensions<5.0.0,>=4.7.0",
 ]
 files = [
-    {file = "langchain_core-0.3.80-py3-none-any.whl", hash = "sha256:2141e3838d100d17dce2359f561ec0df52c526bae0de6d4f469f8026c5747456"},
-    {file = "langchain_core-0.3.80.tar.gz", hash = "sha256:29636b82513ab49e834764d023c4d18554d3d719a185d37b019d0a8ae948c6bb"},
+    {file = "langchain_core-0.3.81-py3-none-any.whl", hash = "sha256:d0f34c88254d78ccb1b9a038f860d13dea90186045026fd8fc3e1265eed73a4e"},
+    {file = "langchain_core-0.3.81.tar.gz", hash = "sha256:0473e7cffbba06017393f2f1ee116da098c298e4ec478ada91d321f42dff921c"},
 ]
 
 [[package]]
