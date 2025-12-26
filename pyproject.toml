@@ -73,7 +73,7 @@ dependencies = [
     "httpx==0.27.2",
     "fastapi>=0.121.0",
     "langchain>=0.3.25",
-    "langchain-core==0.3.80",
+    "langchain-core==0.3.81",
     "langchain-ibm>=0.3.10",
     "llama-index>=0.12.52",
     "llama-index-core>=0.12.52",
