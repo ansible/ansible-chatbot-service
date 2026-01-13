@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:21c10828b78fa0db38f1d83f834bb2eda240e69009e628c075d0a3093908ee6a"
+content_hash = "sha256:1f1b9278982e8d2cabdd278524bf7423b7f7058df69f9aad5d88db3a8e50d92a"
 
 [[metadata.targets]]
 requires_python = "~=3.11.1"
@@ -2112,8 +2112,8 @@ files = [
 
 [[package]]
 name = "nltk"
-version = "3.9.1"
-requires_python = ">=3.8"
+version = "3.9.2"
+requires_python = ">=3.9"
 summary = "Natural Language Toolkit"
 groups = ["default", "dev"]
 dependencies = [
@@ -2123,8 +2123,8 @@ dependencies = [
     "tqdm",
 ]
 files = [
-    {file = "nltk-3.9.1-py3-none-any.whl", hash = "sha256:4fa26829c5b00715afe3061398a8989dc643b92ce7dd93fb4585a70930d168a1"},
-    {file = "nltk-3.9.1.tar.gz", hash = "sha256:87d127bd3de4bd89a4f81265e5fa59cb1b199b27440175370f7417d2bc7ae868"},
+    {file = "nltk-3.9.2-py3-none-any.whl", hash = "sha256:1e209d2b3009110635ed9709a67a1a3e33a10f799490fa71cf4bec218c11c88a"},
+    {file = "nltk-3.9.2.tar.gz", hash = "sha256:0f409e9b069ca4177c1903c3e843eef90c7e92992fa4931ae607da6de49e1419"},
 ]
 
 [[package]]
