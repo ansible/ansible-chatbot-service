@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:21c10828b78fa0db38f1d83f834bb2eda240e69009e628c075d0a3093908ee6a"
+content_hash = "sha256:c3ce4a165bfe7eb4e32d856a47ad9d1cc8ba77bc9a7b51a3eb3326d5c0768fb0"
 
 [[metadata.targets]]
 requires_python = "~=3.11.1"
@@ -1759,16 +1759,16 @@ files = [
 
 [[package]]
 name = "llama-index-vector-stores-faiss"
-version = "0.5.0"
+version = "0.5.2"
 requires_python = "<4.0,>=3.9"
 summary = "llama-index vector_stores faiss integration"
 groups = ["default"]
 dependencies = [
-    "llama-index-core<0.14,>=0.13.0",
+    "llama-index-core<0.15,>=0.13.0",
 ]
 files = [
-    {file = "llama_index_vector_stores_faiss-0.5.0-py3-none-any.whl", hash = "sha256:2fa9848a4423ddb26f987d299749f1fa1c272b8e576332a03e0610d4ee236d09"},
-    {file = "llama_index_vector_stores_faiss-0.5.0.tar.gz", hash = "sha256:4b6a1533c075b6e30985bf1eb778716c594ae0511691434df7f75b032ef964eb"},
+    {file = "llama_index_vector_stores_faiss-0.5.2-py3-none-any.whl", hash = "sha256:72a3a03d9f25c70bbcc8c61aa860cd1db69f2a8070606ecc3266d767b71ff2a2"},
+    {file = "llama_index_vector_stores_faiss-0.5.2.tar.gz", hash = "sha256:924504765e68b1f84ec602feb2d9516be6a6c12fad5e133f19cc5da3b23f4282"},
 ]
 
 [[package]]
