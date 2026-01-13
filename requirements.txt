@@ -237,9 +237,9 @@ llama-index-cli==0.5.1 \
 llama-index-core==0.13.6 \
     --hash=sha256:67bec3c06a8105cd82d83db0f8c3122f4e4d8a4b9c7a2768cced6a2686ddb331 \
     --hash=sha256:80315a6bd1f9804f48c1870eff1a0315bf9fe5a413747d53eb88a8ebb2602b97
-llama-index-embeddings-huggingface==0.6.0 \
-    --hash=sha256:0c24aba5265a7dbd6591394a8d2d64d0b978bb50b4b97c4e88cbf698b69fdd10 \
-    --hash=sha256:3ece7d8c5b683d2055fedeca4457dea13f75c81a6d7fb94d77e878cd73d90d97
+llama-index-embeddings-huggingface==0.6.1 \
+    --hash=sha256:3b21ffeda22f8221ed55778bb3daed71664ab07b341f1dd2f408963bd20355b9 \
+    --hash=sha256:b63990cf71ee7a36c51f36657133fcf76130e9bf5dcf9eb5a73a5087106d6881
 llama-index-embeddings-openai==0.5.1 \
     --hash=sha256:1c89867a48b0d0daa3d2d44f5e76b394b2b2ef9935932daf921b9e77939ccda8 \
     --hash=sha256:a2fcda3398bbd987b5ce3f02367caee8e84a56b930fdf43cc1d059aa9fd20ca5

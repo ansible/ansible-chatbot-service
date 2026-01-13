@@ -80,7 +80,7 @@ dependencies = [
     "llama-index-core>=0.12.52",
     "llama-index-workflows>=1.0.1",
     "llama-index-vector-stores-faiss==0.5.0",
-    "llama-index-embeddings-huggingface==0.6.0",
+    "llama-index-embeddings-huggingface==0.6.1",
     "uvicorn==0.32.1",
     "redis==5.2.0",
     "faiss-cpu==1.9.0.post1",
