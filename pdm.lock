@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:21c10828b78fa0db38f1d83f834bb2eda240e69009e628c075d0a3093908ee6a"
+content_hash = "sha256:272379600ccf87f07766085b4991cd0847eb7bb15e6b35fe735995c6c234a5a0"
 
 [[metadata.targets]]
 requires_python = "~=3.11.1"
@@ -2630,14 +2630,14 @@ files = [
 
 [[package]]
 name = "pyroscope-io"
-version = "0.8.8"
+version = "0.8.15"
 summary = "Pyroscope Python integration"
 groups = ["dev"]
 dependencies = [
     "cffi>=1.6.0",
 ]
 files = [
-    {file = "pyroscope_io-0.8.8-py2.py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:422286f356d5be69bb0754671cb43c233a3fca68ac7c65c05451986f11bac0e3"},
+    {file = "pyroscope_io-0.8.15-py2.py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:bd21ca6a4234c16146b7b088be3c41a71b0fc6a0ff8abf267a5c3913cd440fb6"},
 ]
 
 [[package]]
