@@ -49,43 +49,6 @@ install-woke: ## Install woke, required for Inclusive Naming scan
 pdm-lock-check: ## Check that the pdm.lock file is in a good shape
 	pdm lock --check
 
-regenerate-lock: ## Regenerate pdm.lock for current Python version (supports 3.11 and 3.12)
-	@PYTHON_VERSION=$$(python -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")'); \
-	echo "Detected Python version: $$PYTHON_VERSION"; \
-	if [ "$$PYTHON_VERSION" = "3.11" ]; then \
-		if [ ! -f pdm.lock ]; then \
-			echo "Creating new lock file for Python 3.11..."; \
-			pdm lock --python ">=3.11,<3.12" --platform linux; \
-		else \
-			echo "Updating lock file for Python 3.11..."; \
-			pdm lock --python ">=3.11,<3.12" --platform linux; \
-		fi \
-	elif [ "$$PYTHON_VERSION" = "3.12" ]; then \
-		if [ ! -f pdm.lock ]; then \
-			echo "Creating new lock file for Python 3.12..."; \
-			pdm lock --python ">=3.12,<3.13" --platform linux; \
-		else \
-			echo "Appending Python 3.12 to existing lock file..."; \
-			pdm lock --python ">=3.12,<3.13" --platform linux --append; \
-		fi \
-	else \
-		echo "ERROR: Unsupported Python version $$PYTHON_VERSION. Only 3.11 and 3.12 are supported."; \
-		exit 1; \
-	fi
-
-regenerate-lock-all: ## Regenerate complete multi-target pdm.lock for both Python 3.11 and 3.12
-	@echo "This requires both .venv311 and .venv312 virtual environments"
-	@if [ ! -d .venv311 ] || [ ! -d .venv312 ]; then \
-		echo "ERROR: Missing virtual environments. Please create .venv311 and .venv312"; \
-		exit 1; \
-	fi
-	@echo "Step 1: Creating lock file for Python 3.11..."
-	@rm -f pdm.lock
-	(source .venv311/bin/activate && pdm lock --python ">=3.11,<3.12" --platform linux)
-	@echo "Step 2: Appending Python 3.12 target..."
-	(source .venv312/bin/activate && pdm lock --python ">=3.12,<3.13" --platform linux --append)
-	@echo "✅ Multi-target lock file created successfully!"
-
 install-deps: install-tools pdm-lock-check ## Install all required dependencies needed to run the service, according to pdm.lock
 	@for a in 1 2 3 4 5; do pdm sync && break || sleep 15; done
 	

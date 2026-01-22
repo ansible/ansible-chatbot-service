@@ -12,7 +12,7 @@ FROM registry.access.redhat.com/ubi9/ubi-minimal AS production
 ARG APP_ROOT=/app-root
 
 RUN microdnf install -y --nodocs --setopt=keepcache=0 --setopt=tsflags=nodocs \
-    python3.11 python3.11-devel python3.11-pip
+    python3.12 python3.12-devel python3.12-pip
 
 # PYTHONDONTWRITEBYTECODE 1 : disable the generation of .pyc
 # PYTHONUNBUFFERED 1 : force the stdout and stderr streams to be unbuffered
@@ -34,9 +34,9 @@ COPY --from=lightspeed-rag-embeddings /rag/embeddings_model ./embeddings_model
 # (avoid accidental inclusion of local directories or env files or credentials)
 COPY runner.py requirements.txt ./
 
-RUN pip3.11 install --upgrade pip
-RUN pip3.11 install --upgrade --ignore-installed setuptools
-RUN pip3.11 install --no-cache-dir -r requirements.txt
+RUN pip3.12 install --upgrade pip
+RUN pip3.12 install --upgrade --ignore-installed setuptools
+RUN pip3.12 install --no-cache-dir -r requirements.txt
 
 COPY ols ./ols
 
@@ -46,7 +46,7 @@ COPY LICENSE /licenses/
 # Run the application
 EXPOSE 8080
 EXPOSE 8443
-CMD ["python3.11", "runner.py"]
+CMD ["python3.12", "runner.py"]
 
 LABEL vendor="Red Hat, Inc."
 
