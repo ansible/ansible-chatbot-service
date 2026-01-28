@@ -219,9 +219,9 @@ langchain-openai==0.3.35 \
 langchain-text-splitters==0.3.11 \
     --hash=sha256:7a50a04ada9a133bbabb80731df7f6ddac51bc9f1b9cab7fa09304d71d38a6cc \
     --hash=sha256:cf079131166a487f1372c8ab5d0bfaa6c0a4291733d9c43a34a16ac9bcd6a393
-langsmith==0.6.2 \
-    --hash=sha256:1ea1a591f52683a5aeebdaa2b58458d72ce9598105dd8b29e16f7373631a6434 \
-    --hash=sha256:c2efd7ed61eed3b6fdbf158ea2e9862bc2636f2edc95e90d2faad9462773d097
+langsmith==0.6.6 \
+    --hash=sha256:64ba70e7b795cff3c498fe6f2586314da1cc855471a5e5b6a357950324af3874 \
+    --hash=sha256:fe655e73b198cd00d0ecd00a26046eaf1f78cd0b2f0d94d1e5591f3143c5f592
 llama-cloud==0.1.35 \
     --hash=sha256:200349d5d57424d7461f304cdb1355a58eea3e6ca1e6b0d75c66b2e937216983 \
     --hash=sha256:b7abab4423118e6f638d2f326749e7a07c6426543bea6da99b623c715b22af71
