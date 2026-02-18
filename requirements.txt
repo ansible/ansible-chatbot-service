@@ -261,9 +261,9 @@ llama-index-readers-llama-parse==0.5.1 \
 llama-index-vector-stores-faiss==0.5.0 \
     --hash=sha256:2fa9848a4423ddb26f987d299749f1fa1c272b8e576332a03e0610d4ee236d09 \
     --hash=sha256:4b6a1533c075b6e30985bf1eb778716c594ae0511691434df7f75b032ef964eb
-llama-index-vector-stores-postgres==0.7.2 \
-    --hash=sha256:067d17751e7e1859bca3237869b901662b4aab53432df380d14acbb27bd67722 \
-    --hash=sha256:d29db90280d2482bdaac449e8d9070e007ec303b048edfb67247dd5c206e7ab5
+llama-index-vector-stores-postgres==0.7.3 \
+    --hash=sha256:65b70266cc6041ab5011d64d1183d8783112ba5b38eb32ca21e00ea5b96aa058 \
+    --hash=sha256:7b5c62e462d681d7b8d8668b93e5b0023bfd3aaafcf76e2b4bfcf885dc3b49c6
 llama-index-workflows==1.3.0 \
     --hash=sha256:328cc25d92b014ef527f105a2f2088c0924fff0494e53d93decb951f14fbfe47 \
     --hash=sha256:9c1688e237efad384f16485af71c6f9456a2eb6d85bf61ff49e5717f10ff286d
