@@ -99,10 +99,10 @@ dependencies = [
     "huggingface-hub>=0.33.1",
     "ibm-watsonx-ai>=1.3.3",
     "certifi==2024.8.30",
-    "cryptography==44.0.1",
+    "cryptography==46.0.5",
     "urllib3==2.6.3",
     "nltk==3.9.1",
-    "aiohttp==3.11.11",
+    "aiohttp==3.13.3",
     "zipp==3.20.1",
     "jinja2>=3.1.6",
     "scikit-learn==1.5.2",
@@ -119,6 +119,7 @@ dependencies = [
     # need to pin to avoid deadlock
     "requests==2.32.2",
     "python-multipart==0.0.22", # CVE-2026-24486
+    "pillow==12.1.1", # CVE-2026-25990
 ]
 requires-python = ">=3.12,<3.13"
 readme = "README.md"
@@ -151,7 +152,7 @@ dev = [
     "ruff>=0.11.7",
     "bandit==1.7.9",
     "types-requests==2.32.0.20240622",
-    "gradio==4.44.1",
+    "gradio==6.6.0",
     "boto3==1.34.145",
     "pyroscope-io==0.8.8",
     "memray==1.15.0",
