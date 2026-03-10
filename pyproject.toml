@@ -154,7 +154,7 @@ dev = [
     "types-requests==2.32.0.20240622",
     "gradio==6.6.0",
     "boto3==1.34.145",
-    "pyroscope-io==0.8.8",
+    "pyroscope-io==0.8.16",
     "memray==1.15.0",
     "matplotlib>=3.9.0",
     "reportportal-client==5.5.6",
