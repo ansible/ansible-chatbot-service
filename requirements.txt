@@ -359,9 +359,9 @@ llama-index-llms-openai==0.5.6 \
 llama-index-readers-file==0.5.6 \
     --hash=sha256:1c08b14facc2dfe933622aaa26dc7d2a7a6023c42d3db896a2c948789edaf1ea \
     --hash=sha256:32e83f9adb4e4803e6c7cef746c44fa0949013b1cb76f06f422e9491d198dbda
-llama-index-readers-llama-parse==0.5.1 \
-    --hash=sha256:0d41450ed29b0c49c024e206ef6c8e662b1854e77a1c5faefed3b958be54f880 \
-    --hash=sha256:2b78b73faa933e30e6c69df351e4e9f36dfe2ae142e2ab3969ddd2ac48930e37
+llama-index-readers-llama-parse==0.6.1 \
+    --hash=sha256:335d8defecc299bd3a305ce5a4fffd9fce63594d1a5e427c08f839f21d4d8e40 \
+    --hash=sha256:66eb378632522170a4190bb9691ba2d74c4a475becbf5bad4e88a0cb5b7159a2
 llama-index-vector-stores-faiss==0.5.0 \
     --hash=sha256:2fa9848a4423ddb26f987d299749f1fa1c272b8e576332a03e0610d4ee236d09 \
     --hash=sha256:4b6a1533c075b6e30985bf1eb778716c594ae0511691434df7f75b032ef964eb
