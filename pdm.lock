@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:ffadd6bfaf59541ab815355807fcfff421228ede59fb86227d8354e39d20eafc"
+content_hash = "sha256:80defbf9070526943207e1ef7df492630b7b98af40ab618590e1705493c6546a"
 
 [[metadata.targets]]
 requires_python = ">=3.12,<3.13"
@@ -249,8 +249,8 @@ files = [
 
 [[package]]
 name = "bandit"
-version = "1.7.9"
-requires_python = ">=3.8"
+version = "1.9.4"
+requires_python = ">=3.10"
 summary = "Security oriented static analyser for python code."
 groups = ["dev"]
 dependencies = [
@@ -260,8 +260,8 @@ dependencies = [
     "stevedore>=1.20.0",
 ]
 files = [
-    {file = "bandit-1.7.9-py3-none-any.whl", hash = "sha256:52077cb339000f337fb25f7e045995c4ad01511e716e5daac37014b9752de8ec"},
-    {file = "bandit-1.7.9.tar.gz", hash = "sha256:7c395a436743018f7be0a4cbb0a4ea9b902b6d87264ddecf8cfdc73b4f78ff61"},
+    {file = "bandit-1.9.4-py3-none-any.whl", hash = "sha256:f89ffa663767f5a0585ea075f01020207e966a9c0f2b9ef56a57c7963a3f6f8e"},
+    {file = "bandit-1.9.4.tar.gz", hash = "sha256:b589e5de2afe70bd4d53fa0c1da6199f4085af666fde00e8a034f152a52cd628"},
 ]
 
 [[package]]
@@ -3269,7 +3269,7 @@ files = [
 
 [[package]]
 name = "rich"
-version = "14.2.0"
+version = "14.3.3"
 requires_python = ">=3.8.0"
 summary = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
 groups = ["default", "dev"]
@@ -3278,8 +3278,8 @@ dependencies = [
     "pygments<3.0.0,>=2.13.0",
 ]
 files = [
-    {file = "rich-14.2.0-py3-none-any.whl", hash = "sha256:76bc51fe2e57d2b1be1f96c524b890b816e334ab4c1e45888799bfaab0021edd"},
-    {file = "rich-14.2.0.tar.gz", hash = "sha256:73ff50c7c0c1c77c8243079283f4edb376f0f6442433aecb8ce7e6d0b92d1fe4"},
+    {file = "rich-14.3.3-py3-none-any.whl", hash = "sha256:793431c1f8619afa7d3b52b2cdec859562b950ea0d4b6b505397612db8d5362d"},
+    {file = "rich-14.3.3.tar.gz", hash = "sha256:b8daa0b9e4eef54dd8cf7c86c03713f53241884e814f4e2f5fb342fe520f639b"},
 ]
 
 [[package]]
@@ -3625,13 +3625,13 @@ files = [
 
 [[package]]
 name = "stevedore"
-version = "5.6.0"
+version = "5.7.0"
 requires_python = ">=3.10"
 summary = "Manage dynamic plugins for Python applications"
 groups = ["dev"]
 files = [
-    {file = "stevedore-5.6.0-py3-none-any.whl", hash = "sha256:4a36dccefd7aeea0c70135526cecb7766c4c84c473b1af68db23d541b6dc1820"},
-    {file = "stevedore-5.6.0.tar.gz", hash = "sha256:f22d15c6ead40c5bbfa9ca54aa7e7b4a07d59b36ae03ed12ced1a54cf0b51945"},
+    {file = "stevedore-5.7.0-py3-none-any.whl", hash = "sha256:fd25efbb32f1abb4c9e502f385f0018632baac11f9ee5d1b70f88cc5e22ad4ed"},
+    {file = "stevedore-5.7.0.tar.gz", hash = "sha256:31dd6fe6b3cbe921e21dcefabc9a5f1cf848cf538a1f27543721b8ca09948aa3"},
 ]
 
 [[package]]
