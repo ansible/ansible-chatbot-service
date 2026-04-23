@@ -157,7 +157,7 @@ dev = [
     "pyroscope-io==0.8.8",
     "memray==1.15.0",
     "matplotlib>=3.9.0",
-    "reportportal-client==5.5.6",
+    "reportportal-client==5.7.4",
     "pytest-reportportal==5.4.1",
     "pytest-benchmark[histogram]>=4.0.0",
     "typing-extensions==4.12.2",
