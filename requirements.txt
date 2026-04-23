@@ -260,9 +260,9 @@ ibm-cos-sdk-s3transfer==2.13.6 \
 ibm-generative-ai==3.0.0 \
     --hash=sha256:0d86297371a5bb7c41d143a8c770e068f37489b5ca88e6bd56dca61a4f6dc1a8 \
     --hash=sha256:e0c39a5c84356f7408de31988ee055349a4ab7ec7030f313fa1c19d76b2b6d85
-ibm-watsonx-ai==1.5.0 \
-    --hash=sha256:875d339f8d6889485f4181321e5f93504cf36ecd5c8d9aa726aaa889d78a560b \
-    --hash=sha256:a3ee19fa4c60e76889631094ecb586edac338cc4dded4037de190b4dbdc8e689
+ibm-watsonx-ai==1.5.10 \
+    --hash=sha256:91eb5808044a9a443574a789a8482bbcc52b44a5c6cdf8e0999b5d05c9c9d36d \
+    --hash=sha256:cb0fc306a0beac1ccd4a787a0233da0a558bd088ac9b254f71fc283eb12b69c7
 id==1.5.0 \
     --hash=sha256:292cb8a49eacbbdbce97244f47a97b4c62540169c976552e497fd57df0734c1d \
     --hash=sha256:f1434e1cef91f2cbb8a4ec64663d5a23b9ed43ef44c4c957d02583d61714c658
