@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:ffadd6bfaf59541ab815355807fcfff421228ede59fb86227d8354e39d20eafc"
+content_hash = "sha256:b2c16b89d73af96a72a59e33a98a74736caa40ca5dc1b925ba2f8423a098e589"
 
 [[metadata.targets]]
 requires_python = ">=3.12,<3.13"
@@ -3918,16 +3918,16 @@ files = [
 
 [[package]]
 name = "types-requests"
-version = "2.32.0.20240622"
-requires_python = ">=3.8"
+version = "2.33.0.20260503"
+requires_python = ">=3.10"
 summary = "Typing stubs for requests"
 groups = ["dev"]
 dependencies = [
     "urllib3>=2",
 ]
 files = [
-    {file = "types-requests-2.32.0.20240622.tar.gz", hash = "sha256:ed5e8a412fcc39159d6319385c009d642845f250c63902718f605cd90faade31"},
-    {file = "types_requests-2.32.0.20240622-py3-none-any.whl", hash = "sha256:97bac6b54b5bd4cf91d407e62f0932a74821bc2211f22116d9ee1dd643826caf"},
+    {file = "types_requests-2.33.0.20260503-py3-none-any.whl", hash = "sha256:02aaa7e3577a13471715bb1bddb693cc985ea514f754b503bf033e6a09a3e528"},
+    {file = "types_requests-2.33.0.20260503.tar.gz", hash = "sha256:9721b2d9dbee7131f2fb39f20f0ebb1999c18cef4b512c9a7932f3722de7c5f4"},
 ]
 
 [[package]]
