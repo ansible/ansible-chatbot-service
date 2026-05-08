@@ -251,8 +251,8 @@ httpx[socks]==0.27.2 \
 huggingface-hub[inference]==0.36.0 \
     --hash=sha256:47b3f0e2539c39bf5cde015d63b72ec49baff67b6931c3d97f3f84532e2b8d25 \
     --hash=sha256:7bcc9ad17d5b3f07b57c78e79d527102d08313caa278a641993acddcb894548d
-ibm-cos-sdk==2.13.6 \
-    --hash=sha256:171cf2ae4ab662a4b8ab58dcf4ac994b0577d6c92d78490295fd7704a83978f6
+ibm-cos-sdk==2.16.2 \
+    --hash=sha256:b9ec5a390606b29a179736b34b90e829988b281eaa66fe5002bd9dac09adea3a
 ibm-cos-sdk-core==2.13.6 \
     --hash=sha256:dd41fb789eeb65546501afabcd50e78846ab4513b6ad4042e410b6a14ff88413
 ibm-cos-sdk-s3transfer==2.13.6 \
