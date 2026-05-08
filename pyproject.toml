@@ -119,7 +119,7 @@ dependencies = [
     # need to pin to avoid deadlock
     "requests==2.32.2",
     "python-multipart==0.0.22", # CVE-2026-24486
-    "pillow==12.1.1", # CVE-2026-25990
+    "pillow==12.2.0", # CVE-2026-25990
 ]
 requires-python = ">=3.12,<3.13"
 readme = "README.md"
