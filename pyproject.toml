@@ -86,7 +86,7 @@ dependencies = [
     "openai>=1.77.0",
     "pyarrow==18.0.0",
     "ibm-generative-ai==3.0.0",
-    "ibm-cos-sdk==2.13.6",
+    "ibm-cos-sdk==2.16.2",
     "langchain-openai>=0.3.16",
     "pydantic>=2.11.5",
     "setuptools>=80.9.0",
